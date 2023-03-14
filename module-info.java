@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author elkesj
+ *
+ */
+module CultureAppIsrael {
+}
