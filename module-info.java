@@ -6,4 +6,5 @@
  *
  */
 module CultureAppIsrael {
+	requires java.desktop;
 }
