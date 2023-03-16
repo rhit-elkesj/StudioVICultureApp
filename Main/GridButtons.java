@@ -17,7 +17,10 @@ public class GridButtons extends Main {
 			gridButtons[i].setText(i + "");
 			gridButtons[i].addActionListener(new ButtonListener());
 			frame.add(gridButtons[i]);
-			frame.setLayout(new GridLayout(7, 7, 5, 5));  
+			
+			GridLayout buttonGrid = new GridLayout(7, 7, 20, 20);
+			// frame.setLayout(new GridLayout(7, 7, 20, 20));  
+	//		frame.setLayout(buttonGrid.layoutContainer(new));
 			frame.setVisible(true);
 		}
 	}
