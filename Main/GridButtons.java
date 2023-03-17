@@ -1,11 +1,18 @@
 package Main;
 
 import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Class: GridButtons
+ * 
+ * @author IsraelGroup <br>
+ *         Purpose: Creates all the Buttons and adds them to the GridLayout 
+ *         <br>
+ *         Restrictions: None
+ */
 public class GridButtons extends Main {
 
 	// Instantiated Variables
