@@ -1,28 +1,34 @@
 package Main;
+
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;   
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class GridButtons extends Main {
-	
+
 	JFrame frame;
+	JPanel buttonPanel;
+	GridLayout gridButtonLayout;
 	JButton[] gridButtons = new JButton[50];
-	
-	public GridButtons( JFrame mainFrame) {
+
+	public GridButtons(JFrame mainFrame, JPanel mainButtonPanel, GridLayout mainGridButtons) {
+
 		this.frame = mainFrame;
-		
-		for(int i = 1; i < gridButtons.length; i++) {
+		this.buttonPanel = mainButtonPanel;
+		this.gridButtonLayout = mainGridButtons;
+
+		for (int i = 1; i < gridButtons.length; i++) {
 			gridButtons[i] = new JButton(i + "");
 			gridButtons[i].setText(i + "");
 			gridButtons[i].addActionListener(new ButtonListener());
-			frame.add(gridButtons[i]);
-			
-			GridLayout buttonGrid = new GridLayout(7, 7, 20, 20);
-			// frame.setLayout(new GridLayout(7, 7, 20, 20));  
-	//		frame.setLayout(buttonGrid.layoutContainer(new));
+			buttonPanel.add(gridButtons[i]);
+
+			buttonPanel.setVisible(true);
 			frame.setVisible(true);
+
 		}
 	}
 
-} //GridButtons
+} // GridButtons

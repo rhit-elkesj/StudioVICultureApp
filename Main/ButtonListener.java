@@ -21,7 +21,7 @@ public class ButtonListener extends OmerDays implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		buttonID = e.getActionCommand().toString();
-		
+
 		if (buttonID.equals("1")) {
 			System.out.println(buttonID);
 		}
@@ -171,7 +171,6 @@ public class ButtonListener extends OmerDays implements ActionListener {
 		}
 	}
 
-	
 //	try {
 //	System.out.println("Test");
 //	getDay("Day1");
@@ -179,5 +178,5 @@ public class ButtonListener extends OmerDays implements ActionListener {
 //	System.out.println("Test");
 //	e1.printStackTrace();
 //}
-	
+
 }
