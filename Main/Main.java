@@ -1,7 +1,6 @@
 package Main;
 
 import java.awt.GridLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,5 +58,5 @@ public class Main {
 	public static void main(String[] args) {
 		Main mainApp = new Main();
 		mainApp.runApp();
-	} // main
+	}// main
 }

@@ -3,19 +3,33 @@ package Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/**
+ * Class: ButtonListener
+ * 
+ * @author IsraelGroup <br>
+ *         Purpose: ActionListener for the Buttons <br>
+ *         Restrictions: None
+ */
 public class ButtonListener extends OmerDays implements ActionListener {
 
+	// Instantiated Variables
 	JButton currentButton;
 	JFrame mainFrame;
 	String buttonID;
 
+	/**
+	 * Ensures: The ButtonListener is constructed (default constructor)
+	 *
+	 * <br>
+	 * Requires: The ButtonListener and subsequent action components are created and
+	 * displayed
+	 */
 	public ButtonListener() {
 
-	}
+	}// ButtonListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -169,14 +183,5 @@ public class ButtonListener extends OmerDays implements ActionListener {
 		if (buttonID.equals("49")) {
 			System.out.println(buttonID);
 		}
-	}
-
-//	try {
-//	System.out.println("Test");
-//	getDay("Day1");
-//} catch (FileNotFoundException e1) {
-//	System.out.println("Test");
-//	e1.printStackTrace();
-//}
-
+	}// ActionPerformed
 }

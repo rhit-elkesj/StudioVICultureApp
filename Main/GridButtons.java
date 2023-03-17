@@ -8,11 +8,19 @@ import javax.swing.JPanel;
 
 public class GridButtons extends Main {
 
+	// Instantiated Variables
 	JFrame frame;
 	JPanel buttonPanel;
 	GridLayout gridButtonLayout;
 	JButton[] gridButtons = new JButton[50];
 
+	/**
+	 * Ensures: The GridLayout of buttons is constructed
+	 *
+	 * <br>
+	 * Requires: The JFrame, JPanel, GridLayout, JButton[], and subsequent action
+	 * components are created and displayed
+	 */
 	public GridButtons(JFrame mainFrame, JPanel mainButtonPanel, GridLayout mainGridButtons) {
 
 		this.frame = mainFrame;
@@ -27,8 +35,6 @@ public class GridButtons extends Main {
 
 			buttonPanel.setVisible(true);
 			frame.setVisible(true);
-
 		}
 	}
-
 } // GridButtons
