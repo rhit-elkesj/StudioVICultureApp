@@ -10,8 +10,7 @@ import javax.swing.JFrame;
  * Class: ButtonListener
  * 
  * @author IsraelGroup <br>
- *         Purpose: ActionListener for the Buttons 
- *         <br>
+ *         Purpose: ActionListener for the Buttons <br>
  *         Restrictions: None
  */
 public class ButtonListener extends OmerDays implements ActionListener {

@@ -22,10 +22,10 @@ public class Main {
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
 
-	private static final int BORDER_GAP_WIDTH_T = 10;
-	private static final int BORDER_GAP_WIDTH_L = 10;
-	private static final int BORDER_GAP_WIDTH_B = 10;
-	private static final int BORDER_GAP_WIDTH_R = 10;
+	private static final int BORDER_GAP_WIDTH_T = 30;
+	private static final int BORDER_GAP_WIDTH_L = 30;
+	private static final int BORDER_GAP_WIDTH_B = 30;
+	private static final int BORDER_GAP_WIDTH_R = 30;
 
 	/**
 	 * Ensures: The program is ran
@@ -40,11 +40,16 @@ public class Main {
 		JFrame frame = new JFrame("Counting of the Omer");
 		GridLayout buttonGrid = new GridLayout(7, 7, 20, 20);
 		JPanel mainButtonPanel = new JPanel(buttonGrid);
-		mainButtonPanel.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L, BORDER_GAP_WIDTH_B,
-						BORDER_GAP_WIDTH_R),
-				BorderFactory.createTitledBorder(
-						"                    CHESED                                                      GEVURAH                                                   TIFERET                                                   NETZACH                                                       HOD                                                        YESOD                                                     MALCHUT                                                                                                      ")));
+
+		mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
+				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R));
+
+		JPanel labelPanel = new JPanel();
+		labelPanel.setSize(SCREEN_WIDTH, BORDER_GAP_WIDTH_T);
+		labelPanel.setAlignmentX(0);
+		labelPanel.setAlignmentY(0);
+
+		frame.add(labelPanel);
 
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +57,10 @@ public class Main {
 		frame.setVisible(true);
 
 		new GridButtons(frame, mainButtonPanel, buttonGrid);
+		new MainLabel(frame, labelPanel);
+
+		labelPanel.setVisible(true);
+
 	}// runApp
 
 	/**

@@ -1,38 +1,57 @@
 package Main;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Class: MainLabel
+ * 
+ * @author IsraelGroup <br>
+ *         Purpose: Creates all the labels at the top of the screen and adds
+ *         them to the the MainPanel <br>
+ *         Restrictions: None
+ */
 public class MainLabel extends Main {
 
 	// Instantiated Variables
 	JFrame panelFrame;
 	JPanel topPanel;
+	Font labelFont = new Font("Sans Serif", Font.BOLD, 20);
 
-	public MainLabel(JFrame mainFrame, JPanel mainPanel) {
+	/**
+	 * Ensures: The labels are constructed and added to the MainPanel
+	 *
+	 * <br>
+	 * Requires: The JFrame, JPanel, and subsequent constructed labels, the
+	 * components are created and displayed
+	 */
+	public MainLabel(JFrame mainFrame, JPanel labelPanel) {
 
 		this.panelFrame = mainFrame;
-		this.topPanel = mainPanel;
+		this.topPanel = labelPanel;
 
 		JLabel chesedLabel = new JLabel("CHESED");
+		chesedLabel.setFont(labelFont);
 		JLabel gevurahLabel = new JLabel("GEVURAH");
+		gevurahLabel.setFont(labelFont);
 		JLabel tiferetLabel = new JLabel("TIFERET");
+		tiferetLabel.setFont(labelFont);
 		JLabel netzachLabel = new JLabel("NETZACH");
+		netzachLabel.setFont(labelFont);
 		JLabel yesodLabel = new JLabel("YESOD");
+		yesodLabel.setFont(labelFont);
 		JLabel malchutLabel = new JLabel("MALCHUT");
+		malchutLabel.setFont(labelFont);
 
-		chesedLabel.setPreferredSize(new Dimension(30, 30));
+		topPanel.add(chesedLabel);
+		topPanel.add(gevurahLabel);
+		topPanel.add(tiferetLabel);
+		topPanel.add(netzachLabel);
+		topPanel.add(yesodLabel);
+		topPanel.add(malchutLabel);
 
-//		JPanel topLabelPanel = new JPanel();
-//		topLabelPanel.setPreferredSize(new Dimension(1520, 60));
-//		topPanel.add(topLabelPanel);
-//		topLabelPanel.setVisible(true);
-//		topLabelPanel.add(chesedLabel);
-		panelFrame.add(chesedLabel);
-		chesedLabel.setVisible(true);
-
-	}
-
+	}// MainLabel
 }

@@ -9,8 +9,7 @@ import javax.swing.JPanel;
  * Class: GridButtons
  * 
  * @author IsraelGroup <br>
- *         Purpose: Creates all the Buttons and adds them to the GridLayout 
- *         <br>
+ *         Purpose: Creates all the Buttons and adds them to the GridLayout <br>
  *         Restrictions: None
  */
 public class GridButtons extends Main {
