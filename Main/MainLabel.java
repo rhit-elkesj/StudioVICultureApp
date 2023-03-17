@@ -3,6 +3,8 @@ package Main;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,23 +36,26 @@ public class MainLabel extends Main {
 		this.panelFrame = mainFrame;
 		this.topPanel = labelPanel;
 
-		JLabel chesedLabel = new JLabel("CHESED");
+		JLabel chesedLabel = new JLabel("                CHESED");
 		chesedLabel.setFont(labelFont);
-		JLabel gevurahLabel = new JLabel("GEVURAH");
+		JLabel gevurahLabel = new JLabel("            GEVURAH");
 		gevurahLabel.setFont(labelFont);
-		JLabel tiferetLabel = new JLabel("TIFERET");
+		JLabel tiferetLabel = new JLabel("            TIFERET");
 		tiferetLabel.setFont(labelFont);
-		JLabel netzachLabel = new JLabel("NETZACH");
+		JLabel netzachLabel = new JLabel("         NETZACH");
+		JLabel hodLabel = new JLabel("            HOD");
+		hodLabel.setFont(labelFont);
 		netzachLabel.setFont(labelFont);
-		JLabel yesodLabel = new JLabel("YESOD");
+		JLabel yesodLabel = new JLabel("        YESOD");
 		yesodLabel.setFont(labelFont);
-		JLabel malchutLabel = new JLabel("MALCHUT");
+		JLabel malchutLabel = new JLabel("     MALCHUT");
 		malchutLabel.setFont(labelFont);
 
-		topPanel.add(chesedLabel, BorderLayout.WEST);
+		topPanel.add(chesedLabel);
 		topPanel.add(gevurahLabel);
 		topPanel.add(tiferetLabel);
 		topPanel.add(netzachLabel);
+		topPanel.add(hodLabel);
 		topPanel.add(yesodLabel);
 		topPanel.add(malchutLabel);
 

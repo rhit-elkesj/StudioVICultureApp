@@ -42,18 +42,19 @@ public class Main {
 		GridLayout buttonGrid = new GridLayout(7, 7, 20, 20);
 		JPanel mainButtonPanel = new JPanel(buttonGrid);
 
+		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
 				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R));
 
-		JPanel labelPanel = new JPanel();
-		labelPanel.setSize(SCREEN_WIDTH, BORDER_GAP_WIDTH_T);
-		labelPanel.setAlignmentX(0);
-		labelPanel.setAlignmentY(0);
+		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
+		JPanel labelPanel = new JPanel(labelGrid);
+//		labelPanel.setSize(SCREEN_WIDTH, BORDER_GAP_WIDTH_T);
+//		labelPanel.setAlignmentX(0);
+//		labelPanel.setAlignmentY(0);
 
 		frame.add(labelPanel, BorderLayout.NORTH);
-
-		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(mainButtonPanel);
 		frame.setVisible(true);
 
