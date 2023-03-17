@@ -11,6 +11,7 @@ public class OmerDays {
 	private String dayFile;
 
 	public OmerDays() {
+		
 		this.dayFile = FILES[0];
 	}
 
