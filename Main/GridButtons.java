@@ -41,6 +41,7 @@ public class GridButtons extends Main {
 
 			buttonPanel.setVisible(true);
 			frame.setVisible(true);
+			
 		}
 	}
 } // GridButtons

@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -22,7 +23,7 @@ public class Main {
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
 
-	private static final int BORDER_GAP_WIDTH_T = 30;
+	private static final int BORDER_GAP_WIDTH_T = 0;
 	private static final int BORDER_GAP_WIDTH_L = 30;
 	private static final int BORDER_GAP_WIDTH_B = 30;
 	private static final int BORDER_GAP_WIDTH_R = 30;
@@ -49,7 +50,7 @@ public class Main {
 		labelPanel.setAlignmentX(0);
 		labelPanel.setAlignmentY(0);
 
-		frame.add(labelPanel);
+		frame.add(labelPanel, BorderLayout.NORTH);
 
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

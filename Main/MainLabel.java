@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JFrame;
@@ -46,7 +47,7 @@ public class MainLabel extends Main {
 		JLabel malchutLabel = new JLabel("MALCHUT");
 		malchutLabel.setFont(labelFont);
 
-		topPanel.add(chesedLabel);
+		topPanel.add(chesedLabel, BorderLayout.WEST);
 		topPanel.add(gevurahLabel);
 		topPanel.add(tiferetLabel);
 		topPanel.add(netzachLabel);

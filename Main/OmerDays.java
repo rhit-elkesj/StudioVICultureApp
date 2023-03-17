@@ -27,5 +27,6 @@ public class OmerDays {
 
 	public static String[] getFiles() {
 		return FILES;
+
 	}// getFiles
 }
