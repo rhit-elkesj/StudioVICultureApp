@@ -1,11 +1,15 @@
 package Main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.IOException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -23,10 +27,10 @@ public class Main {
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
 
-	private static final int BORDER_GAP_WIDTH_T = 0;
-	private static final int BORDER_GAP_WIDTH_L = 30;
-	private static final int BORDER_GAP_WIDTH_B = 30;
-	private static final int BORDER_GAP_WIDTH_R = 30;
+	private static final int BORDER_GAP_WIDTH_T = 5;
+	private static final int BORDER_GAP_WIDTH_L = 5;
+	private static final int BORDER_GAP_WIDTH_B = 5;
+	private static final int BORDER_GAP_WIDTH_R = 5;
 
 	/**
 	 * Ensures: The program is ran
@@ -39,29 +43,34 @@ public class Main {
 		System.out.println("Running Program");
 
 		JFrame frame = new JFrame("Counting of the Omer");
-		GridLayout buttonGrid = new GridLayout(7, 7, 20, 20);
+		GridLayout buttonGrid = new GridLayout(7, 7, 5, 5);
 		JPanel mainButtonPanel = new JPanel(buttonGrid);
 
+		frame.getRootPane().setBackground(Color.BLACK);
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frame.setBackground(Color.BLACK);
+
 		mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
 				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R));
 
+		mainButtonPanel.setBackground(Color.BLACK);
 		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
-		JPanel labelPanel = new JPanel(labelGrid);
-//		labelPanel.setSize(SCREEN_WIDTH, BORDER_GAP_WIDTH_T);
-//		labelPanel.setAlignmentX(0);
-//		labelPanel.setAlignmentY(0);
+////		JPanel labelPanel = new JPanel(labelGrid);
 
-		frame.add(labelPanel, BorderLayout.NORTH);
+////		frame.add(labelPanel, BorderLayout.NORTH);
 		frame.add(mainButtonPanel);
 		frame.setVisible(true);
 
-		new GridButtons(frame, mainButtonPanel, buttonGrid);
-		new MainLabel(frame, labelPanel);
+		try {
+			new GridButtons(frame, mainButtonPanel, buttonGrid);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		labelPanel.setVisible(true);
+//		new MainLabel(frame, labelPanel);
+
+//		labelPanel.setVisible(true);
 
 	}// runApp
 
