@@ -54,9 +54,6 @@ public class Main {
 				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R));
 
 		mainButtonPanel.setBackground(Color.BLACK);
-//		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
-//		JPanel labelPanel = new JPanel(labelGrid);
-//		frame.add(labelPanel, BorderLayout.NORTH);
 		frame.add(mainButtonPanel);
 		frame.setVisible(true);
 
@@ -66,6 +63,9 @@ public class Main {
 			e.printStackTrace();
 		}
 
+//		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
+//		JPanel labelPanel = new JPanel(labelGrid);
+//		frame.add(labelPanel, BorderLayout.NORTH);
 //		new MainLabel(frame, labelPanel);
 //		labelPanel.setVisible(true);
 

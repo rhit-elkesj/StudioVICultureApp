@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  *         Purpose: ActionListener for the Buttons <br>
  *         Restrictions: None
  */
-public class ButtonListener extends OmerDays implements ActionListener {
+public class ButtonListener implements ActionListener {
 
 	// Instantiated Variables
 	JButton currentButton;
