@@ -39,8 +39,10 @@ public class Main {
 	 */
 	private void runApp() {
 
+		// Ensures the program is starting
 		System.out.println("Running Program");
 
+		// Constructing the frame, buttonGrid, and mainButton Panel
 		JFrame frame = new JFrame("Counting of the Omer");
 		GridLayout buttonGrid = new GridLayout(7, 7, 5, 5);
 		JPanel mainButtonPanel = new JPanel(buttonGrid);
@@ -57,12 +59,16 @@ public class Main {
 		frame.add(mainButtonPanel);
 		frame.setVisible(true);
 
+		// IOException if the GridButtons cannot be constructed properly
 		try {
 			new GridButtons(frame, mainButtonPanel, buttonGrid);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		// Constructor for a MainLabel
+		// (not being, delete in final version of program if not used)
+		
 //		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
 //		JPanel labelPanel = new JPanel(labelGrid);
 //		frame.add(labelPanel, BorderLayout.NORTH);
