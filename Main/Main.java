@@ -26,11 +26,10 @@ public class Main {
 	// Instantiated Variables
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
-
 	private static final int BORDER_GAP_WIDTH_T = 5;
-	private static final int BORDER_GAP_WIDTH_L = 5;
+	private static final int BORDER_GAP_WIDTH_L = 3;
 	private static final int BORDER_GAP_WIDTH_B = 5;
-	private static final int BORDER_GAP_WIDTH_R = 5;
+	private static final int BORDER_GAP_WIDTH_R = 3;
 
 	/**
 	 * Ensures: The program is ran
@@ -56,9 +55,8 @@ public class Main {
 
 		mainButtonPanel.setBackground(Color.BLACK);
 		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
-////		JPanel labelPanel = new JPanel(labelGrid);
-
-////		frame.add(labelPanel, BorderLayout.NORTH);
+//		JPanel labelPanel = new JPanel(labelGrid);
+//		frame.add(labelPanel, BorderLayout.NORTH);
 		frame.add(mainButtonPanel);
 		frame.setVisible(true);
 
@@ -69,7 +67,6 @@ public class Main {
 		}
 
 //		new MainLabel(frame, labelPanel);
-
 //		labelPanel.setVisible(true);
 
 	}// runApp
