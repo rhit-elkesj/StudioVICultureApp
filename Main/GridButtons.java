@@ -51,49 +51,49 @@ public class GridButtons extends Main {
 		}
 
 		// Day 1
-		ImageIcon day1 = new ImageIcon("///C:/Users/elkesj/git/StudioVICultureApp/Main/ButtonImages/Day1.PNG");
+		ImageIcon day1 = new ImageIcon("Main/ButtonImages/Day1.PNG");
 		Image image1 = day1.getImage();
 		Image scaledImage1 = image1.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledDay1 = new ImageIcon(scaledImage1);
 		gridButtons[1].setIcon(scaledDay1);
 
 		// Day 2
-		ImageIcon day2 = new ImageIcon("///C:/Users/elkesj/git/StudioVICultureApp/Main/ButtonImages/Day2.PNG");
+		ImageIcon day2 = new ImageIcon("Main/ButtonImages/Day2.PNG");
 		Image image2 = day2.getImage();
 		Image scaledImage2 = image2.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledDay2 = new ImageIcon(scaledImage2);
 		gridButtons[2].setIcon(scaledDay2);
 
 		// Day 3
-		ImageIcon day3 = new ImageIcon("///C:/Users/elkesj/git/StudioVICultureApp/Main/ButtonImages/Day3.PNG");
+		ImageIcon day3 = new ImageIcon("Main/ButtonImages/Day3.PNG");
 		Image image3 = day3.getImage();
 		Image scaledImage3 = image3.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledDay3 = new ImageIcon(scaledImage3);
 		gridButtons[3].setIcon(scaledDay3);
 
 		// Day 4
-		ImageIcon day4 = new ImageIcon("///C:/Users/elkesj/git/StudioVICultureApp/Main/ButtonImages/Day4.PNG");
+		ImageIcon day4 = new ImageIcon("Main/ButtonImages/Day4.PNG");
 		Image image4 = day4.getImage();
 		Image scaledImage4 = image4.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledDay4 = new ImageIcon(scaledImage4);
 		gridButtons[4].setIcon(scaledDay4);
 
 		// Day 5
-		ImageIcon day5 = new ImageIcon("///C:/Users/elkesj/git/StudioVICultureApp/Main/ButtonImages/Day5.PNG");
+		ImageIcon day5 = new ImageIcon("Main/ButtonImages/Day5.PNG");
 		Image image5 = day5.getImage();
 		Image scaledImage5 = image5.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledDay5 = new ImageIcon(scaledImage5);
 		gridButtons[5].setIcon(scaledDay5);
 
 		// Day 6
-		ImageIcon day6 = new ImageIcon("///C:/Users/elkesj/git/StudioVICultureApp/Main/ButtonImages/Day6.PNG");
+		ImageIcon day6 = new ImageIcon("Main/ButtonImages/Day6.PNG");
 		Image image6 = day6.getImage();
 		Image scaledImage6 = image6.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledDay6 = new ImageIcon(scaledImage6);
 		gridButtons[6].setIcon(scaledDay6);
 
 		// Day 7
-		ImageIcon day7 = new ImageIcon("///C:/Users/elkesj/git/StudioVICultureApp/Main/ButtonImages/Day7.PNG");
+		ImageIcon day7 = new ImageIcon("Main/ButtonImages/Day7.PNG");
 		Image image7 = day7.getImage();
 		Image scaledImage7 = image7.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledDay7 = new ImageIcon(scaledImage7);
