@@ -13,11 +13,11 @@ import javax.swing.JFrame;
  *         Purpose: ActionListener for the Buttons <br>
  *         Restrictions: None
  */
-public class ButtonListener implements ActionListener {
+public class ButtonListener extends Main implements ActionListener {
 
 	// Instantiated Variables
 	JButton currentButton;
-	JFrame mainFrame;
+	JFrame frame;
 	String buttonID;
 
 	/**
@@ -27,14 +27,16 @@ public class ButtonListener implements ActionListener {
 	 * Requires: The ButtonListener and subsequent action components are created and
 	 * displayed
 	 */
-	public ButtonListener() {
+
+	public ButtonListener(JButton buttonPressed, JFrame mainFrame) {
+		this.currentButton = buttonPressed;
+		buttonID = currentButton.getName();
+		this.frame = mainFrame;
 
 	}// ButtonListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		buttonID = e.getActionCommand().toString();
 
 		if (buttonID.equals("1")) {
 			System.out.println(buttonID);
@@ -183,5 +185,6 @@ public class ButtonListener implements ActionListener {
 		if (buttonID.equals("49")) {
 			System.out.println(buttonID);
 		}
+
 	}// ActionPerformed
 }

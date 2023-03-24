@@ -68,7 +68,7 @@ public class Main {
 
 		// Constructor for a MainLabel
 		// (not being, delete in final version of program if not used)
-		
+
 //		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
 //		JPanel labelPanel = new JPanel(labelGrid);
 //		frame.add(labelPanel, BorderLayout.NORTH);
@@ -86,5 +86,6 @@ public class Main {
 	public static void main(String[] args) {
 		Main mainApp = new Main();
 		mainApp.runApp();
+
 	}// main
 }
