@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 /**
  * Class: GridButtons
  * 
- * @author IsraelGroup <br>
+ * @author elkesj <br>
  *         Purpose: Creates all the Buttons and adds them to the GridLayout <br>
  *         Restrictions: None
  */

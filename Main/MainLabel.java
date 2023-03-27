@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 /**
  * Class: MainLabel
  * 
- * @author IsraelGroup <br>
+ * @author elkesj <br>
  *         Purpose: Creates all the labels at the top of the screen and adds
  *         them to the the MainPanel <br>
  *         Restrictions: None

@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 /**
  * Class: ButtonListener
  * 
- * @author IsraelGroup <br>
+ * @author elkesj <br>
  *         Purpose: ActionListener for the Buttons <br>
  *         Restrictions: None
  */
