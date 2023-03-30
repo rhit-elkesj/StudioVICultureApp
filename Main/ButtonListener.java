@@ -1,10 +1,16 @@
 package Main;
 
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Class: ButtonListener
@@ -19,6 +25,11 @@ public class ButtonListener extends Main implements ActionListener {
 	JButton currentButton;
 	JFrame frame;
 	String buttonID;
+
+	private static final int BORDER_GAP_WIDTH_T = 5;
+	private static final int BORDER_GAP_WIDTH_L = 3;
+	private static final int BORDER_GAP_WIDTH_B = 5;
+	private static final int BORDER_GAP_WIDTH_R = 3;
 
 	/**
 	 * Ensures: The ButtonListener is constructed (default constructor)
@@ -187,5 +198,36 @@ public class ButtonListener extends Main implements ActionListener {
 			System.out.println(buttonID);
 		}
 
+		if (buttonID.equals("About")) {
+			System.out.println(buttonID);
+			frame.getContentPane().removeAll();
+			frame.getContentPane().repaint();
+		}
+
+		if (buttonID.equals("Start Counting")) {
+			System.out.println(buttonID);
+			frame.getContentPane().removeAll(); // Clears all contents of the frame
+			frame.getContentPane().repaint(); // Refreshes screen automatically (blanks)
+
+			// Constructing the buttonGrid, and mainButton Panel
+			GridLayout buttonGrid = new GridLayout(7, 7, 5, 5); // 7 x 7 Grid with gaps of 5 between each tile
+			JPanel mainButtonPanel = new JPanel(buttonGrid);
+
+			mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
+					BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R)); // Adds gaps to outside border
+
+			mainButtonPanel.setBackground(Color.BLACK);
+			frame.setBackground(Color.BLACK);
+
+			frame.add(mainButtonPanel);
+
+			// IOException if the GridButtons cannot be constructed properly
+			try {
+				new GridButtons(frame, mainButtonPanel);
+			} catch (IOException es) {
+				es.printStackTrace();
+			}
+		}
+
 	}// ActionPerformed
-}
+}// ButtonListener

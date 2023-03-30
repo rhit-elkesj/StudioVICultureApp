@@ -2,6 +2,7 @@ package Main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
 
@@ -26,45 +27,33 @@ public class Main {
 	// Instantiated Variables
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
-	private static final int BORDER_GAP_WIDTH_T = 5;
-	private static final int BORDER_GAP_WIDTH_L = 3;
-	private static final int BORDER_GAP_WIDTH_B = 5;
-	private static final int BORDER_GAP_WIDTH_R = 3;
 
 	/**
 	 * Ensures: The program is ran
 	 *
 	 * <br>
 	 * Requires: The Frame and subsequent components are created and displayed
+	 * 
+	 * @throws IOException
 	 */
 	private void runApp() {
 
 		// Ensures the program is starting
 		System.out.println("Running Program");
 
-		// Constructing the frame, buttonGrid, and mainButton Panel
 		JFrame frame = new JFrame("Counting of the Omer");
-		GridLayout buttonGrid = new GridLayout(7, 7, 5, 5);
-		JPanel mainButtonPanel = new JPanel(buttonGrid);
-
-		frame.getRootPane().setBackground(Color.BLACK);
-		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBackground(Color.BLACK);
 
-		mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
-				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R));
-
+		JPanel mainButtonPanel = new JPanel(new BorderLayout());
 		mainButtonPanel.setBackground(Color.BLACK);
 		frame.add(mainButtonPanel);
-		frame.setVisible(true);
 
-		// IOException if the GridButtons cannot be constructed properly
-		try {
-			new GridButtons(frame, mainButtonPanel, buttonGrid);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		new HomeScreen(frame);
+
+		frame.setMinimumSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+
+		frame.pack();
+		frame.setVisible(true);
 
 		// Constructor for a MainLabel
 		// (not being, delete in final version of program if not used)
@@ -81,11 +70,12 @@ public class Main {
 	 * Ensures: Runs the program
 	 * 
 	 * @param Arguments not used
+	 * @throws IOException
 	 * @throws InvalidLevelFormatException (eventually, will add in later)
 	 */
 	public static void main(String[] args) {
 		Main mainApp = new Main();
 		mainApp.runApp();
 
-	}// main
-}
+	}// runApp
+}// Main

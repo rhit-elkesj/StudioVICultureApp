@@ -24,10 +24,9 @@ import javax.swing.JPanel;
 public class GridButtons extends Main {
 
 	// Instantiated Variables
-	JFrame frame;
-	JPanel buttonPanel;
-	GridLayout gridButtonLayout;
-	JButton[] gridButtons = new JButton[50];
+	private JFrame frame;
+	private JPanel buttonPanel;
+	private JButton[] gridButtons = new JButton[50];
 
 	/**
 	 * Ensures: The GridLayout of buttons is constructed and associated ImageIcons
@@ -37,11 +36,10 @@ public class GridButtons extends Main {
 	 * Requires: The JFrame, JPanel, GridLayout, JButton[], and subsequent action
 	 * components are created and displayed
 	 */
-	public GridButtons(JFrame mainFrame, JPanel mainButtonPanel, GridLayout mainGridButtons) throws IOException {
+	public GridButtons(JFrame mainFrame, JPanel mainButtonPanel) throws IOException {
 
 		this.frame = mainFrame;
 		this.buttonPanel = mainButtonPanel;
-		this.gridButtonLayout = mainGridButtons;
 
 		// Uses For Loop to create Buttons and add to ButtonPanel
 		for (int i = 1; i < gridButtons.length; i++) {
@@ -52,7 +50,9 @@ public class GridButtons extends Main {
 																							// Button
 			gridButtons[i].setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
 			buttonPanel.add(gridButtons[i]);
+			buttonPanel.setBackground(Color.black);
 			buttonPanel.setVisible(true);
+			frame.setBackground(Color.black);
 			frame.setVisible(true);
 		}
 
@@ -134,7 +134,7 @@ public class GridButtons extends Main {
 			Image scaledWeekImage = image.getScaledInstance(214, 108, java.awt.Image.SCALE_SMOOTH); // Scales image
 			ImageIcon scaledWeekIcon = new ImageIcon(scaledWeekImage);
 			gridButtons[i].setPressedIcon(scaledWeekIcon);
-		}
-	}
 
-} // GridButtons
+		}
+	}// GridButtons
+}// GridButtons
