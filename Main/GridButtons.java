@@ -24,8 +24,9 @@ import javax.swing.JPanel;
 public class GridButtons {
 
 	// Instantiated Variables
-	private int IMAGE_SCALE_X = 214;
-	private int IMAGE_SCALE_Y = 108;
+	private static final int IMAGE_SCALE_X = 214;
+	private static final int IMAGE_SCALE_Y = 108;
+	
 	private JFrame frame;
 	private JPanel buttonPanel;
 	private JButton[] gridButtons = new JButton[50];

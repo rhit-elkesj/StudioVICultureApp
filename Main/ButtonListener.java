@@ -22,16 +22,16 @@ import javax.swing.JPanel;
 public class ButtonListener extends Main implements ActionListener {
 
 	// Instantiated Variables
-	JButton currentButton;
-	JFrame frame;
-	String buttonID;
-
 	private static final int TILE_AMOUNT = 7;
 	private static final int TILE_GAP = 5;
 	private static final int BORDER_GAP_WIDTH_T = 5;
 	private static final int BORDER_GAP_WIDTH_L = 3;
 	private static final int BORDER_GAP_WIDTH_B = 5;
 	private static final int BORDER_GAP_WIDTH_R = 3;
+	private String buttonID;
+
+	JButton currentButton;
+	JFrame frame;
 
 	/**
 	 * Ensures: The ButtonListener is constructed (default constructor)
