@@ -7,6 +7,8 @@ public class HomeScreen {
 
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
+	private static final int SCALE_X = 180;
+	private static final int SCALE_Y = 60;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private JFrame frame;
 	private JPanel buttonPanel;
@@ -44,37 +46,20 @@ public class HomeScreen {
 
 		calendar = new JButton();
 		calendar.setName("Start Counting"); // Set ButtonID
-		calendar.setPreferredSize(new Dimension(180, 60)); // Set size
 		calendar.addActionListener(new ButtonListener(calendar, frame)); // Add ActionListener
-
+		calendar.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
 		String imagePath = "Main/ButtonImages/StartCounting.PNG"; // Accesses images from folder
-		ImageIcon calendarIcon = new ImageIcon(imagePath);
-		Image calendarImage = calendarIcon.getImage();
-		Image scaledImage = calendarImage.getScaledInstance(180, 60, java.awt.Image.SCALE_SMOOTH); // Scales image
-		ImageIcon scaledCalendarIcon = new ImageIcon(scaledImage);
-		calendar.setIcon(scaledCalendarIcon);
-
-		String imagePath2 = "Main/ButtonImages/Week7.PNG"; // Accesses images from folder
-		ImageIcon weekIcon = new ImageIcon(imagePath2);
-		Image image = weekIcon.getImage();
-		Image scaledWeekImage = image.getScaledInstance(180, 60, java.awt.Image.SCALE_SMOOTH); // Scales image
-		ImageIcon scaledWeekIcon = new ImageIcon(scaledWeekImage);
-		calendar.setPressedIcon(scaledWeekIcon);
-
+		AddButtonImages.addImage(calendar, imagePath, SCALE_X, SCALE_Y);
+		AddPressedImages.addPressed(calendar, imagePath, SCALE_X, SCALE_Y);
 		calendar.setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
 
 		about = new JButton();
 		about.setName("About"); // Set ButtonID
-		about.setPreferredSize(new Dimension(180, 60)); // Set size
 		about.addActionListener(new ButtonListener(about, frame)); // AddActionListener
-
-		String imagePath3 = "Main/ButtonImages/About.PNG"; // Accesses images from folder
-		ImageIcon aboutIcon = new ImageIcon(imagePath3);
-		Image aboutImage = aboutIcon.getImage();
-		Image scaledImage2 = aboutImage.getScaledInstance(180, 60, java.awt.Image.SCALE_SMOOTH); // Scales image
-		ImageIcon scaledAboutIcon = new ImageIcon(scaledImage2);
-		about.setIcon(scaledAboutIcon);
-		about.setPressedIcon(scaledWeekIcon);
+		about.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
+		String imagePath2 = "Main/ButtonImages/About.PNG"; // Accesses images from folder
+		AddButtonImages.addImage(about, imagePath2, SCALE_X, SCALE_Y);
+		AddPressedImages.addPressed(about, imagePath2, SCALE_X, SCALE_Y);
 		about.setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
 
 		buttonPanel.add(calendar);
@@ -90,5 +75,5 @@ public class HomeScreen {
 		homePanel.add(buttonPanel, c);
 		frame.add(homePanel);
 		frame.setVisible(true);
-	}
-}
+	}// HomeScreen
+}// HomeScreen

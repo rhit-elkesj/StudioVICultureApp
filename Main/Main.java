@@ -54,16 +54,6 @@ public class Main {
 
 		frame.pack();
 		frame.setVisible(true);
-
-		// Constructor for a MainLabel
-		// (not being, delete in final version of program if not used)
-
-//		GridLayout labelGrid = new GridLayout(1, 7, 20, 20);
-//		JPanel labelPanel = new JPanel(labelGrid);
-//		frame.add(labelPanel, BorderLayout.NORTH);
-//		new MainLabel(frame, labelPanel);
-//		labelPanel.setVisible(true);
-
 	}// runApp
 
 	/**
