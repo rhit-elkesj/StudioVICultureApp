@@ -3,6 +3,14 @@ package Main;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Class: HomeScreen
+ * 
+ * @author elkesj <br>
+ *         Purpose: Creates and displays all elements needed for the initial
+ *         screen when program is ran <br>
+ *         Restrictions: None
+ */
 public class HomeScreen {
 
 	private static final int SCREEN_WIDTH = 1520;
@@ -10,7 +18,7 @@ public class HomeScreen {
 	private static final int SCALE_X = 180;
 	private static final int SCALE_Y = 60;
 	private static final int CENTER_POSITION = 50;
-	private static final int INLET_GAP = 30;
+	private static final int INLET_GAP = 10;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 
 	private JFrame frame;
@@ -19,14 +27,6 @@ public class HomeScreen {
 	private JButton about;
 	private JButton calendar;
 
-	/**
-	 * Class: HomeScreen
-	 * 
-	 * @author elkesj <br>
-	 *         Purpose: Creates and displays all elements needed for the initial
-	 *         screen when program is ran <br>
-	 *         Restrictions: None
-	 */
 	public HomeScreen(JFrame mainFrame) {
 
 		// Frame
@@ -47,7 +47,7 @@ public class HomeScreen {
 		// Start Counting
 		calendar = new JButton();
 		calendar.setName("Start Counting"); // Set ButtonID
-		calendar.addActionListener(new ButtonListener(calendar, frame)); // Add ActionListener
+		calendar.addActionListener(new ButtonListenerImplemented(calendar, frame)); // Add ActionListener
 		calendar.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
 		String buttonImagePath1 = "Main/ButtonImages/StartCounting.PNG"; // Accesses images from folder
 		AddButtonImages.addImage(calendar, buttonImagePath1, SCALE_X, SCALE_Y);
@@ -58,7 +58,7 @@ public class HomeScreen {
 		// About
 		about = new JButton();
 		about.setName("About"); // Set ButtonID
-		about.addActionListener(new ButtonListener(about, frame)); // AddActionListener
+		about.addActionListener(new ButtonListenerImplemented(about, frame)); // AddActionListener
 		about.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
 		String buttonImagePath2 = "Main/ButtonImages/About.PNG"; // Accesses images from folder
 		AddButtonImages.addImage(about, buttonImagePath2, SCALE_X, SCALE_Y);

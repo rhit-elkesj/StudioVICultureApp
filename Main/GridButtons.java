@@ -19,7 +19,7 @@ public class GridButtons {
 	// Instantiated Variables
 	private static final int IMAGE_SCALE_X = 214;
 	private static final int IMAGE_SCALE_Y = 108;
-	
+
 	private JFrame frame;
 	private JPanel buttonPanel;
 	private JButton[] gridButtons = new JButton[50];
@@ -41,7 +41,8 @@ public class GridButtons {
 		for (int i = 1; i < gridButtons.length; i++) {
 			gridButtons[i] = new JButton();
 			gridButtons[i].setName("" + i); // Button name is set to its associated value
-			gridButtons[i].addActionListener(new ButtonListener(gridButtons[i], frame)); // Creates and adds ButtonListener
+			gridButtons[i].addActionListener(new ButtonListenerImplemented(gridButtons[i], frame)); // Creates and adds
+																									// ButtonListener
 			gridButtons[i].setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
 			buttonPanel.add(gridButtons[i]);
 			buttonPanel.setBackground(Color.BLACK);

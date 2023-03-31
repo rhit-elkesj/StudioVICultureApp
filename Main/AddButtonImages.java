@@ -7,8 +7,9 @@ import javax.swing.JButton;
 /**
  * Class: AddButtonImages
  * 
- * @author elkesj <br>
- *         Purpose: Abstract class that will add an Image to a specified Button <br>
+ * @author Richelle Elkes <br>
+ *         Purpose: Abstract class that will add an Image to a specified Button
+ *         <br>
  *         Restrictions: None
  */
 public abstract class AddButtonImages {
@@ -24,8 +25,7 @@ public abstract class AddButtonImages {
 		Image originalImage = buttonImage.getImage();
 
 		Image scaledButtonImage = originalImage.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH); // Scales
-																											// image
-
+																										// image
 		ImageIcon scaledButtonIcon = new ImageIcon(scaledButtonImage);
 
 		currentButton.setIcon(scaledButtonIcon); // Sets Button to new Icon
