@@ -41,7 +41,7 @@ public class Main {
 		// Ensures the program is starting
 		System.out.println("Running Program");
 
-		JFrame frame = new JFrame("Counting of the Omer");
+		JFrame frame = new JFrame("Counting the Omer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel mainButtonPanel = new JPanel(new BorderLayout());
