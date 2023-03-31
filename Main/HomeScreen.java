@@ -9,6 +9,8 @@ public class HomeScreen {
 	private static final int SCREEN_HEIGHT = 820;
 	private static final int SCALE_X = 180;
 	private static final int SCALE_Y = 60;
+	private static final int CENTER_POSITION = 50;
+	private static final int INLET_GAP = 30;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private JFrame frame;
 	private JPanel buttonPanel;
@@ -41,7 +43,7 @@ public class HomeScreen {
 		homePanel.add(imageLabel, c);
 
 		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 0)); // Centers all elements
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, CENTER_POSITION, 0)); // Centers all elements
 		buttonPanel.setBackground(BACKGROUND_COLOUR);
 
 		calendar = new JButton();
@@ -70,7 +72,7 @@ public class HomeScreen {
 		c.anchor = GridBagConstraints.CENTER; // Set anchor
 		c.fill = GridBagConstraints.NONE; // Does not adjust image when window is resized
 		c.weightx = 0; // No extra gap
-		c.insets = new Insets(30, 0, 0, 0); // Set gap between buttons
+		c.insets = new Insets(INLET_GAP, 0, 0, 0); // Set gap between buttons
 
 		homePanel.add(buttonPanel, c);
 		frame.add(homePanel);

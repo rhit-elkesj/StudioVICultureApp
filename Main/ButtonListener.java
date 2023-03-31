@@ -26,6 +26,8 @@ public class ButtonListener extends Main implements ActionListener {
 	JFrame frame;
 	String buttonID;
 
+	private static final int TILE_AMOUNT = 7;
+	private static final int TILE_GAP = 5;
 	private static final int BORDER_GAP_WIDTH_T = 5;
 	private static final int BORDER_GAP_WIDTH_L = 3;
 	private static final int BORDER_GAP_WIDTH_B = 5;
@@ -210,7 +212,9 @@ public class ButtonListener extends Main implements ActionListener {
 			frame.getContentPane().repaint(); // Refreshes screen automatically (blanks)
 
 			// Constructing the buttonGrid, and mainButton Panel
-			GridLayout buttonGrid = new GridLayout(7, 7, 5, 5); // 7 x 7 Grid with gaps of 5 between each tile
+			GridLayout buttonGrid = new GridLayout(TILE_AMOUNT, TILE_AMOUNT, TILE_GAP, TILE_GAP); // 7 x 7 Grid with
+																									// gaps of 5 between
+																									// each tile
 			JPanel mainButtonPanel = new JPanel(buttonGrid);
 
 			mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
