@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *         Purpose: ActionListener for the Buttons <br>
  *         Restrictions: None
  */
-public class ButtonListener extends Main implements ActionListener {
+public class ButtonListener implements ActionListener {
 
 	// Instantiated Variables
 	private static final int TILE_AMOUNT = 7;

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *         them to the the MainPanel <br>
  *         Restrictions: None
  */
-public class MainLabel extends Main {
+public class MainLabel {
 
 	// Components
 	JFrame panelFrame;
