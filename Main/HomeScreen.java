@@ -19,6 +19,7 @@ public class HomeScreen {
 	private static final int SCALE_Y = 60;
 	private static final int CENTER_POSITION = 50;
 	private static final int INLET_GAP = 10;
+	private static final int GRID_GAP_Y = 1;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 
 	private JFrame frame;
@@ -74,7 +75,7 @@ public class HomeScreen {
 
 		// Positioning and Constraints
 		c.gridx = 0; // Set x gap
-		c.gridy = 1; // Set y gap
+		c.gridy = GRID_GAP_Y; // Set y gap
 		c.anchor = GridBagConstraints.CENTER; // Set anchor
 		c.fill = GridBagConstraints.NONE; // Does not adjust image when window is resized
 		c.weightx = 0; // No extra gap

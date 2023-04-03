@@ -23,6 +23,7 @@ public class StartCountingLayout {
 	private static final int BORDER_GAP_WIDTH_L = 3;
 	private static final int BORDER_GAP_WIDTH_B = 5;
 	private static final int BORDER_GAP_WIDTH_R = 3;
+	private Color BACKGROUND_COLOUR = Color.BLACK;
 
 	private JFrame frame;
 
@@ -38,8 +39,8 @@ public class StartCountingLayout {
 		mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
 				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R)); // Adds gaps to outside border
 
-		mainButtonPanel.setBackground(Color.BLACK);
-		frame.setBackground(Color.BLACK);
+		mainButtonPanel.setBackground(BACKGROUND_COLOUR);
+		frame.setBackground(BACKGROUND_COLOUR);
 
 		frame.add(mainButtonPanel);
 

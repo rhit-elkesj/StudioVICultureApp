@@ -19,6 +19,7 @@ public class GridButtons {
 	// Instantiated Variables
 	private static final int IMAGE_SCALE_X = 214;
 	private static final int IMAGE_SCALE_Y = 108;
+	private Color BACKGROUND_COLOUR = Color.BLACK;
 
 	private JFrame frame;
 	private JPanel buttonPanel;
@@ -45,8 +46,8 @@ public class GridButtons {
 																									// ButtonListener
 			gridButtons[i].setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
 			buttonPanel.add(gridButtons[i]);
-			buttonPanel.setBackground(Color.BLACK);
-			frame.setBackground(Color.BLACK);
+			buttonPanel.setBackground(BACKGROUND_COLOUR);
+			frame.setBackground(BACKGROUND_COLOUR);
 			buttonPanel.setVisible(true);
 			frame.setVisible(true);
 		}

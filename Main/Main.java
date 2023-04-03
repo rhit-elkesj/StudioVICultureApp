@@ -27,6 +27,7 @@ public class Main {
 	// Instantiated Variables
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
+	private Color BACKGROUND_COLOUR = Color.BLACK;
 
 	/**
 	 * Ensures: The program is ran
@@ -45,7 +46,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel mainButtonPanel = new JPanel(new BorderLayout());
-		mainButtonPanel.setBackground(Color.BLACK);
+		mainButtonPanel.setBackground(BACKGROUND_COLOUR);
 		frame.add(mainButtonPanel);
 
 		new HomeScreen(frame);
