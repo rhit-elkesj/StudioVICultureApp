@@ -17,7 +17,7 @@ import javax.swing.border.TitledBorder;
 /**
  * Class: Main
  * 
- * @author elkesj <br>
+ * @author Richelle Elkes <br>
  *         Purpose: Top level class for Studio VI Project containing Main method
  *         <br>
  *         Restrictions: None

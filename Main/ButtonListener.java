@@ -14,7 +14,8 @@ import javax.swing.JPanel;
  * Class: ButtonListener
  * 
  * @author Richelle Elkes <br>
- *         Purpose: Abstract ActionListener for the Buttons that clear the frame <br>
+ *         Purpose: Abstract ActionListener for the Buttons that clear the frame
+ *         <br>
  *         Restrictions: None
  */
 public abstract class ButtonListener implements ActionListener {

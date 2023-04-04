@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 /**
  * Class: MainLabel
  * 
- * @author elkesj <br>
+ * @author Richelle Elkes <br>
  *         Purpose: Creates all the labels at the top of the screen and adds
  *         them to the the MainPanel <br>
  *         Restrictions: None

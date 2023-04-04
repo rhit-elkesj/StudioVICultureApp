@@ -6,7 +6,7 @@ import javax.swing.*;
 /**
  * Class: HomeScreen
  * 
- * @author elkesj <br>
+ * @author Richelle Elkes <br>
  *         Purpose: Creates and displays all elements needed for the initial
  *         screen when program is ran <br>
  *         Restrictions: None
@@ -36,7 +36,7 @@ public class HomeScreen {
 
 		// Graphics
 		GridBagConstraints c = new GridBagConstraints(); // Creating the design constraints of GridBagLayout
-		ImageIcon icon = new ImageIcon("Main/ButtonImages/HomeTest1.PNG"); // Main image that displays on screen
+		ImageIcon icon = new ImageIcon("Main/ButtonImages/HomeImage.PNG"); // Main image that displays on screen
 		JLabel imageLabel = new JLabel(icon);
 
 		// HomePanel
