@@ -27,6 +27,7 @@ public class HomeScreen {
 	private JPanel buttonPanel;
 	private JButton about;
 	private JButton calendar;
+	private JButton help;
 
 	public HomeScreen(JFrame mainFrame) {
 
@@ -66,12 +67,23 @@ public class HomeScreen {
 		AddPressedImages.addPressed(about, pressedImagePath, SCALE_X, SCALE_Y);
 		about.setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
 
+		// Help
+		help = new JButton();
+		help.setName("About"); // Set ButtonID
+		help.addActionListener(new ButtonListenerImplemented(help, frame)); // AddActionListener
+		help.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
+		String buttonImagePath3 = "Main/ButtonImages/Help.PNG"; // Accesses images from folder
+		AddButtonImages.addImage(help, buttonImagePath3, SCALE_X, SCALE_Y);
+		AddPressedImages.addPressed(help, pressedImagePath, SCALE_X, SCALE_Y);
+		help.setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
+
 		// ButtonPanel
 		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, CENTER_POSITION, 0)); // Centers all elements
 		buttonPanel.setBackground(BACKGROUND_COLOUR);
 		buttonPanel.add(calendar);
 		buttonPanel.add(about);
+		buttonPanel.add(help);
 
 		// Positioning and Constraints
 		c.gridx = 0; // Set x gap
