@@ -56,4 +56,4 @@ public class MainLabel {
 		topPanel.add(malchutLabel);
 
 	}// MainLabel
-}
+}// MainLabel

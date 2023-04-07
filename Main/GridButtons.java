@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 /**
  * Class: GridButtons
  * 
- * @author elkesj <br>
+ * @author Richelle Elkes <br>
  *         Purpose: Creates all the Buttons and adds them to the GridLayout <br>
  *         Restrictions: None
  */
@@ -26,8 +26,8 @@ public class GridButtons {
 	private JButton[] gridButtons = new JButton[50];
 
 	/**
-	 * Ensures: The GridLayout of buttons is constructed and associated ImageIcons
-	 * are added using inheritance
+	 * Ensures: The GridButtons is a grid of buttons that constructs the 49 buttons
+	 * and the associated ImageIcons (added using inheritance)
 	 *
 	 * <br>
 	 * Requires: The JFrame, JPanel, GridLayout, JButton[], and subsequent action

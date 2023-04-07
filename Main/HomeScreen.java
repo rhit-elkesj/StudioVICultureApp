@@ -69,7 +69,7 @@ public class HomeScreen {
 
 		// Help
 		help = new JButton();
-		help.setName("About"); // Set ButtonID
+		help.setName("Help"); // Set ButtonID
 		help.addActionListener(new ButtonListenerImplemented(help, frame)); // AddActionListener
 		help.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
 		String buttonImagePath3 = "Main/ButtonImages/Help.PNG"; // Accesses images from folder

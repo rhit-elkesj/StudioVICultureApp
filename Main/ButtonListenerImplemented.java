@@ -1,7 +1,6 @@
 package Main;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -33,8 +32,15 @@ public class ButtonListenerImplemented extends ButtonListener {
 
 		if (buttonID == "Start Counting") {
 			new StartCountingLayout(frame);
-
 		}
-	}// handleButtonPress
 
+		if (buttonID == "Help") {
+			new HelpLayout(frame);
+		}
+
+		if (buttonID == "1") {
+			// Add LessonCosntructor
+		}
+
+	}// handleButtonPress
 }// ButtonListenerImplemented

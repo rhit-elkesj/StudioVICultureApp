@@ -1,14 +1,9 @@
 package Main;
 
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * Class: ButtonListener
@@ -44,6 +39,8 @@ public abstract class ButtonListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
+		System.out.println(buttonID);
 		frame.getContentPane().removeAll(); // Clears all contents of the frame
 		frame.getContentPane().repaint(); // Refreshes screen automatically (blanks)
 		handleButtonPress(e);

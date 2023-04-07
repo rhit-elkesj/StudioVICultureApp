@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 /**
  * Class: DrawStar
  * 
- * @author JacobK <br>
+ * @author Jacob Kandel <br>
  *         Purpose: Draws the Star of David using Graphics <br>
  *         Restrictions: None
  */
@@ -57,5 +57,5 @@ public class DrawStar extends JPanel {
 		graphics2.drawLine(0, 0, SCALE_1 * STAR_SIZE, 0);
 		graphics2.translate(TRANSLATE_X * STAR_SIZE, Math.pow(TRANSLATE_X, TRANSLATE_Y) * STAR_SIZE);
 
-	}
-}
+	}// paintComponent
+}// DrawStar
