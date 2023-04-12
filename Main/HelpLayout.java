@@ -70,7 +70,7 @@ public class HelpLayout {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					// Get the user's input from the new variable
-					String input = userReply.trim(); // Only saves the newest line input by the user
+					String input = userReply.trim().toUpperCase(); // Only saves the newest line input by the user
 
 					botReply = getDefaultResponse(input);
 					chatHistory.add(input);
@@ -92,17 +92,20 @@ public class HelpLayout {
 	public String getDefaultResponse(String user) {
 
 		switch (user) { // Switch cases
-		case "hi":
-			botReply = "Helloooooo";
+		case "HI":
+			botReply = "Greetings!";
 			break;
-		case "help":
-			botReply = "I need help too!";
+		case "HELP":
+			botReply = "How can I assist you?";
 			break;
-		case "quit":
-			botReply = "Bye-Bye!";
+		case "QUIT":
+			botReply = "Ok. Goodbye.";
+			break;
+		case "":
+			botReply = "Please enter what you need assistance with.";
 			break;
 		default:
-			botReply = "Try again, I cannot comprehend at the moment.";
+			botReply = "Please try again, I was unable to comprehend what you entered.";
 			break;
 		}
 		return botReply;

@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +17,8 @@ public class ButtonListenerImplemented extends ButtonListener {
 
 	// Instantiated Variables
 	private String buttonID;
+	private static final int SCREEN_WIDTH = 1520;
+	private static final int SCREEN_HEIGHT = 820;
 
 	JFrame frame;
 	JButton currentButton;
@@ -30,17 +33,27 @@ public class ButtonListenerImplemented extends ButtonListener {
 	@Override
 	public void handleButtonPress(ActionEvent e) {
 
-		if (buttonID == "Start Counting") {
+		if (buttonID.equals("Start Counting")) {
 			new StartCountingLayout(frame);
 		}
 
-		if (buttonID == "Help") {
+		if (buttonID.equals("Help")) {
 			new HelpLayout(frame);
 		}
 
-		if (buttonID == "1") {
-			// Add LessonCosntructor
+		if (buttonID.equals("Home")) {
+			new HomeScreen(frame);
 		}
 
+		if (buttonID.equals("1")) {
+			// Testing DayLayout, DayLayoutList, DayContent
+			frame.add(new DayLayoutList(frame, 1));
+		}
+
+		if (buttonID.equals("2")) {
+			// Testing DayLayout, DayLayoutList, DayContent
+			frame.add(new DayLayoutList(frame, 2));
+		}
+		
 	}// handleButtonPress
 }// ButtonListenerImplemented
