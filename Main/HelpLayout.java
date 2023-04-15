@@ -1,11 +1,14 @@
 package Main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -34,6 +37,7 @@ public class HelpLayout {
 	private JPanel mainPanel;
 	private JTextArea helpConsole;
 	private JScrollPane consolePane;
+	private JButton home;
 
 	public HelpLayout(JFrame mainFrame) {
 
@@ -63,6 +67,14 @@ public class HelpLayout {
 		consolePane.setViewportView(helpConsole); // Makes it viewable
 		mainPanel.add(consolePane);
 		frame.pack();
+
+		home = new JButton("Home");
+		home.setName("Home");
+		home.addActionListener(new ButtonListenerImplemented(home, frame));
+		home.setOpaque(false);
+		home.setContentAreaFilled(false);
+		home.setBorderPainted(false);
+		mainPanel.add(home, BorderLayout.CENTER);
 
 		// KeyListener
 		helpConsole.addKeyListener(new KeyAdapter() {

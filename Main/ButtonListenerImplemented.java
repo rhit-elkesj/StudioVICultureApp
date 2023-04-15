@@ -37,6 +37,10 @@ public class ButtonListenerImplemented extends ButtonListener {
 			new StartCountingLayout(frame);
 		}
 
+		if (buttonID.equals("About")) {
+			new AboutLayout(frame);
+		}
+		
 		if (buttonID.equals("Help")) {
 			new HelpLayout(frame);
 		}
@@ -45,15 +49,13 @@ public class ButtonListenerImplemented extends ButtonListener {
 			new HomeScreen(frame);
 		}
 
-		if (buttonID.equals("1")) {
-			// Testing DayLayout, DayLayoutList, DayContent
-			frame.add(new DayLayoutList(frame, 1));
+		// Testing DayLayout, DayLayoutList, DayContent
+		for (int i = 1; i < 50; i++) {
+			if (buttonID.equals(String.valueOf(i))) {
+				frame.add(new DayLayoutList(frame, i));
+				break;
+			}
 		}
 
-		if (buttonID.equals("2")) {
-			// Testing DayLayout, DayLayoutList, DayContent
-			frame.add(new DayLayoutList(frame, 2));
-		}
-		
 	}// handleButtonPress
 }// ButtonListenerImplemented
