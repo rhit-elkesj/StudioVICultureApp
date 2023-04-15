@@ -94,7 +94,7 @@ public class HelpLayout {
 
 					// Clear after adding to chatHistory (otherwise would append)
 					userReply = "";
-				} else {
+				} else if (Character.isLetterOrDigit(e.getKeyChar())) { // Only accepts letters or numbers
 					userReply += e.getKeyChar();
 				}
 			}// keyPressed
@@ -103,7 +103,13 @@ public class HelpLayout {
 
 	public String getDefaultResponse(String user) {
 
-		switch (user) { // Switch cases
+		System.out.println(user);
+
+		for (int i = 0; i < user.length(); i++) {
+			System.out.println("Character " + i + ": " + user.charAt(i) + ", code: " + (int) user.charAt(i));
+		}
+
+		switch (user.toUpperCase()) { // Switch cases
 		case "HI":
 			botReply = "Greetings!";
 			break;
