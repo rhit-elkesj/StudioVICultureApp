@@ -38,8 +38,8 @@ public class DayLayoutList extends DayLayout {
 						+ "<br>" + "Activity" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>"
 						+ "Blessing" + "</html>");
 
-				DayContent dayContent = new DayContent(dayLabels[startLabel], oneLesson);
-				dayContentHashMap.put(startDay, dayContent);
+				DayContent dayContent1 = new DayContent(dayLabels[startLabel], oneLesson);
+				dayContentHashMap.put(startDay, dayContent1);
 
 				startDay++;
 				startLabel++;
@@ -55,12 +55,12 @@ public class DayLayoutList extends DayLayout {
 		if (dayContentHashMap == null) {
 			dayContentHashMap = new HashMap<Integer, DayContent>();
 		}
-		DayContent dayOneContent = getDayContentHashMap().get(clickedDay);
+		DayContent dayContent = getDayContentHashMap().get(clickedDay);
 
-		if (dayOneContent != null) {
+		if (dayContent != null) {
 			JPanel dayPanel = new JPanel(new BorderLayout());
-			dayPanel.add(dayOneContent.getLabel(), BorderLayout.NORTH);
-			dayPanel.add(dayOneContent.getTextArea(), BorderLayout.CENTER);
+			dayPanel.add(dayContent.getLabel(), BorderLayout.NORTH);
+			dayPanel.add(dayContent.getTextArea(), BorderLayout.CENTER);
 			mainPanel.add(dayPanel);
 
 			frame.add(mainPanel);

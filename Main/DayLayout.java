@@ -4,14 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.HashMap;
-
-import javax.swing.Box;
+import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public abstract class DayLayout extends JPanel {
 
@@ -39,7 +36,7 @@ public abstract class DayLayout extends JPanel {
 		previous.setOpaque(false);
 		previous.setContentAreaFilled(false);
 		previous.setBorderPainted(false);
-		
+
 		home = new JButton("Home");
 		home.setName("Home");
 		home.addActionListener(new ButtonListenerImplemented(home, frame));
@@ -85,6 +82,6 @@ public abstract class DayLayout extends JPanel {
 
 		mainPanel.revalidate();
 		mainPanel.repaint();
-	}// specificDayLayout
 
+	}// specificDayLayout
 }// DayLayout

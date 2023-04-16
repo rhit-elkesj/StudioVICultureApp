@@ -2,6 +2,8 @@ package Main;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.util.LinkedList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -17,8 +19,6 @@ public class ButtonListenerImplemented extends ButtonListener {
 
 	// Instantiated Variables
 	private String buttonID;
-	private static final int SCREEN_WIDTH = 1520;
-	private static final int SCREEN_HEIGHT = 820;
 
 	JFrame frame;
 	JButton currentButton;
@@ -40,13 +40,21 @@ public class ButtonListenerImplemented extends ButtonListener {
 		if (buttonID.equals("About")) {
 			new AboutLayout(frame);
 		}
-		
+
 		if (buttonID.equals("Help")) {
 			new HelpLayout(frame);
 		}
 
 		if (buttonID.equals("Home")) {
 			new HomeScreen(frame);
+		}
+
+		if (buttonID.equals("Previous Day")) {
+
+		}
+
+		if (buttonID.equals("Next Day")) {
+
 		}
 
 		// Testing DayLayout, DayLayoutList, DayContent

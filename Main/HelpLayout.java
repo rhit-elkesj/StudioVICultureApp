@@ -76,6 +76,7 @@ public class HelpLayout {
 		home.setBorderPainted(false);
 		mainPanel.add(home, BorderLayout.CENTER);
 
+		
 		// KeyListener
 		helpConsole.addKeyListener(new KeyAdapter() {
 			@Override
@@ -102,12 +103,6 @@ public class HelpLayout {
 	}// HelpLayout
 
 	public String getDefaultResponse(String user) {
-
-		System.out.println(user);
-
-		for (int i = 0; i < user.length(); i++) {
-			System.out.println("Character " + i + ": " + user.charAt(i) + ", code: " + (int) user.charAt(i));
-		}
 
 		switch (user.toUpperCase()) { // Switch cases
 		case "HI":
