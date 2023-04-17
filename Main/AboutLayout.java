@@ -1,15 +1,13 @@
 package Main;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class AboutLayout {
 
-	// Instantiated Variables
-
+	// Instantiated Variables & Components
 	JFrame frame;
 	JButton home;
 
@@ -32,5 +30,4 @@ public class AboutLayout {
 		frame.repaint();
 
 	}// AboutLayout
-
 }// AboutLayout

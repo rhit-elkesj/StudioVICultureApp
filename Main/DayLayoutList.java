@@ -3,22 +3,21 @@ package Main;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.HashMap;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class DayLayoutList extends DayLayout {
 
+	// Instantiated Variables & Components
+	private int startLabel = 1;
+	private int startDay = 1;
+	private int specificDay;
 	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
 	private JLabel[] dayLabels = new JLabel[50];
 	private HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
 	private JFrame frame;
-	private int startLabel = 1;
-	private int startDay = 1;
-	private int specificDay;
 
 	public DayLayoutList(JFrame mainFrame, int clickedDay) {
 		super(mainFrame, clickedDay);
@@ -40,12 +39,10 @@ public class DayLayoutList extends DayLayout {
 
 				DayContent dayContent1 = new DayContent(dayLabels[startLabel], oneLesson);
 				dayContentHashMap.put(startDay, dayContent1);
-
 				startDay++;
 				startLabel++;
 			}
 		}
-
 		specificDayLayout(mainPanel, specificDay);
 	}// DayLayoutList
 
@@ -74,5 +71,6 @@ public class DayLayoutList extends DayLayout {
 	@Override
 	protected HashMap<Integer, DayContent> getDayContentHashMap() {
 		return dayContentHashMap;
+
 	}// getDayContent
 }// DayLayout

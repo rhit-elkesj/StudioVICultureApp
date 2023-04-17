@@ -1,9 +1,6 @@
 package Main;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.util.LinkedList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -17,11 +14,10 @@ import javax.swing.JFrame;
  */
 public class ButtonListenerImplemented extends ButtonListener {
 
-	// Instantiated Variables
+	// Instantiated Variables & Components
 	private String buttonID;
-
-	JFrame frame;
-	JButton currentButton;
+	private JFrame frame;
+	private JButton currentButton;
 
 	public ButtonListenerImplemented(JButton button, JFrame mainFrame) {
 		super(button, mainFrame);
@@ -49,20 +45,19 @@ public class ButtonListenerImplemented extends ButtonListener {
 			new HomeScreen(frame);
 		}
 
-		if (buttonID.equals("Previous Day")) {
+		for (int i = 1; i < 50; i++) {
+			if (buttonID.equals(String.valueOf(i))) {
+				new DayLayoutList(frame, i);
+				break;
+			}
+		}
 
+		if (buttonID.equals("Previous Day")) {
+			// Something
 		}
 
 		if (buttonID.equals("Next Day")) {
-
-		}
-
-		// Testing DayLayout, DayLayoutList, DayContent
-		for (int i = 1; i < 50; i++) {
-			if (buttonID.equals(String.valueOf(i))) {
-				frame.add(new DayLayoutList(frame, i));
-				break;
-			}
+			// Something
 		}
 
 	}// handleButtonPress

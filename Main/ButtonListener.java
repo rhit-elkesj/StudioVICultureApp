@@ -15,11 +15,10 @@ import javax.swing.JFrame;
  */
 public abstract class ButtonListener implements ActionListener {
 
-	// Instantiated Variables
+	// Instantiated Variables & Components
 	private String buttonID;
-
-	JButton currentButton;
-	JFrame frame;
+	private JButton currentButton;
+	private JFrame frame;
 
 	/**
 	 * Ensures: The ButtonListener is constructed (default constructor)
@@ -33,14 +32,14 @@ public abstract class ButtonListener implements ActionListener {
 		this.buttonID = currentButton.getName();
 		this.frame = mainFrame;
 
-	}// ButtonListener
+	}
 
 	public abstract void handleButtonPress(ActionEvent e);
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		System.out.println(buttonID);
+		System.out.println(buttonID); // TODO: Remove Eventually
 		frame.getContentPane().removeAll(); // Clears all contents of the frame
 		frame.getContentPane().repaint(); // Refreshes screen automatically (blanks)
 		handleButtonPress(e);

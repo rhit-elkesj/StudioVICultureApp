@@ -7,7 +7,6 @@ import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,6 +23,7 @@ import javax.swing.JTextArea;
  */
 public class HelpLayout {
 
+	// Instantiated Variables & Components
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
 	private static final int CONSOLE_WIDTH = SCREEN_WIDTH / 2;
@@ -32,7 +32,6 @@ public class HelpLayout {
 	private String userReply = "";
 	private ArrayList<String> chatHistory = new ArrayList<>();
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
-
 	private JFrame frame;
 	private JPanel mainPanel;
 	private JTextArea helpConsole;

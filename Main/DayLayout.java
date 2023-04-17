@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.HashMap;
-import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,12 +11,11 @@ import javax.swing.JPanel;
 
 public abstract class DayLayout extends JPanel {
 
-	// Instantiated Variables
-
+	// Instantiated Variables & Components
+	protected int currentDayIndex;
 	protected JFrame frame;
 	protected JPanel mainPanel;
 	protected JPanel toolbarPanel;
-	protected int currentDayIndex;
 	private JButton previous;
 	private JButton next;
 	private JButton home;
@@ -58,7 +56,7 @@ public abstract class DayLayout extends JPanel {
 		frame.add(toolbarPanel, BorderLayout.NORTH);
 
 		mainPanel = new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // use BoxLayout
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		frame.add(mainPanel, BorderLayout.CENTER);
 
 		specificDayLayout(mainPanel, clickedDay);

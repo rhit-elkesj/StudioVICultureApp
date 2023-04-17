@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class StartCountingLayout {
 
-	// Instantiated Variables
+	// Instantiated Variables & Components
 	private static final int TILE_AMOUNT = 7;
 	private static final int TILE_GAP = 5;
 	private static final int BORDER_GAP_WIDTH_T = 5;
@@ -24,7 +24,6 @@ public class StartCountingLayout {
 	private static final int BORDER_GAP_WIDTH_B = 5;
 	private static final int BORDER_GAP_WIDTH_R = 3;
 	private Color BACKGROUND_COLOUR = Color.BLACK;
-
 	private JFrame frame;
 
 	public StartCountingLayout(JFrame mainFrame) {
@@ -49,6 +48,7 @@ public class StartCountingLayout {
 			new GridButtons(frame, mainButtonPanel);
 		} catch (IOException es) {
 			es.printStackTrace();
+		
 		}
 
 	}// StartCountingLayout

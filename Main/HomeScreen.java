@@ -13,6 +13,7 @@ import javax.swing.*;
  */
 public class HomeScreen {
 
+	// Instantiated Variables & Components
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
 	private static final int SCALE_X = 180;
@@ -21,7 +22,6 @@ public class HomeScreen {
 	private static final int INLET_GAP = 10;
 	private static final int GRID_GAP_Y = 1;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
-
 	private JFrame frame;
 	private JPanel homePanel;
 	private JPanel buttonPanel;

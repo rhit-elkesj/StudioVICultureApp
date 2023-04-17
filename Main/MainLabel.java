@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class MainLabel {
 
-	// Components
+	// Instantiated Variables & Components
 	JFrame panelFrame;
 	JPanel topPanel;
 	Font labelFont = new Font("Sans Serif", Font.BOLD, 20);
