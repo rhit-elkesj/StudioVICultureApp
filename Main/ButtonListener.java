@@ -8,30 +8,28 @@ import javax.swing.JFrame;
 /**
  * Class: ButtonListener
  * 
- * @author Richelle Elkes <br>
+ * @author <br>
+ * 
  *         Purpose: Abstract ActionListener for the Buttons that clear the frame
- *         <br>
+ * 
  *         Restrictions: None
  */
 public abstract class ButtonListener implements ActionListener {
 
-	// Instantiated Variables & Components
-	private String buttonID;
 	private JButton currentButton;
 	private JFrame frame;
 
-	/**
-	 * Ensures: The ButtonListener is constructed (default constructor)
-	 *
-	 * <br>
-	 * Requires: The ButtonListener and subsequent action components are created and
-	 * displayed
-	 */
 	public ButtonListener(JButton buttonPressed, JFrame mainFrame) {
 		this.currentButton = buttonPressed;
-		this.buttonID = currentButton.getName();
 		this.frame = mainFrame;
+	}
 
+	public JButton getCurrentButton() {
+		return currentButton;
+	}
+
+	public JFrame getFrame() {
+		return frame;
 	}
 
 	public abstract void handleButtonPress(ActionEvent e);
@@ -39,10 +37,9 @@ public abstract class ButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		System.out.println(buttonID); // TODO: Remove Eventually
 		frame.getContentPane().removeAll(); // Clears all contents of the frame
 		frame.getContentPane().repaint(); // Refreshes screen automatically (blanks)
 		handleButtonPress(e);
 
-	}// ActionPerformed
+	}// actionPerformed
 }// ButtonListener

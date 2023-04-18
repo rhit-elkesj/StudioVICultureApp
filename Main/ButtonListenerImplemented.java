@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 /**
  * Class: ButtonListenerImplemented
  * 
- * @author Richelle Elkes <br>
+ * @author <br>
  *         Purpose: Class that will handle the individual actions for the Button
  *         <br>
  *         Restrictions: None
@@ -15,19 +15,21 @@ import javax.swing.JFrame;
 public class ButtonListenerImplemented extends ButtonListener {
 
 	// Instantiated Variables & Components
-	private String buttonID;
-	private JFrame frame;
-	private JButton currentButton;
+	private int currentDay;
 
 	public ButtonListenerImplemented(JButton button, JFrame mainFrame) {
 		super(button, mainFrame);
-		this.currentButton = button;
-		this.frame = mainFrame;
-		buttonID = currentButton.getName();
+	}
+
+	public ButtonListenerImplemented(JButton button, JFrame mainFrame, int currentDay) {
+		super(button, mainFrame);
+		this.currentDay = currentDay;
 	}
 
 	@Override
 	public void handleButtonPress(ActionEvent e) {
+		String buttonID = getCurrentButton().getName();
+		JFrame frame = getFrame();
 
 		if (buttonID.equals("Start Counting")) {
 			new StartCountingLayout(frame);
@@ -45,20 +47,30 @@ public class ButtonListenerImplemented extends ButtonListener {
 			new HomeScreen(frame);
 		}
 
-		for (int i = 1; i < 50; i++) {
+		for (int i = 1; i <= 50; i++) {
 			if (buttonID.equals(String.valueOf(i))) {
 				new DayLayoutList(frame, i);
-				break;
 			}
 		}
 
 		if (buttonID.equals("Previous Day")) {
-			// Something
+			if (currentDay == 1) {
+				new DayLayoutList(frame, currentDay);
+			} else if (currentDay > 1) {
+				currentDay--;
+				new DayLayoutList(frame, currentDay);
+			}
 		}
 
 		if (buttonID.equals("Next Day")) {
-			// Something
+			if (currentDay == 49) {
+				new DayLayoutList(frame, currentDay);
+			} else if (currentDay < 50) {
+
+				currentDay++;
+				new DayLayoutList(frame, currentDay);
+			}
 		}
 
 	}// handleButtonPress
-}// ButtonListenerImplemented
+}// buttonListenerImplemented

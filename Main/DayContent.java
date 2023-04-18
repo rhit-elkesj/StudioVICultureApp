@@ -19,6 +19,6 @@ public class DayContent {
 
 	public JLabel getTextArea() {
 		return lessonText;
-		
+
 	}// getTextArea
 }// DayContent

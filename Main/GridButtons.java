@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 /**
  * Class: GridButtons
  * 
- * @author Richelle Elkes <br>
+ * @author <br>
  *         Purpose: Creates all the Buttons and adds them to the GridLayout <br>
  *         Restrictions: None
  */
@@ -41,8 +41,9 @@ public class GridButtons {
 		for (int i = 1; i < gridButtons.length; i++) {
 			gridButtons[i] = new JButton();
 			gridButtons[i].setName("" + i); // Button name is set to its associated value
-			gridButtons[i].addActionListener(new ButtonListenerImplemented(gridButtons[i], frame)); // Creates and adds
-																									// ButtonListener
+
+			// Creates and adds ButtonListener
+			gridButtons[i].addActionListener(new ButtonListenerImplemented(gridButtons[i], frame));
 			gridButtons[i].setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
 			buttonPanel.add(gridButtons[i]);
 			buttonPanel.setBackground(BACKGROUND_COLOUR);
@@ -50,6 +51,11 @@ public class GridButtons {
 			buttonPanel.setVisible(true);
 			frame.setVisible(true);
 		}
+
+		buttonPanel.setBackground(BACKGROUND_COLOUR);
+		frame.setBackground(BACKGROUND_COLOUR);
+		buttonPanel.setVisible(true);
+		frame.setVisible(true);
 
 		// Uses For Loop to add ImageIcons to the Button
 		for (int i = 1; i <= 49; i++) {

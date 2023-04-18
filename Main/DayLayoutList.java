@@ -11,11 +11,16 @@ import javax.swing.SwingConstants;
 public class DayLayoutList extends DayLayout {
 
 	// Instantiated Variables & Components
-	private int startLabel = 1;
+	private int startLoop = 1;
 	private int startDay = 1;
 	private int specificDay;
 	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
+	private String[] lessonString = new String[50];
+	private String[] activityString = new String[50];
+	private String[] blessingString = new String[50];
 	private JLabel[] dayLabels = new JLabel[50];
+	private JLabel[] lessonLabels = new JLabel[50];
+	private DayContent[] dayContentArray = new DayContent[50];
 	private HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
 	private JFrame frame;
 
@@ -26,29 +31,230 @@ public class DayLayoutList extends DayLayout {
 
 		mainPanel.setLayout(new GridLayout(0, 1));
 
+		// Adding all lessonStrings, activityStrings, and blessingStrings
+		lessonString[1] = "Love is the single most vital component in life, for it is the origin and foundation of all human interaction. It’s both giving and receiving, to experience another person and to have that person experience you. It’s the tool which we learn to experience the highest reality, God.";
+		activityString[1] = "Ask yourself questions that reflect yourself as a person and others that are around you in terms of love.";
+		blessingString[1] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Day One of the Omer.";
+
+		lessonString[2] = "Healthy love must always include discipline, a degree of respect for one another. Love must be tempered and directed properly. Love with discretion is necessary to avoid giving it to those that don’t deserve it.";
+		activityString[2] = "Help someone and follow their instructions to the letter, regardless of effort.";
+		blessingString[2] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Two Days of the Omer.";
+
+		lessonString[3] = "There is love and there is beautiful love. True love includes empathy and compassion which makes it a beautiful love, which calls for helping all.";
+		activityString[3] = "Offer a helping hand to a stranger.";
+		blessingString[3] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Three Days of the Omer.";
+
+		lessonString[4] = "The strength of one’s love is determined by its spirit and valor. Strength to endure any challenge and set back to fight for the love that you have.";
+		activityString[4] = "Do something that requires a lot of effort for someone you care about.";
+		blessingString[4] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Four Days of the Omer.";
+
+		lessonString[5] = "Arrogant love is not love. One must be able to forgive or give in to the other you love just in the name of love even if the one you love isn’t right.";
+		activityString[5] = "Make amends with someone you fought with and admit the wrong that you've committed, don’t blame the person you fought against.";
+		blessingString[5] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Five Days of the Omer.";
+
+		lessonString[6] = "Eternal love requires bonding, a sense of togetherness which brings the love for one another in joint effort benefitting everyone.";
+		activityString[6] = "Start a hobby that you will enjoy doing with someone you care about.";
+		blessingString[6] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Six Days of the Omer.";
+
+		lessonString[7] = "Any love that breaks the human spirit isn’t love. Mature love comes with person dignity, where you are aware that you have a special place and contribution in this world.";
+		activityString[7] = "Reflect and find an aspect about a relationship that makes it strong and celebrate that aspect.";
+		blessingString[7] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Seven Days, which is One Week of the Omer.";
+
+		lessonString[8] = "The intention of discipline and punishment isn’t negative, but an expression of love. For we wish the best for our loved ones and therefore help them be aware of anything less good behavior.";
+		activityString[8] = "Before you punish someone for doing something bad, consider if your reasoning for punishment is out of love or through some other means.";
+		blessingString[8] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Eight Days, which is One Week and One Day of the Omer.";
+
+		lessonString[9] = "The amount of discipline that you give yourself is very important for a healthy life. Therefore, we must be aware of how much we give to ourselves and if we’re doing it in a healthy way.";
+		activityString[9] = "Write out a day plan on what you would like to do today and see if you’ve completed your plan by the end of the day.";
+		blessingString[9] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Nine Days, which is One Week and Two Days of the Omer.";
+
+		lessonString[10] = "Discipline is driven through love and through compassion. Compassion is unconditional love, it’s just for the sake of love and not for recognizing one’s merits and positive qualities. You love for no reason; you love because you reflect God.";
+		activityString[10] = "Show sympathy or concern for someone you have scolded or disapproved of.";
+		blessingString[10] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Ten Days, which is One Week and Three Days of the Omer.";
+
+		lessonString[11] = "Effective discipline must be enduring and tenacious.";
+		activityString[11] = "Extend the plan that you wrote on day 9 for a longer period, including goals of various length in terms of time. Check if you are completing the plan and update the plan each day based on how you did.";
+		blessingString[11] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Eleven Days, which is One Week and Four Days of the Omer.";
+
+		lessonString[12] = "A judge must be the humblest of creatures, recognizing that he sits in judgment not by his own merit but only because God gave him the right to judge.";
+		activityString[12] = "Attempt to describe someone from their perspective and not your own. In other words, be selfless and not biased.";
+		blessingString[12] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twelve Days, which is One Week and Five Days of the Omer.";
+
+		lessonString[13] = "For discipline to be effective, it must be coupled with bonding. Both in disciplining yourself and others one can gain a sense that the discipling is important for developing a stronger bond.";
+		activityString[13] = "Explain to a younger sibling or to someone who looks up to you why your relationship with him/her is important in terms of growth and discipline.";
+		blessingString[13] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirteen Days, which is One Week and Six Days of the Omer.";
+
+		lessonString[14] = "Discipline must be able to enhance personal dignity, like love. Through healthy discipline, one can bolder one's self-esteem and help bring out the best in themselves.";
+		activityString[14] = "Make sure to treat others fairly and with respect, especially when there’s discipline involved.";
+		blessingString[14] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Fourteen Days, which is Two Weeks of the Omer.";
+
+		lessonString[15] = "One must be able to examine the love aspect of compassion and understand how others perceive the compassion that you give.";
+		activityString[15] = "When helping others, make sure to offer a smile or loving gesture and give it your all.";
+		blessingString[15] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Fifteen Days, which is Two Weeks and One Day of the Omer.";
+
+		lessonString[16] = "For compassion to be effective and healthy, it requires discipline and focus. You must be able to recognize how much compassion should be expressed to others and to yourself in any situation.";
+		activityString[16] = "Help someone by addressing their specific needs, whatever the needs might be.";
+		blessingString[16] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Sixteen Days, which is Two Weeks and Two Days of the Omer.";
+
+		lessonString[17] = "True compassion is limitless. It’s not an extension of your needs or limited perspective. Compassion for others is achieved by having a selfless attitude, rising above yourself and placing yourself in the other person’s situation.";
+		activityString[17] = "Express concern to someone whom you were hard on, whether it was intentional or by mistake.";
+		blessingString[17] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Seventeen Days, which is Two Weeks and Three Days of the Omer.";
+
+		lessonString[18] = "You need to be aware if your compassion is consistent and reliable.";
+		activityString[18] = "Take a moment of your day and help bring someone’s spirit up or provide sympathy for that individual, even if your day is a busy one.";
+		blessingString[18] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Eighteen Days, which is Two Weeks and Four Days of the Omer.";
+
+		lessonString[19] = "Compassion must include humility, for it’s the acknowledgement that by creating one who needs compassion, God gave me the gift of being able to bestow compassion.";
+		activityString[19] = "Express concern to someone with no reward in mind. Do so anonymously in other words.";
+		blessingString[19] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Nineteen Days, which is Two Weeks and Five Days of the Omer.";
+
+		lessonString[20] = "For true compassion, it required bonding. It requires creating a bond between giver and receiver that lives beyond the moment of need.";
+		activityString[20] = "Express concern to someone such that the issue is resolved and doesn’t appear again.";
+		blessingString[20] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty Days, which is Two Weeks and Six Days of the Omer.";
+
+		lessonString[21] = "For compassion to be complete, it must recognize and appreciate one as an individual. It should boost self-esteem and help cultivate human dignity.";
+		activityString[21] = "When expressing concern to someone, do so in a way that helps boost that person’s confidence that all will be alright.";
+		blessingString[21] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-One Days, which is Three Weeks of the Omer.";
+
+		lessonString[22] = "For anything to endure, it needs a loving and caring attitude, it requires patience and not aggression.";
+		activityString[22] = "When reaching a goal or completing a task, make sure that you're taking a non-violent approach.";
+		blessingString[22] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Two Days, which is Three Weeks and One Day of the Omer.";
+
+		lessonString[23] = "Endurance must be directed toward productive goals and expressed in a constructive manner.";
+		activityString[23] = "Break one bad habit that you're known to make.";
+		blessingString[23] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Three Days, which is Three Weeks and Two Days of the Omer.";
+
+		lessonString[24] = "The compassion of endurance reflects the beautiful quality of endurance that an enduring commitment is to help another grow, especially for those who are less fortunate. Otherwise, it would be misguided and selfish.";
+		activityString[24] = "Have a conversation with someone who usually makes you impatient and try to be more patient while ensuring that you're listening to that person.";
+		blessingString[24] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Four Days, which is Three Weeks and Three Days of the Omer.";
+
+		lessonString[25] = "Every human being has the willpower and capacity to endure much more than we can imagine, to prevail under the most trying of circumstances.";
+		activityString[25] = "Make it a goal to develop a new good habit.";
+		blessingString[25] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Five Days, which is Three Weeks and Four Days of the Omer. ";
+
+		lessonString[26] = "Yielding, which is a result of humility, is a crucial part of endurance, for it is fueled by one’s inner strength.";
+		activityString[26] = "Before starting your day, thank God for being with you and giving you the strength to get through the great day you're going to have today.";
+		blessingString[26] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Six Days, which is Three Weeks and Five Days of the Omer.";
+
+		lessonString[27] = "Bonding is an essential quality of endurance, for it expresses your commitment to the person or experience you’re bond with, a commitment so powerful that you will ensure all to preserve it.";
+		activityString[27] = "Perform a deed that shows your commitment to God.";
+		blessingString[27] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Seven Days, which is Three Weeks and Six Days of the Omer.";
+
+		lessonString[28] = "Sovereignty is the cornerstone of endurance, for it helps you check if your endurance is dignified.";
+		activityString[28] = "Support a just cause.";
+		blessingString[28] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Eight Days, which is Four Weeks of the Omer";
+
+		lessonString[29] = "Humility brings love and joy, giving you the ability to rise above yourself and love another.";
+		activityString[29] = "Before praying to God, make sure to provide charity to others, which will enhance your prayers.";
+		blessingString[29] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Twenty-Nine Days, which is Four Weeks and One Day of the Omer.";
+
+		lessonString[30] = "Humility must be disciplined to ensure that includes respect and awe for the person or experience you stand humble for.";
+		activityString[30] = "Attempt to get over your reluctance to do something in a safe and healthy manner.";
+		blessingString[30] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty Days, which is Four Weeks and Two Days of the Omer.";
+
+		lessonString[31] = "Just as humility brings compassion, compassion can lead one to humility.";
+		activityString[31] = "Be sure to be modest when expressing concern for someone.";
+		blessingString[31] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-One Days, which is Four Weeks and Three Days of the Omer.";
+
+		lessonString[32] = "Humility shouldn’t cause one to feel weak and insecure, it should instead give you enduring strength.";
+		activityString[32] = "Start or participate in a good cause.";
+		blessingString[32] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Two Days, which is Four Weeks and Four Days of the Omer.";
+
+		lessonString[33] = "Everyone has humility and modesty in their hearts. The question is the measure and way in which one feels it.  In general, one must be sure that their humility is genuine.";
+		activityString[33] = "Be humble with whatever you do.";
+		blessingString[33] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Three Days, which is Four Weeks and Five Days of the Omer.";
+
+		lessonString[34] = "Humility shouldn’t be a lonely experience. It should instead result in deep bonding and commitment. There’s no stronger bond than one that comes out of humility.";
+		activityString[34] = "Make sure that the humble deed you perform had a lasting effect instead of fading away after a little while.";
+		blessingString[34] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Four Days, which is Four Weeks and Six Days of the Omer.";
+
+		lessonString[35] = "Dignity is the essence of humility and modesty. Humility that suppresses the human spirit isn’t humility at all.";
+		activityString[35] = "Teach someone why being humble and modest makes you a better human being.";
+		blessingString[35] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Five Days, which is Five Weeks of the Omer. ";
+
+		lessonString[36] = "Love is the heart of bonding, for it establishes a base which allows bonding to build on.";
+		activityString[36] = "Demonstrate how much you care about someone through a friendly or loving manner.";
+		blessingString[36] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Six Days, which is Five Weeks and One Day of the Omer.";
+
+		lessonString[37] = "Bonding must be done with careful consideration with whom and with what you bond. You need to know when to respect someone’s personal space.";
+		activityString[37] = "Reflect on your relationship with someone and see if closure is needed. Closure as in you talk about any problems that you have with the relationship and make it a goal to fix it.";
+		blessingString[37] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Seven Days, which is Five Weeks and Two Days of the Omer.";
+
+		lessonString[38] = "Bonding needs to be compassionate and loving, feeling and understanding one’s pain.";
+		activityString[38] = "Offer help to someone who went through a bad ordeal of some kind.";
+		blessingString[38] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Eight Days, which is Five Weeks and Three Days of the Omer.";
+
+		lessonString[39] = "An essential component of bonding is its endurance, its ability to withstand setbacks and challenges.";
+		activityString[39] = "If there’s a problem in your relationship with someone, do what you can to overcome it.";
+		blessingString[39] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Thirty-Nine Days, which is Five Weeks and Four Days of the Omer.";
+
+		lessonString[40] = "Humility is essential in healthy bonding, for it allows you to appreciate another person. Healthy bonding is the union of two distinct people, with independent personalities, who join for a higher purpose than satisfying their own needs.";
+		activityString[40] = "When performing your next prayer, thank God for helping you bond with specific individuals.";
+		blessingString[40] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty Days, which is Five Weeks and Five Days of the Omer.";
+
+		lessonString[41] = "Every person needs and has the capacity to bond with other people, with significant undertakings and with meaningful experiences. When you bond in one area of your life, it helps you bond in other areas. Remember, God gave you a divine soul that is nurturing and loving, so you must learn to recognize the voice within so that you can experience other people’s souls and hearts, which can help you recognize the people who you can truly trust.";
+		activityString[41] = "Commit sometime during each day or week to bonding with someone new or expressing your love for someone.";
+		blessingString[41] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-One Days, which is Five Weeks and Six Days of the Omer.";
+
+		lessonString[42] = "Bonding should help nurture and strengthen your own dignity and the dignity of the one you bond with.";
+		activityString[42] = "Highlight various strengths of someone you know and emphasize them.";
+		blessingString[42] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Two Days, which is Six Weeks of the Omer.";
+
+		lessonString[43] = "An effective leader needs to be warm and considerate.";
+		activityString[43] = "Do something kind for someone who's less fortunate.";
+		blessingString[43] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Three Days, which is Six Weeks and One Day of the Omer.";
+
+		lessonString[44] = "Effective leadership is built on authority and discipline, so you need to be aware of how you express the two to others and which areas in which you have proper jurisdiction and authority.";
+		activityString[44] = "Before taking charge of something, make sure that you have what it takes to live up to the task.";
+		blessingString[44] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Four Days, which is Six Weeks and Two Days of the Omer.";
+
+		lessonString[45] = "A good leader is a compassionate one, for harmony is critical for successful leadership.";
+		activityString[45] = "Look back on how you take charge in something and see if there are ways to improve your current approach.";
+		blessingString[45] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Five Days, which is Six Weeks and Three Days of the Omer";
+
+		lessonString[46] = "A person’s dignity and a leader’s success are through his level of endurance, for one’s determination and will reflect the power of his/her human spirit.";
+		activityString[46] = "If you want to try something new, do it and take the chance.";
+		blessingString[46] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Six Days, which is Six Weeks and Four Days of the Omer.";
+
+		lessonString[47] = "The ability to lead is God’s gift to everyone.";
+		activityString[47] = "Thank God for creating you with respect for yourself.";
+		blessingString[47] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Seven Days, which is Six Weeks and Five Days of the Omer.";
+
+		lessonString[48] = "Healthy independence shouldn't prevent you from bonding with others. On the contrary, self-confidence allows you to respect and trust another’s power and ultimately bond with him. As a result, the bond will strengthen your own power rather than weaken it.";
+		activityString[48] = "Make a commitment to increasing your relationship with someone you're close to.";
+		blessingString[48] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Eight Days, which is Six Weeks and Six Days of the Omer.";
+
+		lessonString[49] = "As a leader, you need to be aware of your uniqueness as a person.";
+		activityString[49] = "Take a moment and concentrate on your true inner self, not on your performance or how you project to others; and be at peace knowing that God created you as a special person.";
+		blessingString[49] = "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer. Today is Forty-Nine Days, which is Seven Weeks of the Omer.";
+
+		// Adds all lessonLabels to the lessonLabelsArray
+		for (int i = 1; i <= 49; i++) {
+			lessonLabels[i] = new JLabel("<html>Lesson" + "<br>" + lessonString[i] + "<br>" + "<br>" + "<br>" + "<br>"
+					+ "<br>" + "<br>" + "<br>" + "Activity" + "<br>" + activityString[i] + "<br>" + "<br>" + "<br>"
+					+ "<br>" + "<br>" + "<br>" + "<br>" + "Blessing" + "<br>" + blessingString[i] + "</html>");
+		}
+
+		// All DayLabels, lessonLabels, and DayContents
 		for (int i = 0; i < characteristics.length; i++) {
 			for (int j = 0; j < characteristics.length; j++) {
 				String labelText = "<html><div style='text-align: center;'>Day " + startDay + "<br>"
 						+ characteristics[j] + " within " + characteristics[i] + "</div></html>";
-				dayLabels[startLabel] = new JLabel(labelText);
-				dayLabels[startLabel].setHorizontalAlignment(SwingConstants.CENTER);
-
-				JLabel oneLesson = new JLabel("<html>Lesson" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>"
-						+ "<br>" + "Activity" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>"
-						+ "Blessing" + "</html>");
-
-				DayContent dayContent1 = new DayContent(dayLabels[startLabel], oneLesson);
-				dayContentHashMap.put(startDay, dayContent1);
+				dayLabels[startLoop] = new JLabel(labelText);
+				dayLabels[startLoop].setHorizontalAlignment(SwingConstants.CENTER);
+				DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
+				dayContentArray[startLoop] = dayContent;
+				dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
+				startLoop++;
 				startDay++;
-				startLabel++;
 			}
 		}
+
 		specificDayLayout(mainPanel, specificDay);
-	}// DayLayoutList
+	}
 
 	@Override
 	protected void specificDayLayout(JPanel mainPanel, int clickedDay) {
-		System.out.println(clickedDay);
 		if (dayContentHashMap == null) {
 			dayContentHashMap = new HashMap<Integer, DayContent>();
 		}
@@ -66,11 +272,10 @@ public class DayLayoutList extends DayLayout {
 		} else {
 			System.out.println("No content found for the selected day.");
 		}
-	}// specificDayLayout
+	}
 
 	@Override
 	protected HashMap<Integer, DayContent> getDayContentHashMap() {
 		return dayContentHashMap;
-
-	}// getDayContent
-}// DayLayout
+	}// getDayContentHashMap
+}// DayLayoutList

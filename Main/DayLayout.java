@@ -29,11 +29,17 @@ public abstract class DayLayout extends JPanel {
 		previous = new JButton("Previous Day");
 		previous.setName("Previous Day");
 		previous.setPreferredSize(new Dimension(100, 50));
-		previous.addActionListener(new ButtonListenerImplemented(previous, frame));
-
+		previous.addActionListener(new ButtonListenerImplemented(previous, frame, currentDayIndex));
 		previous.setOpaque(false);
 		previous.setContentAreaFilled(false);
 		previous.setBorderPainted(false);
+
+		next = new JButton("Next Day");
+		next.setName("Next Day");
+		next.addActionListener(new ButtonListenerImplemented(next, frame, currentDayIndex));
+		next.setOpaque(false);
+		next.setContentAreaFilled(false);
+		next.setBorderPainted(false);
 
 		home = new JButton("Home");
 		home.setName("Home");
@@ -41,13 +47,6 @@ public abstract class DayLayout extends JPanel {
 		home.setOpaque(false);
 		home.setContentAreaFilled(false);
 		home.setBorderPainted(false);
-
-		next = new JButton("Next Day");
-		next.setName("Next Day");
-		next.addActionListener(new ButtonListenerImplemented(next, frame));
-		next.setOpaque(false);
-		next.setContentAreaFilled(false);
-		next.setBorderPainted(false);
 
 		toolbarPanel = new JPanel(new GridLayout(1, 3));
 		toolbarPanel.add(previous);
@@ -77,7 +76,6 @@ public abstract class DayLayout extends JPanel {
 		labelPanel.add(dayContent.getLabel(), BorderLayout.CENTER);
 		mainPanel.add(labelPanel);
 		mainPanel.add(dayContent.getTextArea());
-
 		mainPanel.revalidate();
 		mainPanel.repaint();
 
