@@ -30,12 +30,6 @@ public class AboutLayout {
 		frame.add(home, BorderLayout.NORTH);
 
 		aboutString = "The counting of the Omer is a 49-day practice that occurs in Judaism. It’s considered as a period for semi-mourning, where you can reflect, learn, and improve yourself as a human being. It introduces the seven characteristics of a human being, which are shown below. The seven characteristics can be paired with one another to make 49 permutations, where each permutation represents an aspect of a person’s character that can be improved upon. Each permutation is represented on each day, where each day introduces the main lesson that reflects the permutation and an activity that enforces the lesson. The Omer count is made starting the evening of each day. When the count happens at night, a blessing is said. When the count happens during the daytime, the blessing isn’t said. After the blessing, the day is counted by absolute number and by its number within each week.";
-		characteristicsString = "<html> Chesed (חֶסֶד) – Loving-Kindness"
-				+ "Gevurah (גְּבוּרָה) – Justice and Discipline" + "<br>"
-				+ "Tiferet (תִּפְאָרָה) – Harmony and Compassion" + "<br>" + "Netzach (נֶצַח) – Endurance" + "<br>"
-				+ "Hod (הוֹד) – Humility" + "<br>" + "Yesod (יְסוֹד) – Bonding" + "<br>"
-				+ "Malchut (מַלְכוּת) – Sovereignty and Leadership" + "</html>";
-
 		characteristicsString = " Chesed (חֶסֶד) – Loving-kindness" + "<br>"
 				+ "Gevurah (גְּבוּרָה) – Justice and Discipline" + "<br>"
 				+ "Tiferet (תִּפְאָרָה) – Harmony and Cmpassion" + "<br>" + "Netzach (נֶצַח) – Endurance" + "<br>"
@@ -45,7 +39,6 @@ public class AboutLayout {
 		JLabel about = new JLabel("<html> What Is It?" + "<br>" + aboutString + "<br>" + "<br>" + "<br>" + "<br>"
 				+ "<br>" + "<br>" + "What Are the Seven Characteristics?" + "<br>" + characteristicsString + "<br>"
 				+ "<br>" + "<br>" + "<br>" + "<br>" + "<br>"
-
 				+ "Why is it Important?" + "<br>" + whyString + "</html>");
 
 		frame.add(about);
