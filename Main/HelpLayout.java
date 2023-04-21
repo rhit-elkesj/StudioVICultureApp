@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,14 +28,15 @@ public class HelpLayout {
 	// Instantiated Variables & Components
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
-	private static final int CONSOLE_WIDTH = SCREEN_WIDTH / 2;
-	private static final int CONSOLE_HEIGHT = SCREEN_HEIGHT - 26;
+	private static final int CONSOLE_WIDTH = (int) (SCREEN_WIDTH / 2.5);
+	private static final int CONSOLE_HEIGHT = SCREEN_HEIGHT - 28;
 	private String botReply;
 	private String userReply = "";
 	private ArrayList<String> chatHistory = new ArrayList<>();
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private JFrame frame;
 	private JPanel mainPanel;
+	private JPanel rightPanel;;
 	private JTextArea helpConsole;
 	private JScrollPane consolePane;
 	private JButton home;
@@ -47,10 +50,11 @@ public class HelpLayout {
 
 		// Main Panel
 		mainPanel = new JPanel();
-		mainPanel.setVisible(true);
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add a 5 pixel border around the panel
 		mainPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-		mainPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setBackground(BACKGROUND_COLOUR);
+		mainPanel.setVisible(true);
 		frame.add(mainPanel);
 
 		// Console Pane
@@ -64,8 +68,15 @@ public class HelpLayout {
 		helpConsole.setEditable(true);
 
 		consolePane.setViewportView(helpConsole); // Makes it viewable
-		mainPanel.add(consolePane);
-		frame.pack();
+		mainPanel.add(consolePane, BorderLayout.WEST);
+
+		// Right Panel
+		rightPanel = new JPanel();
+		rightPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add a 5 pixel border around the panel
+		rightPanel.setPreferredSize(new Dimension((int) (SCREEN_WIDTH / 1.6725), CONSOLE_HEIGHT));
+		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		rightPanel.setBackground(BACKGROUND_COLOUR);
+		mainPanel.add(rightPanel, BorderLayout.CENTER);
 
 		home = new JButton("Home");
 		home.setName("Home");
@@ -73,9 +84,11 @@ public class HelpLayout {
 		home.setOpaque(false);
 		home.setContentAreaFilled(false);
 		home.setBorderPainted(false);
-		mainPanel.add(home, BorderLayout.CENTER);
+		rightPanel.add(home, BorderLayout.CENTER);
 
-		
+		frame.revalidate();
+		frame.repaint();
+
 		// KeyListener
 		helpConsole.addKeyListener(new KeyAdapter() {
 			@Override

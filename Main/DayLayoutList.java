@@ -1,6 +1,8 @@
 package Main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.HashMap;
 import javax.swing.JFrame;
@@ -14,6 +16,13 @@ public class DayLayoutList extends DayLayout {
 	private int startLoop = 1;
 	private int startDay = 1;
 	private int specificDay;
+	private static final Color BACKGROUND_COLOUR1 = new Color(29, 29, 94);
+	private static final Color BACKGROUND_COLOUR2 = new Color(46, 63, 173);
+	private static final Color BACKGROUND_COLOUR3 = new Color(53, 100, 204);
+	private static final Color BACKGROUND_COLOUR4 = new Color(92, 142, 228);
+	private static final Color BACKGROUND_COLOUR5 = new Color(158, 184, 241);
+	private static final Color BACKGROUND_COLOUR6 = new Color(204, 224, 255);
+	private static final Color BACKGROUND_COLOUR7 = new Color(242, 248, 255);
 	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
 	private String[] lessonString = new String[50];
 	private String[] activityString = new String[50];
@@ -249,7 +258,6 @@ public class DayLayoutList extends DayLayout {
 				startDay++;
 			}
 		}
-
 		specificDayLayout(mainPanel, specificDay);
 	}
 
@@ -258,19 +266,43 @@ public class DayLayoutList extends DayLayout {
 		if (dayContentHashMap == null) {
 			dayContentHashMap = new HashMap<Integer, DayContent>();
 		}
+
 		DayContent dayContent = getDayContentHashMap().get(clickedDay);
 
 		if (dayContent != null) {
 			JPanel dayPanel = new JPanel(new BorderLayout());
+			dayContent.getLabel().setForeground(Color.BLACK);
+			dayContent.getLabel().setFont(new Font(dayContent.getLabel().getText(), Font.BOLD, 16));
+			dayContent.getTextArea().setForeground(Color.BLACK);
+			dayContent.getTextArea().setFont(new Font(dayContent.getTextArea().getText(), Font.PLAIN, 14));
 			dayPanel.add(dayContent.getLabel(), BorderLayout.NORTH);
 			dayPanel.add(dayContent.getTextArea(), BorderLayout.CENTER);
+
 			mainPanel.add(dayPanel);
+
+			// Change Colour Depending on Day
+			if (clickedDay <= 7) {
+				dayPanel.setBackground(BACKGROUND_COLOUR1);
+				dayContent.getLabel().setForeground(Color.WHITE);
+				dayContent.getTextArea().setForeground(Color.WHITE);
+			} else if (clickedDay <= 14) {
+				dayPanel.setBackground(BACKGROUND_COLOUR2);
+
+			} else if (clickedDay <= 21) {
+				dayPanel.setBackground(BACKGROUND_COLOUR3);
+			} else if (clickedDay <= 28) {
+				dayPanel.setBackground(BACKGROUND_COLOUR4);
+			} else if (clickedDay <= 35) {
+				dayPanel.setBackground(BACKGROUND_COLOUR5);
+			} else if (clickedDay <= 42) {
+				dayPanel.setBackground(BACKGROUND_COLOUR6);
+			} else if (clickedDay <= 49) {
+				dayPanel.setBackground(BACKGROUND_COLOUR7);
+			}
 
 			frame.add(mainPanel);
 			frame.revalidate();
 			frame.repaint();
-		} else {
-			System.out.println("No content found for the selected day.");
 		}
 	}
 
