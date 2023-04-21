@@ -15,6 +15,7 @@ public class AboutLayout {
 	private String aboutString;
 	private String characteristicsString;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
+	private String whyString;
 
 	public AboutLayout(JFrame mainFrame) {
 		this.frame = mainFrame;
@@ -34,12 +35,20 @@ public class AboutLayout {
 				+ "Tiferet (תִּפְאָרָה) – Harmony and Compassion" + "<br>" + "Netzach (נֶצַח) – Endurance" + "<br>"
 				+ "Hod (הוֹד) – Humility" + "<br>" + "Yesod (יְסוֹד) – Bonding" + "<br>"
 				+ "Malchut (מַלְכוּת) – Sovereignty and Leadership" + "</html>";
-		JLabel about = new JLabel(
-				"<html> What Is It?" + "<br>" + aboutString + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>"
 
-						+ "What Are the Seven Characteristics?" + "<br>" + characteristicsString + "</html>");
+		characteristicsString = " Chesed (חֶסֶד) – Loving-kindness" + "<br>"
+				+ "Gevurah (גְּבוּרָה) – Justice and Discipline" + "<br>"
+				+ "Tiferet (תִּפְאָרָה) – Harmony and Cmpassion" + "<br>" + "Netzach (נֶצַח) – Endurance" + "<br>"
+				+ "Hod (הוֹד) – Humility" + "<br>" + "Yesod (יְסוֹד) – Bonding" + "<br>"
+				+ "Malchut (מַלְכוּת) – Sovereignty and Leadership";
+		whyString = "The seven characteristics of a human being are considered attributes of God, and the activities are designed to get you to be more like him. So, by the end of it, the user would have gone through the spiritual preparation and anticipation for the giving of the Torah, or true freedom. The idea is that once you pass the 49th day, you arrive at the “Mattan Torah,” the 50th day. The Mattan Torah, or the gift of true freedom, can only be celebrated once you go through all 49 days using your own initiative, traversing and refining every emotional corner of our psyche. On this day, you receive the Torah, the ability to transcend our human limitations and touch what’s considered to be divine, which can only be achieved with our own limited faculties. The purpose of the blessings is that they mark the day you're on as a period meant for reflection, revelation, and change.";
+		JLabel about = new JLabel("<html> What Is It?" + "<br>" + aboutString + "<br>" + "<br>" + "<br>" + "<br>"
+				+ "<br>" + "<br>" + "What Are the Seven Characteristics?" + "<br>" + characteristicsString + "<br>"
+				+ "<br>" + "<br>" + "<br>" + "<br>" + "<br>"
+
+				+ "Why is it Important?" + "<br>" + whyString + "</html>");
+
 		frame.add(about);
-
 		frame.revalidate();
 		frame.repaint();
 
