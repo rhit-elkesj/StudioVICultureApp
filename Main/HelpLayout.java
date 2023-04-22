@@ -50,7 +50,7 @@ public class HelpLayout {
 
 		// Main Panel
 		mainPanel = new JPanel();
-		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add a 5 pixel border around the panel
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 		mainPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setBackground(BACKGROUND_COLOUR);
@@ -63,10 +63,12 @@ public class HelpLayout {
 
 		// Console
 		helpConsole = new JTextArea(); // New TextArea where the user can freely type
+		helpConsole.setText("Welcome to the Help Console!\n");
 		helpConsole.setWrapStyleWord(true);
 		helpConsole.setLineWrap(true);
 		helpConsole.setEditable(true);
-
+		helpConsole.setHighlighter(null);
+		helpConsole.setBorder(BorderFactory.createLineBorder(Color.black, (int) 0.75, true));
 		consolePane.setViewportView(helpConsole); // Makes it viewable
 		mainPanel.add(consolePane, BorderLayout.WEST);
 
@@ -91,8 +93,21 @@ public class HelpLayout {
 
 		// KeyListener
 		helpConsole.addKeyListener(new KeyAdapter() {
-			@Override
+			// KeyListener method
 			public void keyPressed(KeyEvent e) {
+			    // Get the current caret position
+			    int caretPosition = helpConsole.getCaretPosition();
+
+			    // If the caret position is in the editable portion of the chat
+			    if (caretPosition >= getEditableStart() && caretPosition <= getEditableEnd()) {
+			        // Allow editing
+			        helpConsole.setEditable(true);
+			    } else {
+			        // Block editing
+			        helpConsole.setEditable(false);
+			        e.consume(); // consume the key event to prevent editing
+			    }
+
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					// Get the user's input from the new variable
 					String input = userReply.trim().toUpperCase(); // Only saves the newest line input by the user
@@ -102,15 +117,19 @@ public class HelpLayout {
 					chatHistory.add(botReply);
 					helpConsole.append("\n" + "Bot: " + botReply + "\n"); // Appending previous chat history and newest
 																			// lines
-					helpConsole.setCaretPosition(helpConsole.getDocument().getLength());
 					helpConsole.setText(helpConsole.getText().trim()); // Remove gaps in console
 
 					// Clear after adding to chatHistory (otherwise would append)
 					userReply = "";
 				} else if (Character.isLetterOrDigit(e.getKeyChar())) { // Only accepts letters or numbers
 					userReply += e.getKeyChar();
+				} else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) { // Check if Backspace key is pressed
+					e.consume();
+				} else if (e.getKeyCode() == KeyEvent.VK_DELETE) { // Check if Delete key is pressed
+					e.consume();
 				}
 			}// keyPressed
+
 		});
 	}// HelpLayout
 
@@ -120,14 +139,19 @@ public class HelpLayout {
 		case "HI":
 			botReply = "Greetings!";
 			break;
+		case "HELLO":
+			botReply = "Greetings!";
+			break;
 		case "HELP":
-			botReply = "How can I assist you?";
+			botReply = "I would be happy to assist you! Please enter a valid command.";
 			break;
 		case "QUIT":
 			botReply = "Ok. Goodbye.";
+		case "BYE":
+			botReply = "Ok. Goodbye.";
 			break;
 		case "":
-			botReply = "Please enter what you need assistance with.";
+			botReply = "Please enter a valid command, so that I can assist you.";
 			break;
 		default:
 			botReply = "Please try again, I was unable to comprehend what you entered.";
@@ -136,4 +160,14 @@ public class HelpLayout {
 		return botReply;
 
 	}// getDefaultResponse
+
+	// Return the index of the first character that should be editable
+	private int getEditableStart() {
+		return 0; // Replace with the index of the first character that should be editable
+	}
+
+	// Return the index of the last character that should be editable
+	private int getEditableEnd() {
+		return helpConsole.getDocument().getLength(); // Make the entire document editable
+	}
 }// HelpLayout

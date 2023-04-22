@@ -2,10 +2,14 @@ package Main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class AboutLayout {
 
@@ -16,6 +20,7 @@ public class AboutLayout {
 	private String characteristicsString;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private String whyString;
+	private JPanel mainPanel;
 
 	public AboutLayout(JFrame mainFrame) {
 		this.frame = mainFrame;
@@ -23,26 +28,37 @@ public class AboutLayout {
 
 		home = new JButton("Home");
 		home.setName("Home");
+		home.setPreferredSize(new Dimension(home.getHeight(), 50));
 		home.addActionListener(new ButtonListenerImplemented(home, frame));
 		home.setOpaque(false);
 		home.setContentAreaFilled(false);
 		home.setBorderPainted(false);
 		frame.add(home, BorderLayout.NORTH);
 
-		aboutString = "The counting of the Omer is a 49-day practice that occurs in Judaism. It’s considered as a period for semi-mourning, where you can reflect, learn, and improve yourself as a human being. It introduces the seven characteristics of a human being, which are shown below. The seven characteristics can be paired with one another to make 49 permutations, where each permutation represents an aspect of a person’s character that can be improved upon. Each permutation is represented on each day, where each day introduces the main lesson that reflects the permutation and an activity that enforces the lesson. The Omer count is made starting the evening of each day. When the count happens at night, a blessing is said. When the count happens during the daytime, the blessing isn’t said. After the blessing, the day is counted by absolute number and by its number within each week.";
-		characteristicsString = " Chesed (חֶסֶד) – Loving-Kindness" + "<br>"
-				+ "Gevurah (גְּבוּרָה) – Justice and Discipline" + "<br>"
-				+ "Tiferet (תִּפְאָרָה) – Harmony and Compassion" + "<br>" + "Netzach (נֶצַח) – Endurance" + "<br>"
-				+ "Hod (הוֹד) – Humility" + "<br>" + "Yesod (יְסוֹד) – Bonding" + "<br>"
-				+ "Malchut (מַלְכוּת) – Sovereignty and Leadership";
+		aboutString = "The Counting of the Omer is a 49-day practice that occurs in Judaism. It’s considered a period for semi-mourning, where you can reflect, learn, and improve your being. It introduces the seven characteristics, which are shown below. The seven characteristics can be paired with one another to make 49 permutations, where each represents an aspect of a person’s character that can be improved upon. A permutation is represented on each day, where each day introduces the main lesson and an activity that enforces the lesson. The Omer Count is made starting the evening, where a blessing is said. After the blessing, the day is counted by absolute number and by its number within each week.";
+		characteristicsString = " Chesed (חֶסֶד) – <i> Loving-Kindness </i>" + "<br>"
+				+ "Gevurah (גְּבוּרָה) – <i> Justice and Discipline </i>" + "<br>"
+				+ "Tiferet (תִּפְאָרָה) – <i> Harmony and Compassion </i>" + "<br>" + "Netzach (נֶצַח) – <i> Endurance </i>" + "<br>"
+				+ "Hod (הוֹד) – <i> Humility </i>" + "<br>" + "Yesod (יְסוֹד) – <i> Bonding </i> " + "<br>"
+				+ "Malchut (מַלְכוּת) – <i> Sovereignty and Leadership </i>";
 
-		whyString = "The seven characteristics of a human being are considered attributes of God, and the activities are designed to get you to be more like him. So, by the end of it, the user would have gone through the spiritual preparation and anticipation for the giving of the Torah, or true freedom. The idea is that once you pass the 49th day, you arrive at the “Mattan Torah,” the 50th day. The Mattan Torah, or the gift of true freedom, can only be celebrated once you go through all 49 days using your own initiative, traversing and refining every emotional corner of our psyche. On this day, you receive the Torah, the ability to transcend our human limitations and touch what’s considered to be divine, which can only be achieved with our own limited faculties. The purpose of the blessings is that they mark the day you're on as a period meant for reflection, revelation, and change.";
+		whyString = "The seven characteristics of a human being are considered attributes of God, and the activities are designed to get you to be more like Him. By the end of it, the user would have gone through the spiritual preparation and anticipation for the giving of the Torah (true freedom). The idea is once you pass the 49th day, you arrive at the <i> “Mattan Torah,” </i> the 50th day. The Mattan Torah, or the gift of true freedom, can only be celebrated once you go through all 49 days using your own initiative, traversing and refining every emotional corner of our psyche. On this day, you receive the Torah, the ability to transcend our human limitations and touch what’s considered to be divine, which can only be achieved with our own limited faculties. The purpose of the blessings is that they mark the day you're on as a period meant for reflection, revelation, and change.";
 
-		JLabel about = new JLabel("<html> What Is It?" + "<br>" + aboutString + "<br>" + "<br>" + "<br>" + "<br>"
-				+ "<br>" + "<br>" + "What Are the Seven Characteristics?" + "<br>" + characteristicsString + "<br>"
-				+ "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "Why is it Important?" + "<br>" + whyString + "</html>");
+		JLabel about = new JLabel("<html> <b> What is It? </b>" + "<br>" + aboutString + "<br>" + "<br>"
+				+ "<b> What Are the Seven Characteristics? </b>" + "<br>" + characteristicsString + "<br>" + "<br>"
+				+ "<b> Why is it Important? </b>" + "<br>" + whyString + "</html>");
 
-		frame.add(about);
+		about.setVerticalAlignment(JLabel.TOP);
+		about.setHorizontalAlignment(JLabel.CENTER);
+		about.setFont(new Font(about.getText(), Font.PLAIN, 20));
+
+		mainPanel = new JPanel();
+		mainPanel.setBackground(Color.white);
+		mainPanel.setLayout(new BorderLayout());
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(40, 220, 40, 220));
+		mainPanel.add(about, BorderLayout.CENTER);
+
+		frame.add(mainPanel);
 		frame.revalidate();
 		frame.repaint();
 

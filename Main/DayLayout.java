@@ -33,6 +33,7 @@ public abstract class DayLayout extends JPanel {
 		this.currentDayIndex = clickedDay;
 
 		frame.setLayout(new BorderLayout());
+		frame.getContentPane().setBackground(Color.white);
 
 		previous = new JButton("Previous Day");
 		previous.setName("Previous Day");
