@@ -2,7 +2,6 @@ package Main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.HashMap;
@@ -335,12 +334,12 @@ public class DayLayoutList extends DayLayout {
 			dayContent.getLabel().setForeground(Color.BLACK);
 			dayContent.getTextArea().setForeground(Color.BLACK);
 
+			mainPanel.removeAll();
 			mainPanel.setBorder(BorderFactory.createEmptyBorder(40, 220, 40, 220));
 			mainPanel.setBackground(Color.white);
 			mainPanel.add(dayPanel);
-
-			frame.revalidate();
-			frame.repaint();
+			mainPanel.revalidate();
+			mainPanel.repaint();
 		}
 	}
 

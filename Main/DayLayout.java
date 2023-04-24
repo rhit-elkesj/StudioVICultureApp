@@ -34,13 +34,10 @@ public abstract class DayLayout extends JPanel {
 
 		frame.setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(Color.white);
-		// The graphics are applied here
-		frame.add(new Drawgraphics());
-		frame.setVisible(true);
 
 		previous = new JButton("Previous Day");
 		previous.setName("Previous Day");
-		previous.setPreferredSize(new Dimension(100, 75));
+		previous.setPreferredSize(new Dimension(100, 50));
 		previous.addActionListener(new ButtonListenerImplemented(previous, frame, currentDayIndex));
 		previous.setOpaque(false);
 		previous.setContentAreaFilled(false);
@@ -74,6 +71,8 @@ public abstract class DayLayout extends JPanel {
 		frame.add(mainPanel, BorderLayout.CENTER);
 
 		specificDayLayout(mainPanel, clickedDay);
+		frame.revalidate();
+		frame.repaint();
 
 		// Change Colour Depending on Day
 		if (clickedDay <= 7) {
@@ -101,16 +100,6 @@ public abstract class DayLayout extends JPanel {
 
 	protected abstract HashMap<Integer, DayContent> getDayContentHashMap();
 
-	protected void specificDayLayout(JPanel mainPanel, int clickedDay) {
-		mainPanel.removeAll();
-		DayContent dayContent = getDayContentHashMap().get(clickedDay);
+	protected abstract void specificDayLayout(JPanel mainPanel, int clickedDay);// specificDayLayout
 
-		JPanel labelPanel = new JPanel(new BorderLayout());
-		labelPanel.add(dayContent.getLabel(), BorderLayout.CENTER);
-		mainPanel.add(labelPanel);
-		mainPanel.add(dayContent.getTextArea());
-		mainPanel.revalidate();
-		mainPanel.repaint();
-
-	}// specificDayLayout
 }// DayLayout
