@@ -1,9 +1,14 @@
 package Main;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Polygon;
+import java.awt.geom.Line2D;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,7 +25,11 @@ public abstract class DayLayout extends JPanel {
 	private static final Color BACKGROUND_COLOUR5 = new Color(158, 184, 241);
 	private static final Color BACKGROUND_COLOUR6 = new Color(204, 224, 255);
 	private static final Color BACKGROUND_COLOUR7 = new Color(242, 248, 255);
+	private static final int SCREEN_WIDTH = 1520;
+	private static final int SCREEN_HEIGHT = 820;
 	protected int currentDayIndex;
+	private int s = 8;
+	private Color foregroundColor;
 	protected JFrame frame;
 	protected JPanel mainPanel;
 	protected JPanel toolbarPanel;
@@ -35,7 +44,26 @@ public abstract class DayLayout extends JPanel {
 		frame.setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(Color.white);
 
-		previous = new JButton("Previous Day");
+		if (clickedDay <= 7) {
+			foregroundColor = Color.WHITE;
+		} else {
+			foregroundColor = Color.BLACK;
+		}
+
+		previous = new JButton() {
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setColor(foregroundColor);
+				int[] xPoints = { 200, 220, 220, 200 };
+				int[] yPoints = { 33, 23, 43, 33 };
+				Polygon leftArrow = new Polygon(xPoints, yPoints, 4);
+				g2.draw(leftArrow);
+				g2.fill(leftArrow);
+			}
+		};
+
 		previous.setName("Previous Day");
 		previous.setPreferredSize(new Dimension(100, 50));
 		previous.addActionListener(new ButtonListenerImplemented(previous, frame, currentDayIndex));
@@ -44,23 +72,56 @@ public abstract class DayLayout extends JPanel {
 		previous.setBorderPainted(false);
 		previous.setForeground(Color.BLACK);
 
-		next = new JButton("Next Day");
+		next = new JButton() {
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setColor(foregroundColor);
+				int[] xPoints = { 300, 280, 280, 300 };
+				int[] yPoints = { 33, 23, 43, 33 };
+				Polygon rightArrow = new Polygon(xPoints, yPoints, 4);
+				g2.draw(rightArrow);
+				g2.fill(rightArrow);
+			}
+		};
+
 		next.setName("Next Day");
 		next.addActionListener(new ButtonListenerImplemented(next, frame, currentDayIndex));
 		next.setOpaque(false);
 		next.setContentAreaFilled(false);
 		next.setBorderPainted(false);
-		next.setForeground(Color.BLACK);
 
-		home = new JButton("Home");
+		home = new JButton() {
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setColor(foregroundColor);
+				g2.setStroke(new BasicStroke(3));
+				g2.translate(255, 35);
+				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
+				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
+				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
+				g2.translate(-3 * s, 3 * Math.pow(3, 0.5) * s);
+				g2.drawLine(0, 0, 6 * s, 0);
+				g2.translate(3 * s, Math.pow(3, 0.5) * s);
+				g2.draw(new Line2D.Double(0, 0, -3 * s, -3 * Math.pow(3, 0.5) * s));
+				g2.draw(new Line2D.Double(0, 0, 3 * s, -3 * Math.pow(3, 0.5) * s));
+				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
+				g2.drawLine(0, 0, 6 * s, 0);
+				g2.translate(3 * s, Math.pow(3, 0.5) * s);
+				g2.translate(-255, -35);
+			}
+		};
 		home.setName("Home");
 		home.addActionListener(new ButtonListenerImplemented(home, frame));
 		home.setOpaque(false);
 		home.setContentAreaFilled(false);
 		home.setBorderPainted(false);
-		home.setForeground(Color.black);
 
 		toolbarPanel = new JPanel(new GridLayout(1, 3));
+		toolbarPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, 70));
 		toolbarPanel.add(previous);
 		toolbarPanel.add(home);
 		toolbarPanel.add(next);
@@ -77,9 +138,6 @@ public abstract class DayLayout extends JPanel {
 		// Change Colour Depending on Day
 		if (clickedDay <= 7) {
 			toolbarPanel.setBackground(BACKGROUND_COLOUR1);
-			previous.setForeground(Color.WHITE);
-			next.setForeground(Color.WHITE);
-			home.setForeground(Color.WHITE);
 		} else if (clickedDay <= 14) {
 			toolbarPanel.setBackground(BACKGROUND_COLOUR2);
 		} else if (clickedDay <= 21) {
