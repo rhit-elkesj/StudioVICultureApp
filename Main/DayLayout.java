@@ -26,7 +26,6 @@ public abstract class DayLayout extends JPanel {
 	private static final Color BACKGROUND_COLOUR6 = new Color(204, 224, 255);
 	private static final Color BACKGROUND_COLOUR7 = new Color(242, 248, 255);
 	private static final int SCREEN_WIDTH = 1520;
-	private static final int SCREEN_HEIGHT = 820;
 	protected int currentDayIndex;
 	private int s = 8;
 	private Color foregroundColor;
