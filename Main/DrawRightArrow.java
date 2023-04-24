@@ -8,30 +8,35 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
-
-public class DrawRightArrow extends JComponent {
-
-	// Instantiated Variables & Components
-	private Color color;
-
-	@Override
-	protected void paintComponent(Graphics graphics) {
-		super.paintComponent(graphics);
-		Graphics2D graphics2 = (Graphics2D) graphics;
-
-		int x = 100;
-		int y = 100;
-		int size = 50;
-		this.color = Color.blue;
-
-		graphics2.setColor(this.color);
-		graphics2.translate(x, y);
-		Rectangle2D.Double body = new Rectangle2D.Double(-1.5 * size, -0.5 * size, 2 * size, size);
-		graphics2.draw(body);
-		graphics2.fill(body);
-		int[] xPoints = { size / 2, 3 * size / 2, size / 2 };
-		int[] yPoints = { -size, 0, size };
-		graphics2.drawPolygon(xPoints, yPoints, 3);
-		graphics2.fillPolygon(xPoints, yPoints, 3);
-	}// paintComponent
-}// DrawRightArrow
+/**
+ * Class: DrawLeftArrow
+ * 
+ * @author Jacob Kandel <br>
+ *         Purpose: Initializes the steps to draw the left arrow for the "Next Day" button on each day of the Omer using Graphics <br>
+ *         Restrictions: None
+ */
+public class DrawRightArrow{
+	private Color c;
+	private int xcord;
+	private int ycord;
+	private int s;
+	
+	public DrawRightArrow(int x, int y, int size, Color color) {
+		xcord = x;
+		ycord = y;
+		s = size;
+		c = color;
+		// Instantiated Variables & Components
+	}
+	
+	public void drawon(Graphics2D g2) {        
+        g2.setColor(this.c);     
+		Rectangle2D.Double body = new Rectangle2D.Double(xcord-1.5*s, ycord-0.5*s, 2*s, s);
+		g2.draw(body);
+		g2.fill(body);
+		int[] xPoints = {xcord+s/2, xcord+3*s/2, xcord+s/2};
+		int[] yPoints = {ycord-s, ycord, ycord+s};
+		g2.drawPolygon(xPoints, yPoints, 3);
+		g2.fillPolygon(xPoints, yPoints, 3);
+    }
+}

@@ -34,10 +34,13 @@ public abstract class DayLayout extends JPanel {
 
 		frame.setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(Color.white);
+		// The graphics are applied here
+		frame.add(new Drawgraphics());
+		frame.setVisible(true);
 
 		previous = new JButton("Previous Day");
 		previous.setName("Previous Day");
-		previous.setPreferredSize(new Dimension(100, 50));
+		previous.setPreferredSize(new Dimension(100, 75));
 		previous.addActionListener(new ButtonListenerImplemented(previous, frame, currentDayIndex));
 		previous.setOpaque(false);
 		previous.setContentAreaFilled(false);
