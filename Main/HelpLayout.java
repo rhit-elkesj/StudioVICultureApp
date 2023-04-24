@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
@@ -37,6 +38,7 @@ public class HelpLayout {
 	private static final int CONSOLE_WIDTH = (int) (SCREEN_WIDTH / 2.5);
 	private static final int CONSOLE_HEIGHT = SCREEN_HEIGHT - 28;
 	private int s = 8;
+	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
 	private String botReply;
 	private String userReply = "";
 	private ArrayList<String> chatHistory = new ArrayList<>();
@@ -105,6 +107,7 @@ public class HelpLayout {
 
 		// Console
 		helpConsole = new JTextArea(); // New TextArea where the user can freely type
+		helpConsole.setFont(new Font(helpConsole.getText(), Font.PLAIN, 16));
 		helpConsole.setText("Welcome to the Help Console!\n");
 		helpConsole.setWrapStyleWord(true);
 		helpConsole.setLineWrap(true);
@@ -118,10 +121,26 @@ public class HelpLayout {
 		// Right Panel
 		rightPanel = new JPanel();
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add a 5 pixel border around the panel
-		rightPanel.setPreferredSize(new Dimension((int) (SCREEN_WIDTH / 1.6725), CONSOLE_HEIGHT));
+//		rightPanel.setPreferredSize(new Dimension((int) (SCREEN_WIDTH / 1.6725), CONSOLE_HEIGHT));
 		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		rightPanel.setBackground(Color.white);
 		mainPanel.add(rightPanel, BorderLayout.CENTER);
+
+		commandLabel = new JLabel("<html> <b> Bot Commands: </b>" + "<br>" + "<br>" + " <b> NAVIGATE </b>" + "<br>"
+				+ "Will return instructions on how to use this application" + "<br>" + "<br>" + "<b> FORGOT </b>"
+				+ "<br>" + "Will return the user's previous day according to the system" + "<br>" + "<br>"
+				+ " <b> SEARCH (Insert Space) TERM </b>" + "<br>"
+				+ "Will return lessons that include the user's search term (ie. 'Search prayer' will return Days 29 and 40)"
+				+ "<br>" + "<br>" + "<b> LOADDAY (Insert Space) NUMBER </b>" + "<br>"
+				+ "Will return the associated Lesson, Activity, and Blessing for the Day specified (ie. 'LoadDay 36')"
+				+ "<br>" + "<br>" + "<b> CHARACTERISTIC (Insert Space) CHARACTER </b>" + "<br>"
+				+ "Will return the days that exhibit the characteristic the user input (ie. 'Characteristic Chesed')"
+				+ "<br>" + "<br>"
+				+ "<b> <i> **NOTE: </b> <i> To allow for full functionality of the HelpBot, specifically search features, please ensure you </i>"
+				+ "<br>"
+				+ " <i> have clicked into a 'Day' from the 'Start Counting' screen on the homepage. Thank you! </i> </html>");
+		commandLabel.setFont(new Font(commandLabel.getText(), Font.PLAIN, 16));
+		rightPanel.add(commandLabel);
 
 		frame.revalidate();
 		frame.repaint();
@@ -139,9 +158,9 @@ public class HelpLayout {
 					botReply = getDefaultResponse(input);
 					chatHistory.add(input);
 					chatHistory.add(botReply);
-					helpConsole.append("\n\nUser: " + userReply + "\nBot: " + botReply + "\n"); // Appending previous
-																								// chat history and
-																								// newest
+					helpConsole.append("\n" + botReply + "\n"); // Appending previous
+					// chat history and
+					// newest
 					// lines
 					helpConsole.setText(helpConsole.getText().trim()); // Remove gaps in console
 
@@ -161,8 +180,15 @@ public class HelpLayout {
 	public String getDefaultResponse(String user) {
 
 		switch (user.toUpperCase()) { // Switch cases
+		case "FORGOT":
+			botReply = "According to my system, the last day you were on was Day " + lastDayGlobal;
+			break;
+		case "":
+			botReply = "Please enter a valid command, so that I can assist you.";
+			break;
 		case "HI":
 			botReply = "Greetings!";
+
 			break;
 		case "HELLO":
 			botReply = "Greetings!";
@@ -175,76 +201,54 @@ public class HelpLayout {
 		case "BYE":
 			botReply = "Ok. Goodbye.";
 			break;
-		case "":
-			botReply = "Please enter a valid command, so that I can assist you.";
-			break;
-		case "CHESED":
-			botReply = "The days that include 'Chesed' are: ";
-			for (int i = 1; i < 50; i++) {
-				DayContent dayContent = dayContentHashMap.get(i);
-				if (dayContent.getLabel().getText().contains("Chesed")) {
-					botReply += i + "  ";
-				}
-			}
-			break;
-		case "GEVURAH":
-			botReply = "The days that include 'Gevurah' are: ";
-			for (int i = 1; i < 50; i++) {
-				DayContent dayContent = dayContentHashMap.get(i);
-				if (dayContent.getLabel().getText().contains("Gevurah")) {
-					botReply += i + "  ";
-				}
-			}
-			break;
-		case "TIFERET":
-			botReply = "The days that include 'Tiferet' are: ";
-			for (int i = 1; i < 50; i++) {
-				DayContent dayContent = dayContentHashMap.get(i);
-				if (dayContent.getLabel().getText().contains("Tiferet")) {
-					botReply += i + "  ";
-				}
-			}
-			break;
-		case "NETZACH":
-			botReply = "The days that include 'Netzach' are: ";
-			for (int i = 1; i < 50; i++) {
-				DayContent dayContent = dayContentHashMap.get(i);
-				if (dayContent.getLabel().getText().contains("Netzach")) {
-					botReply += i + "  ";
-				}
-			}
-			break;
-		case "HOD":
-			botReply = "The days that include 'Hod' are: ";
-			for (int i = 1; i < 50; i++) {
-				DayContent dayContent = dayContentHashMap.get(i);
-				if (dayContent.getLabel().getText().contains("Hod")) {
-					botReply += i + "  ";
-				}
-			}
-			break;
-		case "YESOD":
-			botReply = "The days that include 'Yesod' are: ";
-			for (int i = 1; i < 50; i++) {
-				DayContent dayContent = dayContentHashMap.get(i);
-				if (dayContent.getLabel().getText().contains("Yesod")) {
-					botReply += i + "  ";
-				}
-			}
-			break;
-		case "MALCHUT":
-			botReply = "The days that include 'Malchut' are: ";
-			for (int i = 1; i < 50; i++) {
-				DayContent dayContent = dayContentHashMap.get(i);
-				if (dayContent.getLabel().getText().contains("Malchut")) {
-					botReply += i + "  ";
-				}
-			}
-			break;
 		default:
-			botReply = "Please try again, I was unable to comprehend what you entered.";
+			botReply = "Please try again, I did not find a valid command in your message.";
 			break;
 		}
+
+		if (user.contains("LOADDAY")) {
+
+			String userSearch = user.substring(user.indexOf("loadday") + 8).trim().toLowerCase();
+			botReply = "The Lesson, Activity, and Blessing for Day '" + userSearch + "' is: ";
+			int day = Integer.parseInt(userSearch);
+			if (day < 1) {
+				botReply = "Sorry, the number entered is not valid. Please try again! '";
+			} else if (day >= 50) {
+				botReply = "Sorry, the number entered is not valid. Please try again! '";
+			}
+			DayContent dayContent = dayContentHashMap.get(day);
+			String jText = dayContent.getTextArea().getText();
+			jText = jText.replaceAll("<html>", "");
+			jText = jText.replaceAll("</html>", "");
+			jText = jText.replaceAll("<b>", "");
+			jText = jText.replaceAll("</b>", "");
+			jText = jText.replaceAll("<br>", "");
+			jText = jText.replaceAll("</br>", "");
+			jText = jText.replaceAll("Lesson", " ");
+			jText = jText.replaceAll("Activity", " ");
+			jText = jText.replaceAll("Blessing", "");
+			botReply += jText;
+		}
+
+		if (user.contains("CHARACTERISTIC"))
+
+		{
+			String userSearch = user.substring(user.indexOf("characteristic") + 15).trim().toLowerCase();
+			userSearch = userSearch.substring(0, 1).toUpperCase() + userSearch.substring(1).toLowerCase();
+			boolean found = false;
+			botReply = "The days that exhibit the characteristic '" + userSearch + "' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains(userSearch)) {
+					botReply += i + "  ";
+					found = true;
+				}
+			}
+			if (!found) {
+				botReply = "Sorry, I could not find any days that exhibited the characteristic '" + userSearch + ".'";
+			}
+		}
+
 		if (user.contains("SEARCH")) {
 			String userSearch = user.substring(user.indexOf("search") + 7).trim().toLowerCase();
 			boolean found = false;

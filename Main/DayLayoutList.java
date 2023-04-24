@@ -26,6 +26,7 @@ public class DayLayoutList extends DayLayout {
 	private JLabel[] dayLabels = new JLabel[50];
 	private JLabel[] lessonLabels = new JLabel[50];
 	private DayContent[] dayContentArray = new DayContent[50];
+	public static int lastDayGlobal;
 	protected static HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
 	private JFrame frame;
 
@@ -33,6 +34,7 @@ public class DayLayoutList extends DayLayout {
 		super(mainFrame, clickedDay);
 		this.frame = mainFrame;
 		this.specificDay = clickedDay;
+		this.lastDayGlobal = clickedDay;
 
 		mainPanel.setLayout(new GridLayout(0, 1));
 

@@ -22,6 +22,7 @@ public class AboutLayout {
 	private JButton home;
 	private String aboutString;
 	private String characteristicsString;
+	private String whenString;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private static final int SCREEN_WIDTH = 1520;
 	private int s = 8;
@@ -51,7 +52,7 @@ public class AboutLayout {
 				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
 				g2.drawLine(0, 0, 6 * s, 0);
 				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-SCREEN_WIDTH / 2, -37);
+				g2.translate(-SCREEN_WIDTH / 2, -3);
 			}
 		};
 
@@ -63,7 +64,7 @@ public class AboutLayout {
 		home.setBorderPainted(false);
 		frame.add(home, BorderLayout.NORTH);
 
-		aboutString = "The Counting of the Omer is a 49-day practice that occurs in Judaism. It’s considered a period for semi-mourning, where you can reflect, learn, and improve your being. It introduces the seven characteristics, which are shown below. The seven characteristics can be paired with one another to make 49 permutations, where each represents an aspect of a person’s character that can be improved upon. A permutation is represented on each day, where each day introduces the main lesson and an activity that enforces the lesson. The Omer Count is made starting the evening, where a blessing is said. After the blessing, the day is counted by absolute number and by its number within each week.";
+		aboutString = "The Counting of the Omer is a 49-day Jewish practice for reflection and improvement. It introduces seven character traits that can be paired to create 49 permutations, each representing an aspect of one's character that can be improved. Each day has a lesson and an activity to enforce it. The Count starts with a blessing in the evening and is counted by absolute number and by its number within each week.";
 		characteristicsString = " Chesed (חֶסֶד) – <i> Loving-Kindness </i>" + "<br>"
 				+ "Gevurah (גְּבוּרָה) – <i> Justice and Discipline </i>" + "<br>"
 				+ "Tiferet (תִּפְאָרָה) – <i> Harmony and Compassion </i>" + "<br>"
@@ -71,11 +72,13 @@ public class AboutLayout {
 				+ "Yesod (יְסוֹד) – <i> Bonding </i> " + "<br>"
 				+ "Malchut (מַלְכוּת) – <i> Sovereignty and Leadership </i>";
 
-		whyString = "The seven characteristics of a human being are considered attributes of God, and the activities are designed to get you to be more like Him. By the end of it, the user would have gone through the spiritual preparation and anticipation for the giving of the Torah (true freedom). The idea is once you pass the 49th day, you arrive at the <i> “Mattan Torah,” </i> the 50th day. The Mattan Torah, or the gift of true freedom, can only be celebrated once you go through all 49 days using your own initiative, traversing and refining every emotional corner of our psyche. On this day, you receive the Torah, the ability to transcend our human limitations and touch what’s considered to be divine, which can only be achieved with our own limited faculties. The purpose of the blessings is that they mark the day you're on as a period meant for reflection, revelation, and change.";
+		whyString = "The Seven human attributes are believed to be attributes of God, and the activities aim to develop those attributes. The 49-day practice leads to spiritual preparation and anticipation for the giving of the Torah, and upon completion, one receives the gift of true freedom. The day of receiving the Torah, or the 'Mattan Torah,' is celebrated as the ability to transcend human limitations and touch the divine. The blessings mark each day as a time for reflection, revelation, and change.";
+		whenString = "The Counting of the Omer begins on the second day of Passover and ends 49 days later, on the holiday of Shavuot.";
 
 		JLabel about = new JLabel("<html> <b> What is It? </b>" + "<br>" + aboutString + "<br>" + "<br>"
 				+ "<b> What Are the Seven Characteristics? </b>" + "<br>" + characteristicsString + "<br>" + "<br>"
-				+ "<b> Why is it Important? </b>" + "<br>" + whyString + "</html>");
+				+ "<b> Why is it Important? </b>" + "<br>" + whyString + "<br>" + "<br>"
+				+ "<b> When Does it Start and End? </b>" + "<br>" + whenString + "</html>");
 
 		about.setVerticalAlignment(JLabel.TOP);
 		about.setHorizontalAlignment(JLabel.CENTER);
