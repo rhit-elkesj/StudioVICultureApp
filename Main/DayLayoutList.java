@@ -19,13 +19,6 @@ public class DayLayoutList extends DayLayout {
 	private int startLoop = 1;
 	private int startDay = 1;
 	private int specificDay;
-	private static final Color BACKGROUND_COLOUR1 = new Color(29, 29, 94);
-	private static final Color BACKGROUND_COLOUR2 = new Color(46, 63, 173);
-	private static final Color BACKGROUND_COLOUR3 = new Color(53, 100, 204);
-	private static final Color BACKGROUND_COLOUR4 = new Color(92, 142, 228);
-	private static final Color BACKGROUND_COLOUR5 = new Color(158, 184, 241);
-	private static final Color BACKGROUND_COLOUR6 = new Color(204, 224, 255);
-	private static final Color BACKGROUND_COLOUR7 = new Color(242, 248, 255);
 	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
 	private String[] lessonString = new String[50];
 	private String[] activityString = new String[50];
@@ -34,7 +27,7 @@ public class DayLayoutList extends DayLayout {
 	private JLabel[] dayLabels = new JLabel[50];
 	private JLabel[] lessonLabels = new JLabel[50];
 	private DayContent[] dayContentArray = new DayContent[50];
-	private HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
+	protected static HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
 	private JFrame frame;
 
 	public DayLayoutList(JFrame mainFrame, int clickedDay) {
@@ -321,8 +314,9 @@ public class DayLayoutList extends DayLayout {
 
 	@Override
 	protected void specificDayLayout(JPanel mainPanel, int clickedDay) {
+
 		if (dayContentHashMap == null) {
-			dayContentHashMap = new HashMap<Integer, DayContent>();
+			System.out.println("HashMap is Empty");
 		}
 
 		DayContent dayContent = getDayContentHashMap().get(clickedDay);
@@ -344,7 +338,7 @@ public class DayLayoutList extends DayLayout {
 			mainPanel.setBorder(BorderFactory.createEmptyBorder(40, 220, 40, 220));
 			mainPanel.setBackground(Color.white);
 			mainPanel.add(dayPanel);
-			
+
 			frame.revalidate();
 			frame.repaint();
 		}

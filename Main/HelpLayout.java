@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -33,6 +34,7 @@ public class HelpLayout {
 	private String botReply;
 	private String userReply = "";
 	private ArrayList<String> chatHistory = new ArrayList<>();
+	private HashMap<Integer, DayContent> dayContentHashMap = DayLayoutList.dayContentHashMap;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private JFrame frame;
 	private JPanel mainPanel;
@@ -95,18 +97,7 @@ public class HelpLayout {
 		helpConsole.addKeyListener(new KeyAdapter() {
 			// KeyListener method
 			public void keyPressed(KeyEvent e) {
-			    // Get the current caret position
-			    int caretPosition = helpConsole.getCaretPosition();
-
-			    // If the caret position is in the editable portion of the chat
-			    if (caretPosition >= getEditableStart() && caretPosition <= getEditableEnd()) {
-			        // Allow editing
-			        helpConsole.setEditable(true);
-			    } else {
-			        // Block editing
-			        helpConsole.setEditable(false);
-			        e.consume(); // consume the key event to prevent editing
-			    }
+				// Get the current caret position
 
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					// Get the user's input from the new variable
@@ -115,8 +106,10 @@ public class HelpLayout {
 					botReply = getDefaultResponse(input);
 					chatHistory.add(input);
 					chatHistory.add(botReply);
-					helpConsole.append("\n" + "Bot: " + botReply + "\n"); // Appending previous chat history and newest
-																			// lines
+					helpConsole.append("\n\nUser: " + userReply + "\nBot: " + botReply + "\n"); // Appending previous
+																								// chat history and
+																								// newest
+					// lines
 					helpConsole.setText(helpConsole.getText().trim()); // Remove gaps in console
 
 					// Clear after adding to chatHistory (otherwise would append)
@@ -129,7 +122,6 @@ public class HelpLayout {
 					e.consume();
 				}
 			}// keyPressed
-
 		});
 	}// HelpLayout
 
@@ -153,21 +145,89 @@ public class HelpLayout {
 		case "":
 			botReply = "Please enter a valid command, so that I can assist you.";
 			break;
+		case "CHESED":
+			botReply = "The days that include 'Chesed' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains("Chesed")) {
+					botReply += i + "  ";
+				}
+			}
+			break;
+		case "GEVURAH":
+			botReply = "The days that include 'Gevurah' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains("Gevurah")) {
+					botReply += i + "  ";
+				}
+			}
+			break;
+		case "TIFERET":
+			botReply = "The days that include 'Tiferet' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains("Tiferet")) {
+					botReply += i + "  ";
+				}
+			}
+			break;
+		case "NETZACH":
+			botReply = "The days that include 'Netzach' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains("Netzach")) {
+					botReply += i + "  ";
+				}
+			}
+			break;
+		case "HOD":
+			botReply = "The days that include 'Hod' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains("Hod")) {
+					botReply += i + "  ";
+				}
+			}
+			break;
+		case "YESOD":
+			botReply = "The days that include 'Yesod' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains("Yesod")) {
+					botReply += i + "  ";
+				}
+			}
+			break;
+		case "MALCHUT":
+			botReply = "The days that include 'Malchut' are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getLabel().getText().contains("Malchut")) {
+					botReply += i + "  ";
+				}
+			}
+			break;
 		default:
 			botReply = "Please try again, I was unable to comprehend what you entered.";
 			break;
 		}
+		if (user.contains("SEARCH")) {
+			String userSearch = user.substring(user.indexOf("search") + 7).trim().toLowerCase();
+			boolean found = false;
+			botReply = "The days that include '" + userSearch + "' in the lesson are: ";
+			for (int i = 1; i < 50; i++) {
+				DayContent dayContent = dayContentHashMap.get(i);
+				if (dayContent.getTextArea().getText().toLowerCase().contains(userSearch)) {
+					botReply += i + " ";
+					found = true;
+				}
+			}
+			if (!found) {
+				botReply = "Sorry, I could not find any days that include '" + userSearch + "' in the lesson.";
+			}
+		}
 		return botReply;
 
 	}// getDefaultResponse
-
-	// Return the index of the first character that should be editable
-	private int getEditableStart() {
-		return 0; // Replace with the index of the first character that should be editable
-	}
-
-	// Return the index of the last character that should be editable
-	private int getEditableEnd() {
-		return helpConsole.getDocument().getLength(); // Make the entire document editable
-	}
 }// HelpLayout
