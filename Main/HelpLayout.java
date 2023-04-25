@@ -229,10 +229,7 @@ public class HelpLayout {
 			jText = jText.replaceAll("Blessing", "");
 			botReply += jText;
 		}
-
-		if (user.contains("CHARACTERISTIC"))
-
-		{
+		if (user.contains("CHARACTERISTIC")) {
 			String userSearch = user.substring(user.indexOf("characteristic") + 15).trim().toLowerCase();
 			userSearch = userSearch.substring(0, 1).toUpperCase() + userSearch.substring(1).toLowerCase();
 			boolean found = false;
