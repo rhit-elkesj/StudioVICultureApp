@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class AboutLayout {
 
@@ -25,7 +26,7 @@ public class AboutLayout {
 	private String whenString;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private static final int SCREEN_WIDTH = 1520;
-	private int s = 8;
+	private int s = 10;
 	private String whyString;
 	private JPanel mainPanel;
 
@@ -33,14 +34,15 @@ public class AboutLayout {
 		this.frame = mainFrame;
 		frame.getContentPane().setBackground(BACKGROUND_COLOUR);
 
+		// Home Button
 		home = new JButton() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(Color.BLACK);
-				g2.setStroke(new BasicStroke(3));
-				g2.translate(SCREEN_WIDTH / 2, 37);
+				g2.setColor(Color.black);
+				g2.setStroke(new BasicStroke((float) 2.75));
+				g2.translate(SCREEN_WIDTH / 2 + 8, 37);
 				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
 				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
 				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
@@ -52,11 +54,16 @@ public class AboutLayout {
 				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
 				g2.drawLine(0, 0, 6 * s, 0);
 				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-SCREEN_WIDTH / 2, -3);
+				g2.translate(-SCREEN_WIDTH / 2 + 8, -37);
 			}
 		};
 
 		home.setName("Home");
+		home.setText("HOME");
+		home.setForeground(Color.BLACK);
+		home.setFont(new Font(home.getText(), Font.BOLD, 10));
+		home.setVerticalTextPosition(SwingConstants.CENTER);
+		home.setHorizontalTextPosition(SwingConstants.CENTER);
 		home.setPreferredSize(new Dimension(100, 75));
 		home.addActionListener(new ButtonListenerImplemented(home, frame));
 		home.setOpaque(false);

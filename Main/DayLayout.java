@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -14,6 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public abstract class DayLayout extends JPanel {
 
@@ -27,7 +29,7 @@ public abstract class DayLayout extends JPanel {
 	private static final Color BACKGROUND_COLOUR7 = new Color(242, 248, 255);
 	private static final int SCREEN_WIDTH = 1520;
 	protected int currentDayIndex;
-	private int s = 8;
+	private int s = 10;
 	private Color foregroundColor;
 	protected JFrame frame;
 	protected JPanel mainPanel;
@@ -56,7 +58,7 @@ public abstract class DayLayout extends JPanel {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(foregroundColor);
 				int[] xPoints = { 200, 220, 220, 200 };
-				int[] yPoints = { 33, 23, 43, 33 };
+				int[] yPoints = { 38, 28, 48, 38 };
 				Polygon leftArrow = new Polygon(xPoints, yPoints, 4);
 				g2.draw(leftArrow);
 				g2.fill(leftArrow);
@@ -78,7 +80,7 @@ public abstract class DayLayout extends JPanel {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(foregroundColor);
 				int[] xPoints = { 300, 280, 280, 300 };
-				int[] yPoints = { 33, 23, 43, 33 };
+				int[] yPoints = { 38, 28, 48, 38 };
 				Polygon rightArrow = new Polygon(xPoints, yPoints, 4);
 				g2.draw(rightArrow);
 				g2.fill(rightArrow);
@@ -91,14 +93,15 @@ public abstract class DayLayout extends JPanel {
 		next.setContentAreaFilled(false);
 		next.setBorderPainted(false);
 
+		// Home Button
 		home = new JButton() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(foregroundColor);
-				g2.setStroke(new BasicStroke(3));
-				g2.translate(255, 35);
+				g2.setStroke(new BasicStroke((float) 2.75));
+				g2.translate(SCREEN_WIDTH / 6 + 3, 37);
 				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
 				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
 				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
@@ -110,17 +113,23 @@ public abstract class DayLayout extends JPanel {
 				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
 				g2.drawLine(0, 0, 6 * s, 0);
 				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-255, -35);
+				g2.translate(-SCREEN_WIDTH / 6 + 3, -37);
 			}
 		};
+
 		home.setName("Home");
+		home.setText("HOME");
+		home.setForeground(foregroundColor);
+		home.setFont(new Font(home.getText(), Font.BOLD, 10));
+		home.setVerticalTextPosition(SwingConstants.CENTER);
+		home.setHorizontalTextPosition(SwingConstants.CENTER);
 		home.addActionListener(new ButtonListenerImplemented(home, frame));
 		home.setOpaque(false);
 		home.setContentAreaFilled(false);
 		home.setBorderPainted(false);
 
 		toolbarPanel = new JPanel(new GridLayout(1, 3));
-		toolbarPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, 70));
+		toolbarPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, 75));
 		toolbarPanel.add(previous);
 		toolbarPanel.add(home);
 		toolbarPanel.add(next);

@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 /**
  * Class: HelpLayout
@@ -37,13 +38,15 @@ public class HelpLayout {
 	private static final int SCREEN_HEIGHT = 820;
 	private static final int CONSOLE_WIDTH = (int) (SCREEN_WIDTH / 2.5);
 	private static final int CONSOLE_HEIGHT = SCREEN_HEIGHT - 28;
-	private int s = 8;
+	private int s = 10;
 	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
 	private String botReply;
 	private String userReply = "";
 	private ArrayList<String> chatHistory = new ArrayList<>();
 	private HashMap<Integer, DayContent> dayContentHashMap = DayLayoutList.dayContentHashMap;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
+	private static final Color BACKGROUND_COLOUR1 = new Color(29, 29, 94);
+	private static final Color BACKGROUND_COLOUR2 = new Color(46, 63, 173);
 	private JFrame frame;
 	private JPanel mainPanel;
 	private JPanel rightPanel;;
@@ -65,9 +68,9 @@ public class HelpLayout {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(Color.BLACK);
-				g2.setStroke(new BasicStroke(3));
-				g2.translate(SCREEN_WIDTH / 2, 37);
+				g2.setColor(Color.black);
+				g2.setStroke(new BasicStroke((float) 2.75));
+				g2.translate(SCREEN_WIDTH / 2 + 8, 37);
 				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
 				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
 				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
@@ -79,11 +82,16 @@ public class HelpLayout {
 				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
 				g2.drawLine(0, 0, 6 * s, 0);
 				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-SCREEN_WIDTH / 2, -37);
+				g2.translate(-SCREEN_WIDTH / 2 + 8, -37);
 			}
 		};
 
 		home.setName("Home");
+		home.setText("HOME");
+		home.setForeground(Color.BLACK);
+		home.setFont(new Font(home.getText(), Font.BOLD, 10));
+		home.setVerticalTextPosition(SwingConstants.CENTER);
+		home.setHorizontalTextPosition(SwingConstants.CENTER);
 		home.addActionListener(new ButtonListenerImplemented(home, frame));
 		home.setPreferredSize(new Dimension(SCREEN_WIDTH, 75));
 		home.setOpaque(false);
