@@ -42,7 +42,7 @@ public class AboutLayout {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(Color.black);
 				g2.setStroke(new BasicStroke((float) 2.75));
-				g2.translate(SCREEN_WIDTH / 2 + 8, 37);
+				g2.translate(SCREEN_WIDTH / 2 + 1/2, 37);
 				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
 				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
 				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
@@ -54,7 +54,7 @@ public class AboutLayout {
 				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
 				g2.drawLine(0, 0, 6 * s, 0);
 				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-SCREEN_WIDTH / 2 + 8, -37);
+				g2.translate(-SCREEN_WIDTH / 2 - 1/2, -37);
 			}
 		};
 
