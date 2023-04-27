@@ -46,7 +46,7 @@ public class Main {
 
 		frame.setMinimumSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 
-		frame.pack();
+//		frame.pack();
 		frame.setVisible(true);
 	}// runApp
 
