@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,16 +21,11 @@ public class DayLayoutList extends DayLayout {
 	private int startDay = 1;
 	private int specificDay;
 	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
-	private String lessonString;
-	private String activityString;
-	private String blessingStringEnglish;
-	private String blessingStringHebrew;
 	private JLabel[] dayLabels = new JLabel[50];
 	private JLabel[] lessonLabels = new JLabel[50];
 	private DayContent[] dayContentArray = new DayContent[50];
 	public static int lastDayGlobal;
 	protected static HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
-	private JFrame frame;
 
 	public DayLayoutList(JFrame mainFrame, int clickedDay) {
 		super(mainFrame, clickedDay);

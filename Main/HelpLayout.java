@@ -1,16 +1,12 @@
 package Main;
 
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
@@ -20,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 
 /**
  * Class: HelpLayout
@@ -37,7 +32,6 @@ public class HelpLayout {
 	private static final int SCREEN_HEIGHT = 820;
 	private static final int CONSOLE_WIDTH = (int) (SCREEN_WIDTH / 2.5);
 	private static final int CONSOLE_HEIGHT = SCREEN_HEIGHT - 28;
-	private int s = 10;
 	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
 	private String botReply;
 	private String userReply = "";
@@ -60,41 +54,8 @@ public class HelpLayout {
 		frame.setVisible(true);
 
 		// Home Button
-		home = new JButton("HOME") {
-			@Override
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(Color.BLACK);
-				g2.setStroke(new BasicStroke((float) 2.75));
-				int centerX = getWidth() / 2; // calculate center x-coordinate
-				int centerY = getHeight() / 2; // calculate center y-coordinate
-				g2.translate(centerX, centerY); // translate to center of button
-				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
-				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
-				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
-				g2.translate(-3 * s, 3 * Math.pow(3, 0.5) * s);
-				g2.drawLine(0, 0, 6 * s, 0);
-				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.draw(new Line2D.Double(0, 0, -3 * s, -3 * Math.pow(3, 0.5) * s));
-				g2.draw(new Line2D.Double(0, 0, 3 * s, -3 * Math.pow(3, 0.5) * s));
-				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
-				g2.drawLine(0, 0, 6 * s, 0);
-				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-centerX, -centerY); // translate back to original position
-			}
-		};
-
-		home.setName("Home");
-		home.setForeground(Color.BLACK);
-		home.setFont(new Font(home.getText(), Font.BOLD, 10));
-		home.setVerticalTextPosition(SwingConstants.CENTER);
-		home.setHorizontalTextPosition(SwingConstants.CENTER);
-		home.addActionListener(new ButtonListenerImplemented(home, frame));
-		home.setPreferredSize(new Dimension(SCREEN_WIDTH, 75));
-		home.setOpaque(false);
-		home.setContentAreaFilled(false);
-		home.setBorderPainted(false);
+		// Home Button
+		home = new HomeButton(frame, SCREEN_WIDTH, Color.black);
 		frame.add(home, BorderLayout.NORTH);
 
 		// Main Panel

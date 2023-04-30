@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 /**
  * Class: StartCountingLayout
  * 
- * @author  <br>
+ * @author <br>
  *         Purpose: Adds the necessary components to create the GridButtons <br>
  *         Restrictions: None
  */
@@ -48,7 +48,7 @@ public class StartCountingLayout {
 			new GridButtons(frame, mainButtonPanel);
 		} catch (IOException es) {
 			es.printStackTrace();
-		
+
 		}
 
 	}// StartCountingLayout

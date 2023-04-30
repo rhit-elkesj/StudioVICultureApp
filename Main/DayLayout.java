@@ -1,21 +1,14 @@
 package Main;
 
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Polygon;
-import java.awt.geom.Line2D;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public abstract class DayLayout extends JPanel {
 
@@ -51,86 +44,12 @@ public abstract class DayLayout extends JPanel {
 			foregroundColor = Color.BLACK;
 		}
 
-		previous = new JButton() {
-			@Override
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(foregroundColor);
-				int[] xPoints = { 200, 220, 220, 200 };
-				int[] yPoints = { 38, 28, 48, 38 };
-				Polygon leftArrow = new Polygon(xPoints, yPoints, 4);
-				g2.draw(leftArrow);
-				g2.fill(leftArrow);
-			}
-		};
+		previous = new PreviousButton(frame, currentDayIndex, foregroundColor);
 
-		previous.setName("Previous Day");
-		previous.setPreferredSize(new Dimension(100, 50));
-		previous.addActionListener(new ButtonListenerImplemented(previous, frame, currentDayIndex));
-		previous.setOpaque(false);
-		previous.setContentAreaFilled(false);
-		previous.setBorderPainted(false);
-		previous.setForeground(Color.BLACK);
-
-		next = new JButton() {
-			@Override
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(foregroundColor);
-				int[] xPoints = { 300, 280, 280, 300 };
-				int[] yPoints = { 38, 28, 48, 38 };
-				Polygon rightArrow = new Polygon(xPoints, yPoints, 4);
-				g2.draw(rightArrow);
-				g2.fill(rightArrow);
-			}
-		};
-
-		next.setName("Next Day");
-		next.addActionListener(new ButtonListenerImplemented(next, frame, currentDayIndex));
-		next.setOpaque(false);
-		next.setContentAreaFilled(false);
-		next.setBorderPainted(false);
+		next = new NextButton(frame, currentDayIndex, foregroundColor);
 
 		// Home Button
-		home = new JButton("HOME") {
-			@Override
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(foregroundColor);
-				g2.setStroke(new BasicStroke((float) 2.75));
-				int centerX = getWidth() / 2; // calculate center x-coordinate
-				int centerY = getHeight() / 2; // calculate center y-coordinate
-				g2.translate(centerX, centerY); // translate to center of button
-				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
-				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
-				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
-				g2.translate(-3 * s, 3 * Math.pow(3, 0.5) * s);
-				g2.drawLine(0, 0, 6 * s, 0);
-				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.draw(new Line2D.Double(0, 0, -3 * s, -3 * Math.pow(3, 0.5) * s));
-				g2.draw(new Line2D.Double(0, 0, 3 * s, -3 * Math.pow(3, 0.5) * s));
-				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
-				g2.drawLine(0, 0, 6 * s, 0);
-				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-centerX, -centerY); // translate back to original position
-			}
-		};
-
-		home.setName("Home");
-		home.setHorizontalTextPosition(JButton.CENTER);
-		home.setHorizontalAlignment(JButton.CENTER);
-		home.setVerticalAlignment(JButton.CENTER);
-		home.setForeground(foregroundColor);
-		home.setFont(new Font(home.getText(), Font.BOLD, 10));
-		home.setVerticalTextPosition(SwingConstants.CENTER);
-		home.setHorizontalTextPosition(SwingConstants.CENTER);
-		home.addActionListener(new ButtonListenerImplemented(home, frame));
-		home.setOpaque(false);
-		home.setContentAreaFilled(false);
-		home.setBorderPainted(false);
+		home = new HomeButton(frame, SCREEN_WIDTH, foregroundColor);
 
 		toolbarPanel = new JPanel(new GridLayout(1, 3));
 		toolbarPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, 75));
@@ -170,6 +89,6 @@ public abstract class DayLayout extends JPanel {
 
 	protected abstract HashMap<Integer, DayContent> getDayContentHashMap();
 
-	protected abstract void specificDayLayout(JPanel mainPanel, int clickedDay);// specificDayLayout
+	protected abstract void specificDayLayout(JPanel mainPanel, int clickedDay); // specificDayLayout
 
 }// DayLayout
