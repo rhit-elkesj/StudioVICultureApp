@@ -8,6 +8,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -21,13 +24,10 @@ public class AboutLayout {
 	// Instantiated Variables & Components
 	private JFrame frame;
 	private JButton home;
-	private String aboutString;
-	private String characteristicsString;
-	private String whenString;
+	private JLabel about;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
 	private static final int SCREEN_WIDTH = 1520;
 	private int s = 10;
-	private String whyString;
 	private JPanel mainPanel;
 
 	public AboutLayout(JFrame mainFrame) {
@@ -70,22 +70,25 @@ public class AboutLayout {
 		home.setContentAreaFilled(false);
 		home.setBorderPainted(false);
 		frame.add(home, BorderLayout.NORTH);
+		try {
 
-		aboutString = "The Counting of the Omer is a 49-day Jewish practice for reflection and improvement. It introduces seven character traits that can be paired to create 49 permutations, each representing an aspect of one's character that can be improved. Each day has a lesson and an activity to enforce it. The Count starts with a blessing in the evening and is counted by absolute number and by its number within each week.";
-		characteristicsString = " Chesed (חֶסֶד) – <i> Loving-Kindness </i>" + "<br>"
-				+ "Gevurah (גְּבוּרָה) – <i> Justice and Discipline </i>" + "<br>"
-				+ "Tiferet (תִּפְאָרָה) – <i> Harmony and Compassion </i>" + "<br>"
-				+ "Netzach (נֶצַח) – <i> Endurance </i>" + "<br>" + "Hod (הוֹד) – <i> Humility </i>" + "<br>"
-				+ "Yesod (יְסוֹד) – <i> Bonding </i> " + "<br>"
-				+ "Malchut (מַלְכוּת) – <i> Sovereignty and Leadership </i>";
+			File file = new File("Main/DayFiles/About");
+			Scanner scanner = new Scanner(file);
 
-		whyString = "The Seven human attributes are believed to be attributes of God, and the activities aim to develop those attributes. The 49-day practice leads to spiritual preparation and anticipation for the giving of the Torah, and upon completion, one receives the gift of true freedom. The day of receiving the Torah, or the 'Mattan Torah,' is celebrated as the ability to transcend human limitations and touch the divine. The blessings mark each day as a time for reflection, revelation, and change.";
-		whenString = "The Counting of the Omer begins on the second day of Passover and ends 49 days later, on the holiday of Shavuot.";
+			String aboutString = scanner.nextLine();
+			String characteristicsString = scanner.nextLine();
+			String whyString = scanner.nextLine();
+			String whenString = scanner.nextLine();
 
-		JLabel about = new JLabel("<html> <b> What is It? </b>" + "<br>" + aboutString + "<br>" + "<br>"
-				+ "<b> What Are the Seven Characteristics? </b>" + "<br>" + characteristicsString + "<br>" + "<br>"
-				+ "<b> Why is it Important? </b>" + "<br>" + whyString + "<br>" + "<br>"
-				+ "<b> When Does it Start and End? </b>" + "<br>" + whenString + "</html>");
+			about = new JLabel("<html> <b> What is It? </b>" + "<br>" + aboutString + "<br>" + "<br>"
+					+ "<b> What Are the Seven Characteristics? </b>" + "<br>" + characteristicsString + "<br>" + "<br>"
+					+ "<b> Why is it Important? </b>" + "<br>" + whyString + "<br>" + "<br>"
+					+ "<b> When Does it Start and End? </b>" + "<br>" + whenString + "</html>");
+
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
 		about.setVerticalAlignment(JLabel.TOP);
 		about.setHorizontalAlignment(JLabel.CENTER);
