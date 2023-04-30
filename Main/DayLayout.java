@@ -94,14 +94,16 @@ public abstract class DayLayout extends JPanel {
 		next.setBorderPainted(false);
 
 		// Home Button
-		home = new JButton() {
+		home = new JButton("HOME") {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(foregroundColor);
 				g2.setStroke(new BasicStroke((float) 2.75));
-				g2.translate(SCREEN_WIDTH / 6 + 3, 37);
+				int centerX = getWidth() / 2; // calculate center x-coordinate
+				int centerY = getHeight() / 2; // calculate center y-coordinate
+				g2.translate(centerX, centerY); // translate to center of button
 				g2.translate(0, -2 * Math.pow(3, 0.5) * s);
 				g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
 				g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
@@ -113,12 +115,14 @@ public abstract class DayLayout extends JPanel {
 				g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
 				g2.drawLine(0, 0, 6 * s, 0);
 				g2.translate(3 * s, Math.pow(3, 0.5) * s);
-				g2.translate(-SCREEN_WIDTH / 6 + 3, -37);
+				g2.translate(-centerX, -centerY); // translate back to original position
 			}
 		};
 
 		home.setName("Home");
-		home.setText("HOME");
+		home.setHorizontalTextPosition(JButton.CENTER);
+		home.setHorizontalAlignment(JButton.CENTER);
+		home.setVerticalAlignment(JButton.CENTER);
 		home.setForeground(foregroundColor);
 		home.setFont(new Font(home.getText(), Font.BOLD, 10));
 		home.setVerticalTextPosition(SwingConstants.CENTER);
