@@ -75,7 +75,9 @@ public class HelpLayout {
 		// Console
 		helpConsole = new JTextArea(); // New TextArea where the user can freely type
 		helpConsole.setFont(new Font(helpConsole.getText(), Font.PLAIN, 16));
-		helpConsole.setText("Welcome to the Help Console! Please enter your message below!\n");
+		helpConsole.setText("Welcome to the Help Console! Please enter your message below!\n"
+				+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+				+ "\n");
 		helpConsole.setWrapStyleWord(true);
 		helpConsole.setLineWrap(true);
 		helpConsole.setEditable(true);
@@ -122,9 +124,11 @@ public class HelpLayout {
 					String input = userReply.trim().toUpperCase(); // Only saves the newest line input by the user
 
 					botReply = getDefaultResponse(input);
-					chatHistory.add(input);
+					chatHistory.add(input); // Add "User: " in front of the user input
 					chatHistory.add(botReply);
-					helpConsole.append("\n" + botReply + "\n"); // Appending previous
+					helpConsole.append("\n\n" + "helpBot: " + botReply + "\n"
+							+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+							+ "\n"); // Appending previous
 					// chat history and
 					// newest
 					// lines
@@ -150,8 +154,8 @@ public class HelpLayout {
 			botReply = "According to my system, the last day you were on was Day " + lastDayGlobal;
 			break;
 		case "NAVIGATE":
-			botReply = "The Home page serves as the starting point of the application and includes a 'Start Counting,' an 'About,' and a 'Help' button. In the event that you require assistance, you can select the 'Help' button. The Help page allows you to enter a command in the console, and I will do my best to provide assistance. It is advised to exercise caution with spelling when entering inquiries.\n"
-					+ "Pressing the 'Start Counting' button will lead you to the primary 7x7 Grid. If you are starting your count on Day 1, select the Day 1 button. If you wish to continue from a previous day, you can choose the corresponding number.\n"
+			botReply = "\n\nThe Home page serves as the starting point of the application and includes a 'Start Counting,' an 'About,' and a 'Help' button. In the event that you require assistance, you can select the 'Help' button. The Help page allows you to enter a command in the console, and I will do my best to provide assistance. It is advised to exercise caution with spelling when entering inquiries.\n\n"
+					+ "Pressing the 'Start Counting' button will lead you to the primary 7x7 Grid. If you are starting your count on Day 1, select the Day 1 button. If you wish to continue from a previous day, you can choose the corresponding number.\n\n"
 					+ "Each day includes learning the daily lesson, participating in the daily activity that reinforces the lesson, and reciting the blessing and count to be completed in the evening. Upon completion of the day's tasks, selecting the forward arrow allows you to proceed to the following day. If the arrow is mistakenly clicked twice, selecting the back arrow will allow you to go backward. If you need to exit the day, the Home button, represented as the Star of David, can be clicked to return to the Home Page."
 					+ "If you are seeking additional knowledge on the Counting of the Omer and its significance, selecting the 'About' button is recommended.";
 
