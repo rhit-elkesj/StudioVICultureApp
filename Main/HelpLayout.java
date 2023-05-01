@@ -75,7 +75,7 @@ public class HelpLayout {
 		// Console
 		helpConsole = new JTextArea(); // New TextArea where the user can freely type
 		helpConsole.setFont(new Font(helpConsole.getText(), Font.PLAIN, 16));
-		helpConsole.setText("Welcome to the Help Console! \n");
+		helpConsole.setText("Welcome to the Help Console! Please enter your message below!\n");
 		helpConsole.setWrapStyleWord(true);
 		helpConsole.setLineWrap(true);
 		helpConsole.setEditable(true);
