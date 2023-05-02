@@ -37,12 +37,14 @@ public class AboutLayout {
 			String aboutString = scanner.nextLine();
 			String characteristicsString = scanner.nextLine();
 			String whyString = scanner.nextLine();
-			String whenString = scanner.nextLine();
+			String StartString = scanner.nextLine();
+			String ColorString = scanner.nextLine();
 
 			about = new JLabel("<html> <b> What is It? </b>" + "<br>" + aboutString + "<br>" + "<br>"
 					+ "<b> What Are the Seven Characteristics? </b>" + "<br>" + characteristicsString + "<br>" + "<br>"
 					+ "<b> Why is it Important? </b>" + "<br>" + whyString + "<br>" + "<br>"
-					+ "<b> When Does it Start and End? </b>" + "<br>" + whenString + "</html>");
+					+ "<b> What started the counting of the Omer? ? </b>" + "<br>" + StartString + "<br>" + "<br>"
+					+ "<b> What's the rationale for the color scheme? </b>" + "<br>" + ColorString + "</html>");
 
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -51,7 +53,7 @@ public class AboutLayout {
 
 		about.setVerticalAlignment(JLabel.TOP);
 		about.setHorizontalAlignment(JLabel.CENTER);
-		about.setFont(new Font(about.getText(), Font.PLAIN, 20));
+		about.setFont(new Font(about.getText(), Font.PLAIN, 16));
 
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.white);
