@@ -9,20 +9,28 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  * Class: HelpLayout
  * 
- * @author Richelle Elkes <br>
- *         Purpose: Creates a JText Area and chat bot for user to be able to
- *         interact with when receiving help <br>
+ * @author Richelle Elkes
+ * 
+ *         Purpose: Creates a JTextPane and chat bot for user to be able to
+ *         interact with when receiving help
+ * 
  *         Restrictions: None
  */
 public class HelpLayout {
@@ -34,14 +42,15 @@ public class HelpLayout {
 	private static final int CONSOLE_HEIGHT = SCREEN_HEIGHT - 28;
 	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
 	private String botReply;
-	private String userReply = "";
-	private ArrayList<String> chatHistory = new ArrayList<>();
+	private String userReply;
 	private HashMap<Integer, DayContent> dayContentHashMap = DayLayoutList.dayContentHashMap;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
+	private static final Color BACKGROUND_COLOUR1 = new Color(29, 29, 94);
+	private static final Color BACKGROUND_COLOUR4 = new Color(92, 142, 228);
 	private JFrame frame;
 	private JPanel mainPanel;
 	private JPanel rightPanel;;
-	private JTextArea helpConsole;
+	private JTextPane helpConsole;
 	private JScrollPane consolePane;
 	private JLabel commandLabel;
 	private JButton home;
@@ -53,7 +62,6 @@ public class HelpLayout {
 		frame.getContentPane().setBackground(BACKGROUND_COLOUR);
 		frame.setVisible(true);
 
-		// Home Button
 		// Home Button
 		home = new HomeButton(frame, SCREEN_WIDTH, Color.black);
 		frame.add(home, BorderLayout.NORTH);
@@ -73,15 +81,13 @@ public class HelpLayout {
 		consolePane.setBackground(Color.white);
 
 		// Console
-		helpConsole = new JTextArea(); // New TextArea where the user can freely type
-		helpConsole.setFont(new Font(helpConsole.getText(), Font.PLAIN, 16));
+		helpConsole = new JTextPane(); // New TextPane where the user can freely type
+		helpConsole.setFont(new Font(helpConsole.getText(), Font.BOLD, 16));
+		helpConsole.setForeground(BACKGROUND_COLOUR1);
 		helpConsole.setText("Welcome to the Help Console! Please enter your message below!\n"
-				+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+				+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 				+ "\n");
-		helpConsole.setWrapStyleWord(true);
-		helpConsole.setLineWrap(true);
 		helpConsole.setEditable(true);
-		helpConsole.setHighlighter(null);
 		helpConsole.setBackground(Color.WHITE);
 		helpConsole.setBorder(BorderFactory.createLineBorder(Color.black, 1, true));
 		consolePane.setViewportView(helpConsole); // Makes it viewable
@@ -94,15 +100,15 @@ public class HelpLayout {
 		rightPanel.setBackground(Color.white);
 		mainPanel.add(rightPanel, BorderLayout.CENTER);
 
-		commandLabel = new JLabel("<html> <b> Bot Commands: </b>" + "<br>" + "<br>" + " <b> NAVIGATE </b>" + "<br>"
-				+ "Will return instructions on how to use this application" + "<br>" + "<br>" + "<b> FORGOT </b>"
-				+ "<br>" + "Will return the user's previous day according to the system" + "<br>" + "<br>"
-				+ " <b> SEARCH (Insert Space) TERM </b>" + "<br>"
+		commandLabel = new JLabel("<html> <b> Bot Commands: </b>" + "<br>" + "<br>" + "<br>" + "<b> NAVIGATE </b>"
+				+ "<br>" + "Will return instructions on how to use this application" + "<br>" + "<br>" + "<br>"
+				+ "<b> FORGOT </b>" + "<br>" + "Will return the user's previous day according to the system" + "<br>"
+				+ "<br>" + "<br>" + " <b> SEARCH (Insert Space) WORD </b>" + "<br>"
 				+ "Will return lessons that include the user's search term (ie. 'Search prayer' will return Days 29 and 40)"
-				+ "<br>" + "<br>" + "<b> LOADDAY (Insert Space) NUMBER </b>" + "<br>"
-				+ "Will return the associated Lesson, Activity, and Blessing for the Day specified (ie. 'LoadDay 36')"
-				+ "<br>" + "<br>" + "<b> CHARACTERISTIC (Insert Space) CHARACTER </b>" + "<br>"
-				+ "Will return the days that exhibit the characteristic the user input (ie. 'Characteristic Chesed')"
+				+ "<br>" + "<br>" + "<br>" + "<b> DAY (Insert Space) NUMBER </b>" + "<br>"
+				+ "Will return the associated Lesson, Activity, and Blessing for the Day specified (ie. 'Day 36')"
+				+ "<br>" + "<br>" + "<br>" + "<b> OMER (Insert Space) CHARACTERISTIC </b>" + "<br>"
+				+ "Will return the days that exhibit the characteristic the user input (ie. 'Omer Chesed')" + "<br>"
 				+ "<br>" + "<br>"
 				+ "<b> <i> **NOTE: </b> <i> To allow for full functionality of the HelpBot, specifically search features, please ensure you </i>"
 				+ "<br>"
@@ -117,24 +123,25 @@ public class HelpLayout {
 		helpConsole.addKeyListener(new KeyAdapter() {
 			// KeyListener method
 			public void keyPressed(KeyEvent e) {
-				// Get the current caret position
-
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					// Get the user's input from the new variable
-					String input = userReply.trim().toUpperCase(); // Only saves the newest line input by the user
+
+					String input = userReply.trim().toUpperCase();
 
 					botReply = getDefaultResponse(input);
-					chatHistory.add(input); // Add "User: " in front of the user input
-					chatHistory.add(botReply);
-					helpConsole.append("\n\n" + "helpBot: " + botReply + "\n"
-							+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
-							+ "\n"); // Appending previous
-					// chat history and
-					// newest
-					// lines
-					helpConsole.setText(helpConsole.getText().trim()); // Remove gaps in console
 
-					// Clear after adding to chatHistory (otherwise would append)
+					// Append the latest conversation to the helpConsole
+					StyledDocument doc = helpConsole.getStyledDocument();
+
+					SimpleAttributeSet right = new SimpleAttributeSet();
+					StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+					StyleConstants.setForeground(right, BACKGROUND_COLOUR4);
+					StyleConstants.setBold(right, true);
+
+					try {
+						doc.insertString(doc.getLength(), "\n" + "HelpBot: " + botReply + "\n", right);
+					} catch (BadLocationException ex) {
+						ex.printStackTrace();
+					}
 					userReply = "";
 				} else if (Character.isLetterOrDigit(e.getKeyChar())) { // Only accepts letters or numbers
 					userReply += e.getKeyChar();
@@ -156,7 +163,7 @@ public class HelpLayout {
 		case "NAVIGATE":
 			botReply = "\n\nThe Home page serves as the starting point of the application and includes a 'Start Counting,' an 'About,' and a 'Help' button. In the event that you require assistance, you can select the 'Help' button. The Help page allows you to enter a command in the console, and I will do my best to provide assistance. It is advised to exercise caution with spelling when entering inquiries.\n\n"
 					+ "Pressing the 'Start Counting' button will lead you to the primary 7x7 Grid. If you are starting your count on Day 1, select the Day 1 button. If you wish to continue from a previous day, you can choose the corresponding number.\n\n"
-					+ "Each day includes learning the daily lesson, participating in the daily activity that reinforces the lesson, and reciting the blessing and count to be completed in the evening. Upon completion of the day's tasks, selecting the forward arrow allows you to proceed to the following day. If the arrow is mistakenly clicked twice, selecting the back arrow will allow you to go backward. If you need to exit the day, the Home button, represented as the Star of David, can be clicked to return to the Home Page."
+					+ "Each day includes learning the daily lesson, participating in the daily activity that reinforces the lesson, and reciting the blessing and count to be completed in the evening. Upon completion of the day's tasks, selecting the forward arrow allows you to proceed to the following day. If the arrow is mistakenly clicked twice, selecting the back arrow will allow you to go backward. If you need to exit the day, the Home button, represented as the Star of David, can be clicked to return to the Home Page. "
 					+ "If you are seeking additional knowledge on the Counting of the Omer and its significance, selecting the 'About' button is recommended.";
 
 			break;
@@ -185,12 +192,12 @@ public class HelpLayout {
 			break;
 		}
 
-		if (user.contains("LOADDAY")) {
-			String userSearch = user.substring(user.indexOf("loadday") + 8).trim().toLowerCase();
+		if (user.contains("DAY")) {
+			String userSearch = user.substring(user.indexOf("day") + 4).trim().toLowerCase();
 			if (userSearch.isEmpty()) {
-				botReply = "Please enter a valid day number after the 'LOADDAY' command (ie. Loadday 36)";
+				botReply = "Please enter a valid day number after the 'LOADDAY' command (ie. Day 36)";
 			} else if (!userSearch.matches("\\d+")) {
-				botReply = "Please enter a valid day number after the 'LOADDAY' command (ie. Loadday 36)";
+				botReply = "Please enter a valid day number after the 'LOADDAY' command (ie. Day 36)";
 			} else {
 				int day = Integer.parseInt(userSearch);
 				if (day < 1 || day >= 50) {
@@ -211,8 +218,8 @@ public class HelpLayout {
 			}
 		}
 
-		if (user.contains("CHARACTERISTIC")) {
-			String userSearch = user.substring(user.indexOf("characteristic") + 15).trim().toLowerCase();
+		if (user.contains("OMER")) {
+			String userSearch = user.substring(user.indexOf("omer") + 5).trim().toLowerCase();
 			if (userSearch.matches(".*\\d.*")) {
 				botReply = "It appears a number has been entered. Please enter a valid search term (ie. Characteristic Chesed).";
 			} else if (!userSearch.isEmpty()) {

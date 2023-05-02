@@ -43,8 +43,8 @@ public class AboutLayout {
 			about = new JLabel("<html> <b> What is It? </b>" + "<br>" + aboutString + "<br>" + "<br>"
 					+ "<b> What Are the Seven Characteristics? </b>" + "<br>" + characteristicsString + "<br>" + "<br>"
 					+ "<b> Why is it Important? </b>" + "<br>" + whyString + "<br>" + "<br>"
-					+ "<b> What started the counting of the Omer? ? </b>" + "<br>" + StartString + "<br>" + "<br>"
-					+ "<b> What's the rationale for the color scheme? </b>" + "<br>" + ColorString + "</html>");
+					+ "<b> What are the Origins of Counting of the Omer? </b>" + "<br>" + StartString + "<br>" + "<br>"
+					+ "<b> What is the Meaning of the Colours? </b>" + "<br>" + ColorString + "</html>");
 
 			scanner.close();
 		} catch (FileNotFoundException e) {
