@@ -165,7 +165,6 @@ public class HelpLayout {
 					+ "Pressing the 'Start Counting' button will lead you to the primary 7x7 Grid. If you are starting your count on Day 1, select the Day 1 button. If you wish to continue from a previous day, you can choose the corresponding number.\n\n"
 					+ "Each day includes learning the daily lesson, participating in the daily activity that reinforces the lesson, and reciting the blessing and count to be completed in the evening. Upon completion of the day's tasks, selecting the forward arrow allows you to proceed to the following day. If the arrow is mistakenly clicked twice, selecting the back arrow will allow you to go backward. If you need to exit the day, the Home button, represented as the Star of David, can be clicked to return to the Home Page. "
 					+ "If you are seeking additional knowledge on the Counting of the Omer and its significance, selecting the 'About' button is recommended.";
-
 			break;
 		case "":
 			botReply = "Please enter a valid command, so that I can assist you.";
@@ -195,9 +194,9 @@ public class HelpLayout {
 		if (user.contains("DAY")) {
 			String userSearch = user.substring(user.indexOf("day") + 4).trim().toLowerCase();
 			if (userSearch.isEmpty()) {
-				botReply = "Please enter a valid day number after the 'LOADDAY' command (ie. Day 36)";
+				botReply = "Please enter a valid day number after the 'Day' command (ie. Day 36)";
 			} else if (!userSearch.matches("\\d+")) {
-				botReply = "Please enter a valid day number after the 'LOADDAY' command (ie. Day 36)";
+				botReply = "Please enter a valid day number after the 'Day' command (ie. Day 36)";
 			} else {
 				int day = Integer.parseInt(userSearch);
 				if (day < 1 || day >= 50) {
@@ -258,7 +257,7 @@ public class HelpLayout {
 					botReply = "Sorry, I could not find any days that include '" + userSearch + "' in the lesson.";
 				}
 			} else {
-				botReply = "Please enter a valid search term (ie. Search prayer).";
+				botReply = "Please enter a valid search term (ie. Search Prayer).";
 			}
 		}
 		return botReply;

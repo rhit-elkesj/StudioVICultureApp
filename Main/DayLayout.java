@@ -22,7 +22,6 @@ public abstract class DayLayout extends JPanel {
 	private static final Color BACKGROUND_COLOUR7 = new Color(242, 248, 255);
 	private static final int SCREEN_WIDTH = 1520;
 	protected int currentDayIndex;
-	private int s = 10;
 	private Color foregroundColor;
 	protected JFrame frame;
 	protected JPanel mainPanel;
@@ -45,8 +44,14 @@ public abstract class DayLayout extends JPanel {
 		}
 
 		previous = new PreviousButton(frame, currentDayIndex, foregroundColor);
-
 		next = new NextButton(frame, currentDayIndex, foregroundColor);
+		if (clickedDay == 1) {
+			previous.setName("Start Counting");
+		}
+
+		if (clickedDay == 49) {
+			next.setName("Start Counting");
+		}
 
 		// Home Button
 		home = new HomeButton(frame, SCREEN_WIDTH, foregroundColor);
