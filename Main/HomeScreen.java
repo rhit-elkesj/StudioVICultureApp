@@ -10,6 +10,7 @@ import javax.swing.*;
  *         Purpose: Creates and displays all elements needed for the initial
  *         screen when program is ran <br>
  *         Restrictions: None
+ * @ReferencedClasses AddButtonImages, AddPressedImages, ButtonListenerImplemented
  */
 public class HomeScreen {
 
@@ -35,9 +36,11 @@ public class HomeScreen {
 		this.frame = mainFrame;
 		frame.setBackground(BACKGROUND_COLOUR);
 
-		// Graphics
-		GridBagConstraints c = new GridBagConstraints(); // Creating the design constraints of GridBagLayout
-		ImageIcon icon = new ImageIcon("Main/ButtonImages/HomeImage.PNG"); // Main image that displays on screen
+		// Creating the design constraints of GridBagLayout
+		GridBagConstraints c = new GridBagConstraints();
+		
+		 // Main image that displays on screen
+		ImageIcon icon = new ImageIcon("Main/ButtonImages/HomeImage.PNG");
 		JLabel imageLabel = new JLabel(icon);
 
 		// HomePanel
@@ -46,52 +49,52 @@ public class HomeScreen {
 		homePanel.setBackground(BACKGROUND_COLOUR);
 		homePanel.add(imageLabel, c);
 
-		// Start Counting
+		// Start Counting Button, added ButtonListenerImplemented, formatted Button
 		calendar = new JButton();
-		calendar.setName("Start Counting"); // Set ButtonID
-		calendar.addActionListener(new ButtonListenerImplemented(calendar, frame)); // Add ActionListener
-		calendar.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
-		String buttonImagePath1 = "Main/ButtonImages/StartCounting.PNG"; // Accesses images from folder
+		calendar.setName("Start Counting");
+		calendar.addActionListener(new ButtonListenerImplemented(calendar, frame));
+		calendar.setPreferredSize(new Dimension(SCALE_X, SCALE_Y));
+		String buttonImagePath1 = "Main/ButtonImages/StartCounting.PNG";
 		AddButtonImages.addImage(calendar, buttonImagePath1, SCALE_X, SCALE_Y);
 		String pressedImagePath = "Main/ButtonImages/Week7.PNG";
 		AddPressedImages.addPressed(calendar, pressedImagePath, SCALE_X, SCALE_Y);
-		calendar.setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
+		calendar.setBorder(BorderFactory.createEmptyBorder());
 
-		// About
+		// About Button, added ButtonListenerImplemented, formatted Button
 		about = new JButton();
 		about.setName("About"); // Set ButtonID
-		about.addActionListener(new ButtonListenerImplemented(about, frame)); // AddActionListener
-		about.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
-		String buttonImagePath2 = "Main/ButtonImages/About.PNG"; // Accesses images from folder
+		about.addActionListener(new ButtonListenerImplemented(about, frame));
+		about.setPreferredSize(new Dimension(SCALE_X, SCALE_Y));
+		String buttonImagePath2 = "Main/ButtonImages/About.PNG";
 		AddButtonImages.addImage(about, buttonImagePath2, SCALE_X, SCALE_Y);
 		AddPressedImages.addPressed(about, pressedImagePath, SCALE_X, SCALE_Y);
-		about.setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
+		about.setBorder(BorderFactory.createEmptyBorder());
 
-		// Help
+		// Help Button, added ButtonListenerImplemented, formatted Button
 		help = new JButton();
 		help.setName("Help"); // Set ButtonID
-		help.addActionListener(new ButtonListenerImplemented(help, frame)); // AddActionListener
-		help.setPreferredSize(new Dimension(SCALE_X, SCALE_Y)); // Set size
-		String buttonImagePath3 = "Main/ButtonImages/Help.PNG"; // Accesses images from folder
+		help.addActionListener(new ButtonListenerImplemented(help, frame));
+		help.setPreferredSize(new Dimension(SCALE_X, SCALE_Y));
+		String buttonImagePath3 = "Main/ButtonImages/Help.PNG";
 		AddButtonImages.addImage(help, buttonImagePath3, SCALE_X, SCALE_Y);
 		AddPressedImages.addPressed(help, pressedImagePath, SCALE_X, SCALE_Y);
-		help.setBorder(BorderFactory.createEmptyBorder()); // Ensures there is no border around Button
+		help.setBorder(BorderFactory.createEmptyBorder());
 
-		// ButtonPanel
+		// ButtonPanel, centers all Components
 		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, CENTER_POSITION, 0)); // Centers all elements
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, CENTER_POSITION, 0));
 		buttonPanel.setBackground(BACKGROUND_COLOUR);
 		buttonPanel.add(calendar);
 		buttonPanel.add(about);
 		buttonPanel.add(help);
 
 		// Positioning and Constraints
-		c.gridx = 0; // Set x gap
-		c.gridy = GRID_GAP_Y; // Set y gap
-		c.anchor = GridBagConstraints.CENTER; // Set anchor
-		c.fill = GridBagConstraints.NONE; // Does not adjust image when window is resized
-		c.weightx = 0; // No extra gap
-		c.insets = new Insets(INLET_GAP, 0, 0, 0); // Set gap between buttons
+		c.gridx = 0;
+		c.gridy = GRID_GAP_Y;
+		c.anchor = GridBagConstraints.CENTER;
+		c.fill = GridBagConstraints.NONE;
+		c.weightx = 0;
+		c.insets = new Insets(INLET_GAP, 0, 0, 0);
 
 		// Adding Everything
 		homePanel.add(buttonPanel, c);

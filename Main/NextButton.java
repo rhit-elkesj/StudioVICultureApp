@@ -3,6 +3,15 @@ package Main;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Class: NextButton
+ * 
+ * @author Richelle Elkes <br>
+ *         Purpose: Class that creates the NextButton and uses Graphics2D to
+ *         draw the forward arrow as the Button Image <br>
+ *         Restrictions: None
+ * @ReferencedClasses ButtonListenerImplemented
+ */
 public class NextButton extends JButton {
 
 	// Instantiated Variables
@@ -11,6 +20,8 @@ public class NextButton extends JButton {
 	public NextButton(Frame frame, int currentDayIndex, Color color) {
 		super();
 		this.color = color;
+		
+		// Creates Button, adds ButtonListenerImplemented, formats Button
 		setPreferredSize(new Dimension(100, 50));
 		setName("Next Day");
 		setOpaque(false);
@@ -29,5 +40,5 @@ public class NextButton extends JButton {
 		Polygon rightArrow = new Polygon(xPoints, yPoints, 4);
 		g2.draw(rightArrow);
 		g2.fill(rightArrow);
-	}
-}
+	}// paintComponent
+}// NextButton

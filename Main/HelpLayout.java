@@ -26,32 +26,38 @@ import javax.swing.text.StyledDocument;
 /**
  * Class: HelpLayout
  * 
- * @author Richelle Elkes
- * 
+ * @author Richelle Elkes <br>
  *         Purpose: Creates a JTextPane and chat bot for user to be able to
- *         interact with when receiving help
- * 
+ *         interact with when receiving help <br>
  *         Restrictions: None
+ * @ReferencedClasses HomeButton, dayContent
  */
 public class HelpLayout {
 
 	// Instantiated Variables & Components
+	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
+	private static final Color USER_FONT_COLOUR = new Color(29, 29, 94);
+	private static final Color BOT_FONT_COLOUR = new Color(92, 142, 228);
 	private static final int SCREEN_WIDTH = 1520;
 	private static final int SCREEN_HEIGHT = 820;
 	private static final int CONSOLE_WIDTH = (int) (SCREEN_WIDTH / 2.5);
 	private static final int CONSOLE_HEIGHT = SCREEN_HEIGHT - 28;
-	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
-	private String botReply;
-	private String userReply;
+	private static final int MAIN_PANEL_BORDER = 50;
+	private static final int BANNER_HEIGHT = 75;
+	private static final int FONT_SIZE = 16;
+	private static final int CONSOLE_THICKNESS = 1;
+	private static final int RIGHT_PANEL_BORDER = 5;
+	private static final int START_DAY = 1;
+	private static final int LAST_DAY = 50;
 	private HashMap<Integer, DayContent> dayContentHashMap = DayLayoutList.dayContentHashMap;
-	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
-	private static final Color BACKGROUND_COLOUR1 = new Color(29, 29, 94);
-	private static final Color BACKGROUND_COLOUR4 = new Color(92, 142, 228);
+	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
+	private String userReply;
+	private String botReply;
 	private JFrame frame;
 	private JPanel mainPanel;
 	private JPanel rightPanel;;
-	private JTextPane helpConsole;
 	private JScrollPane consolePane;
+	private JTextPane helpConsole;
 	private JLabel commandLabel;
 	private JButton home;
 
@@ -63,48 +69,51 @@ public class HelpLayout {
 		frame.setVisible(true);
 
 		// Home Button
-		home = new HomeButton(frame, SCREEN_WIDTH, Color.black);
+		home = new HomeButton(frame, SCREEN_WIDTH, Color.BLACK);
 		frame.add(home, BorderLayout.NORTH);
 
-		// Main Panel
+		// mainPanel
 		mainPanel = new JPanel();
-		mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-		mainPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT - 75));
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(MAIN_PANEL_BORDER, MAIN_PANEL_BORDER, MAIN_PANEL_BORDER,
+				MAIN_PANEL_BORDER));
+		mainPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT - BANNER_HEIGHT));
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setVisible(true);
 		mainPanel.setBackground(Color.WHITE);
 		frame.add(mainPanel);
 
-		// Console Pane
-		consolePane = new JScrollPane(); // Pane will have scroll function if enough lines are used
+		// consolePane, Pane will have scroll function if enough lines are used
+		consolePane = new JScrollPane();
 		consolePane.setPreferredSize(new Dimension(CONSOLE_WIDTH, CONSOLE_HEIGHT));
-		consolePane.setBackground(Color.white);
+		consolePane.setBackground(Color.WHITE);
 
-		// Console
-		helpConsole = new JTextPane(); // New TextPane where the user can freely type
-		helpConsole.setFont(new Font(helpConsole.getText(), Font.BOLD, 16));
-		helpConsole.setForeground(BACKGROUND_COLOUR1);
+		// helpConsole, new JTextPane where the user can freely type
+		helpConsole = new JTextPane();
+		helpConsole.setFont(new Font(helpConsole.getText(), Font.BOLD, FONT_SIZE));
+		helpConsole.setForeground(USER_FONT_COLOUR);
 		helpConsole.setText("Welcome to the Help Console! Please enter your message below!\n"
 				+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 				+ "\n");
 		helpConsole.setEditable(true);
 		helpConsole.setBackground(Color.WHITE);
-		helpConsole.setBorder(BorderFactory.createLineBorder(Color.black, 1, true));
-		consolePane.setViewportView(helpConsole); // Makes it viewable
+		helpConsole.setBorder(BorderFactory.createLineBorder(Color.BLACK, CONSOLE_THICKNESS, true));
+		// Makes it viewable
+		consolePane.setViewportView(helpConsole);
 		mainPanel.add(consolePane, BorderLayout.WEST);
 
-		// Right Panel
+		// rightPanel, with border
 		rightPanel = new JPanel();
-		rightPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add a 5 pixel border around the panel
+		rightPanel.setBorder(BorderFactory.createEmptyBorder(RIGHT_PANEL_BORDER, RIGHT_PANEL_BORDER, RIGHT_PANEL_BORDER,
+				RIGHT_PANEL_BORDER));
 		rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		rightPanel.setBackground(Color.white);
+		rightPanel.setBackground(Color.WHITE);
 		mainPanel.add(rightPanel, BorderLayout.CENTER);
 
 		commandLabel = new JLabel("<html> <b> Bot Commands: </b>" + "<br>" + "<br>" + "<br>" + "<b> NAVIGATE </b>"
 				+ "<br>" + "Will return instructions on how to use this application" + "<br>" + "<br>" + "<br>"
 				+ "<b> FORGOT </b>" + "<br>" + "Will return the user's previous day according to the system" + "<br>"
 				+ "<br>" + "<br>" + " <b> SEARCH (Insert Space) WORD </b>" + "<br>"
-				+ "Will return lessons that include the user's search term (ie. 'Search prayer' will return Days 29 and 40)"
+				+ "Will return lessons that include the user's search term (ie. 'Search Prayer')"
 				+ "<br>" + "<br>" + "<br>" + "<b> DAY (Insert Space) NUMBER </b>" + "<br>"
 				+ "Will return the associated Lesson, Activity, and Blessing for the Day specified (ie. 'Day 36')"
 				+ "<br>" + "<br>" + "<br>" + "<b> OMER (Insert Space) CHARACTERISTIC </b>" + "<br>"
@@ -113,9 +122,10 @@ public class HelpLayout {
 				+ "<b> <i> **NOTE: </b> <i> To allow for full functionality of the HelpBot, specifically search features, please ensure you </i>"
 				+ "<br>"
 				+ " <i> have clicked into a 'Day' from the 'Start Counting' screen on the homepage. Thank you! </i> </html>");
-		commandLabel.setFont(new Font(commandLabel.getText(), Font.PLAIN, 16));
+		commandLabel.setFont(new Font(commandLabel.getText(), Font.PLAIN, FONT_SIZE));
 		rightPanel.add(commandLabel);
 
+		// Repaints updated Frame
 		frame.revalidate();
 		frame.repaint();
 
@@ -134,7 +144,7 @@ public class HelpLayout {
 
 					SimpleAttributeSet right = new SimpleAttributeSet();
 					StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
-					StyleConstants.setForeground(right, BACKGROUND_COLOUR4);
+					StyleConstants.setForeground(right, BOT_FONT_COLOUR);
 					StyleConstants.setBold(right, true);
 
 					try {
@@ -143,20 +153,25 @@ public class HelpLayout {
 						ex.printStackTrace();
 					}
 					userReply = "";
-				} else if (Character.isLetterOrDigit(e.getKeyChar())) { // Only accepts letters or numbers
+
+					// Only accepts letters or numbers
+				} else if (Character.isLetterOrDigit(e.getKeyChar())) {
 					userReply += e.getKeyChar();
-				} else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) { // Check if Backspace key is pressed
+					// Check if Backspace key is pressed, do nothing
+				} else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 					e.consume();
-				} else if (e.getKeyCode() == KeyEvent.VK_DELETE) { // Check if Delete key is pressed
+					// Check if Delete key is pressed. do nothing
+				} else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
 					e.consume();
 				}
-			}// keyPressed
+			}
 		});
-	}// HelpLayout
+	}
 
 	public String getDefaultResponse(String user) {
 
-		switch (user.toUpperCase()) { // Switch cases
+		// Switch Cases
+		switch (user.toUpperCase()) {
 		case "FORGOT":
 			botReply = "According to my system, the last day you were on was Day " + lastDayGlobal;
 			break;
@@ -199,7 +214,7 @@ public class HelpLayout {
 				botReply = "Please enter a valid day number after the 'Day' command (ie. Day 36)";
 			} else {
 				int day = Integer.parseInt(userSearch);
-				if (day < 1 || day >= 50) {
+				if (day < START_DAY || day > LAST_DAY) {
 					botReply = "Sorry, the number entered is not valid. It must be within the range of 1 and 49. Please try again!";
 				} else {
 					DayContent dayContent = dayContentHashMap.get(day);
@@ -225,7 +240,7 @@ public class HelpLayout {
 				userSearch = userSearch.substring(0, 1).toUpperCase() + userSearch.substring(1).toLowerCase();
 				boolean found = false;
 				botReply = "The days that exhibit the characteristic '" + userSearch + "' are: ";
-				for (int i = 1; i < 50; i++) {
+				for (int i = START_DAY; i < LAST_DAY; i++) {
 					DayContent dayContent = dayContentHashMap.get(i);
 					if (dayContent.getLabel().getText().contains(userSearch)) {
 						botReply += i + "  ";
@@ -246,7 +261,7 @@ public class HelpLayout {
 			if (!userSearch.isEmpty()) {
 				boolean found = false;
 				botReply = "The days that include '" + userSearch + "' in the lesson are: ";
-				for (int i = 1; i < 50; i++) {
+				for (int i = START_DAY; i < LAST_DAY; i++) {
 					DayContent dayContent = dayContentHashMap.get(i);
 					if (dayContent.getTextArea().getText().toLowerCase().contains(userSearch)) {
 						botReply += i + " ";
@@ -263,5 +278,4 @@ public class HelpLayout {
 		return botReply;
 
 	}// getDefaultResponse
-}
-// HelpLayout
+}// HelpLayout

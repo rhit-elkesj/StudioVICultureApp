@@ -8,27 +8,29 @@ import javax.swing.JButton;
  * Class: AddButtonImages
  * 
  * @author Richelle Elkes <br>
- *         Purpose: Abstract class that will add an Image to a specified Button
- *         <br>
+ *         Purpose: Abstract class that will add an Image to a specified Button <br>
  *         Restrictions: None
  */
 public abstract class AddButtonImages {
 
 	public AddButtonImages() {
+		// Does nothing
 	}
 
 	public static void addImage(JButton currentButton, String filePath, int x, int y) {
 
-		String imagePath = filePath; // Accesses images from folder
+		// Accesses images from folder
+		String imagePath = filePath;
 
 		ImageIcon buttonImage = new ImageIcon(imagePath);
 		Image originalImage = buttonImage.getImage();
 
-		Image scaledButtonImage = originalImage.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH); // Scales
-																										// image
+		// Scales Image
+		Image scaledButtonImage = originalImage.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledButtonIcon = new ImageIcon(scaledButtonImage);
 
-		currentButton.setIcon(scaledButtonIcon); // Sets Button to new Icon
+		// Sets Button to new Icon
+		currentButton.setIcon(scaledButtonIcon);
 
 	}// addImage
 }// AddButtonImages

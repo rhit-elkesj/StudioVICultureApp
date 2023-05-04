@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 /**
  * Class: StartCountingLayout
  * 
- * @author <br>
+ * @author Richelle Elkes <br>
  *         Purpose: Adds the necessary components to create the GridButtons <br>
  *         Restrictions: None
  */
@@ -30,18 +30,16 @@ public class StartCountingLayout {
 		this.frame = mainFrame;
 
 		// Constructing the buttonGrid, and mainButton Panel
-		GridLayout buttonGrid = new GridLayout(TILE_AMOUNT, TILE_AMOUNT, TILE_GAP, TILE_GAP); // 7 x 7 Grid with
-																								// gaps of 5 between
-																								// each tile
+		GridLayout buttonGrid = new GridLayout(TILE_AMOUNT, TILE_AMOUNT, TILE_GAP, TILE_GAP);
 		JPanel mainButtonPanel = new JPanel(buttonGrid);
 
+		// Adds gaps to outside border
 		mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
-				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R)); // Adds gaps to outside border
-
+				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R));
 		mainButtonPanel.setBackground(BACKGROUND_COLOUR);
+		
 		frame.setBackground(BACKGROUND_COLOUR);
-
-		frame.add(mainButtonPanel);
+			frame.add(mainButtonPanel);
 
 		// IOException if the GridButtons cannot be constructed properly
 		try {

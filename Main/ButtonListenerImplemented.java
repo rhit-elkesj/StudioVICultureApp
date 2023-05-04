@@ -7,15 +7,19 @@ import javax.swing.JFrame;
 /**
  * Class: ButtonListenerImplemented
  * 
- * @author <br>
- *         Purpose: Class that will handle the individual actions for the Button
- *         <br>
+ * @author Richelle Elkes <br>
+ *         Purpose: Class that will handle the individual actions for the Button <br>
  *         Restrictions: None
+ * @referencedClasses StartCountingLayout, AboutLayout, HelpLayout, HomeScreen,
+ *                    DayLayoutList
  */
 public class ButtonListenerImplemented extends ButtonListener {
 
-	// Instantiated Variables & Components
+	// Instantiated Variables
 	private int currentDay;
+	private static final int FIRST_DAY = 1;
+	private static final int LAST_DAY = 49;
+	private static final int EDGE_DAY = 50;
 
 	public ButtonListenerImplemented(JButton button, JFrame mainFrame) {
 		super(button, mainFrame);
@@ -31,43 +35,51 @@ public class ButtonListenerImplemented extends ButtonListener {
 		String buttonID = getCurrentButton().getName();
 		JFrame frame = getFrame();
 
+		// Creates new StartCountingLayout
 		if (buttonID.equals("Start Counting")) {
 			new StartCountingLayout(frame);
 		}
 
+		// Creates new AboutLayout
 		if (buttonID.equals("About")) {
 			new AboutLayout(frame);
 		}
 
+		// Creates new HelpLayout
 		if (buttonID.equals("Help")) {
 			new HelpLayout(frame);
 		}
 
+		// Creates new HomeScreen
 		if (buttonID.equals("Home")) {
 			new HomeScreen(frame);
 		}
 
-		for (int i = 1; i <= 50; i++) {
+		// Creates new DayLayoutList with given CurrentDay value
+		for (int i = FIRST_DAY; i < EDGE_DAY; i++) {
 			if (buttonID.equals(String.valueOf(i))) {
 				new DayLayoutList(frame, i);
 			}
 		}
 
+		// Creates new DayLayoutList with given CurrentDay value - 1
 		if (buttonID.equals("Previous Day")) {
-			if (currentDay == 1) {
+			if (currentDay == FIRST_DAY) {
 				new DayLayoutList(frame, currentDay);
-			} else if (currentDay > 1) {
+			} else if (currentDay > FIRST_DAY) {
 				currentDay--;
+				// Prevents from going to Day 0
 				new DayLayoutList(frame, currentDay);
 			}
 		}
 
+		// Creates new DayLayoutList with given CurrentDay value + 1
 		if (buttonID.equals("Next Day")) {
-			if (currentDay == 49) {
+			if (currentDay == LAST_DAY) {
 				new DayLayoutList(frame, currentDay);
-			} else if (currentDay < 50) {
-
+			} else if (currentDay < EDGE_DAY) {
 				currentDay++;
+				// Prevents from going to Day 50
 				new DayLayoutList(frame, currentDay);
 			}
 		}

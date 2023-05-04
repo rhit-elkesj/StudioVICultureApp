@@ -4,22 +4,36 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 import javax.swing.*;
 
+/**
+ * Class: HomeButton
+ * 
+ * @author Richelle Elkes, Jacob Kandel <br>
+ *         Purpose: Class that creates the HomeButton and uses Graphics2D to
+ *         draw the 'Star of David' as the Button Image <br>
+ *         Restrictions: None
+ * @ReferencedClasses HomeButton, dayContent, ButtonListenerImplemented
+ */
 public class HomeButton extends JButton {
 
 	// Instantiated Variables
-	private int s = 10;
 	private Color color;
+	private static final int SCALE_FACTOR = 10;
+	private static final int FONT_SIZE = 10;
+	private static final int BANNER_HEIGHT = 75;
+	private static final double STROKE_THICKNESS = 2.75;
 
 	public HomeButton(JFrame frame, int SCREEN_WIDTH, Color color) {
 		super("HOME");
 		this.color = color;
 		setName("Home");
+
+		// Formats Text, adds ButtonListenerImplemented, formats Button
 		setForeground(color);
-		setFont(new Font(getText(), Font.BOLD, 10));
+		setFont(new Font(getText(), Font.BOLD, FONT_SIZE));
 		setVerticalTextPosition(SwingConstants.CENTER);
 		setHorizontalTextPosition(SwingConstants.CENTER);
 		addActionListener(new ButtonListenerImplemented(this, frame));
-		setPreferredSize(new Dimension(SCREEN_WIDTH, 75));
+		setPreferredSize(new Dimension(SCREEN_WIDTH, BANNER_HEIGHT));
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
@@ -30,21 +44,25 @@ public class HomeButton extends JButton {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
-		g2.setStroke(new BasicStroke((float) 2.75));
-		int centerX = getWidth() / 2; // calculate center x-coordinate
-		int centerY = getHeight() / 2; // calculate center y-coordinate
-		g2.translate(centerX, centerY); // translate to center of button
-		g2.translate(0, -2 * Math.pow(3, 0.5) * s);
-		g2.draw(new Line2D.Double(0, 0, -3 * s, 3 * Math.pow(3, 0.5) * s));
-		g2.draw(new Line2D.Double(0, 0, 3 * s, 3 * Math.pow(3, 0.5) * s));
-		g2.translate(-3 * s, 3 * Math.pow(3, 0.5) * s);
-		g2.drawLine(0, 0, 6 * s, 0);
-		g2.translate(3 * s, Math.pow(3, 0.5) * s);
-		g2.draw(new Line2D.Double(0, 0, -3 * s, -3 * Math.pow(3, 0.5) * s));
-		g2.draw(new Line2D.Double(0, 0, 3 * s, -3 * Math.pow(3, 0.5) * s));
-		g2.translate(-3 * s, -3 * Math.pow(3, 0.5) * s);
-		g2.drawLine(0, 0, 6 * s, 0);
-		g2.translate(3 * s, Math.pow(3, 0.5) * s);
-		g2.translate(-centerX, -centerY); // translate back to original position
-	}
-}
+		g2.setStroke(new BasicStroke((float) STROKE_THICKNESS));
+
+		// Calculates X and Y coordinate, centers Button
+		int centerX = getWidth() / 2;
+		int centerY = getHeight() / 2;
+		g2.translate(centerX, centerY);
+		g2.translate(0, -2 * Math.pow(3, 0.5) * SCALE_FACTOR);
+		g2.draw(new Line2D.Double(0, 0, -3 * SCALE_FACTOR, 3 * Math.pow(3, 0.5) * SCALE_FACTOR));
+		g2.draw(new Line2D.Double(0, 0, 3 * SCALE_FACTOR, 3 * Math.pow(3, 0.5) * SCALE_FACTOR));
+		g2.translate(-3 * SCALE_FACTOR, 3 * Math.pow(3, 0.5) * SCALE_FACTOR);
+		g2.drawLine(0, 0, 6 * SCALE_FACTOR, 0);
+		g2.translate(3 * SCALE_FACTOR, Math.pow(3, 0.5) * SCALE_FACTOR);
+		g2.draw(new Line2D.Double(0, 0, -3 * SCALE_FACTOR, -3 * Math.pow(3, 0.5) * SCALE_FACTOR));
+		g2.draw(new Line2D.Double(0, 0, 3 * SCALE_FACTOR, -3 * Math.pow(3, 0.5) * SCALE_FACTOR));
+		g2.translate(-3 * SCALE_FACTOR, -3 * Math.pow(3, 0.5) * SCALE_FACTOR);
+		g2.drawLine(0, 0, 6 * SCALE_FACTOR, 0);
+		g2.translate(3 * SCALE_FACTOR, Math.pow(3, 0.5) * SCALE_FACTOR);
+
+		// Translates to original position
+		g2.translate(-centerX, -centerY);
+	}// paintComponent
+}// HomeButton

@@ -14,37 +14,55 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Class: DayLayoutList
+ * 
+ * @author Richelle Elkes <br>
+ * 		   Purpose: Class that creates and stores each Day's
+ *         specific content and layout in a HashMap and displays the
+ *         clickedDay's content <br>
+ *         Restrictions: None
+ * @ReferencedClasses DayLayout, DayContent
+ */
 public class DayLayoutList extends DayLayout {
 
 	// Instantiated Variables & Components
+	private static final int GRID_COLUMN = 1;
+	private static final int HEADER_FONT_SIZE = 25;
+	private static final int FONT_SIZE = 20;
+	private static final int VERTICAL_GAP = 40;
+	private static final int HORIZONTAL_GAP = 220;
+	private static final int LAST_DAY = 49;
 	private int startLoop = 1;
 	private int startDay = 1;
-	private int specificDay;
-	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
-	private JLabel[] dayLabels = new JLabel[50];
-	private JLabel[] lessonLabels = new JLabel[50];
-	private DayContent[] dayContentArray = new DayContent[50];
+	private static int specificDay;
 	public static int lastDayGlobal;
 	protected static HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
+	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
+	private DayContent[] dayContentArray = new DayContent[50];
+	private JLabel[] dayLabels = new JLabel[50];
+	private JLabel[] lessonLabels = new JLabel[50];
 
 	public DayLayoutList(JFrame mainFrame, int clickedDay) {
 		super(mainFrame, clickedDay);
 		this.frame = mainFrame;
-		this.specificDay = clickedDay;
-		this.lastDayGlobal = clickedDay;
-
-		mainPanel.setLayout(new GridLayout(0, 1));
+		DayLayoutList.specificDay = clickedDay;
+		DayLayoutList.lastDayGlobal = clickedDay;
+		
+		mainPanel.setLayout(new GridLayout(0, GRID_COLUMN));
 
 		try {
-			for (int i = 1; i <= 49; i++) {
+			for (int i = startLoop; i <= LAST_DAY; i++) {
 				File file = new File("Main/DayFiles/Day" + i);
 				Scanner scanner = new Scanner(file);
 
+				// Reads individual lines from Day file to get the Lesson, Activity, and Blessing Strings
 				String lessonString = scanner.nextLine();
 				String activityString = scanner.nextLine();
 				String blessingStringEnglish = scanner.nextLine();
 				String blessingStringHebrew = scanner.nextLine();
 
+				// Creates individual JLabels for each Day's contents
 				lessonLabels[i] = new JLabel("<html><b>Lesson</b>" + "<br>" + lessonString + "<br>" + "<br>" + "<br>"
 						+ "<br>" + "<b>Activity</b>" + "<br>" + activityString + "<br>" + "<br>" + "<br>" + "<br>"
 						+ "<b>Blessing</b>" + "<br>"
@@ -59,7 +77,7 @@ public class DayLayoutList extends DayLayout {
 			e.printStackTrace();
 		}
 
-		// All DayLabels, lessonLabels, and DayContents
+		// All dayLabels, lessonLabels, and dayContents
 		for (int i = 0; i < characteristics.length; i++) {
 			for (int j = 0; j < characteristics.length; j++) {
 				String labelText = "<html><div style='text-align: center;'>Day " + startDay + "<br>"
@@ -68,12 +86,15 @@ public class DayLayoutList extends DayLayout {
 				dayLabels[startLoop].setHorizontalAlignment(SwingConstants.CENTER);
 				DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
 				dayContentArray[startLoop] = dayContent;
+				
+				// HashMap for mapping the dayContent to the associated Day
 				dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
 				startLoop++;
 				startDay++;
 			}
 		}
-
+		
+		// Calls specificDayLayout to implement the specific Day's content
 		specificDayLayout(mainPanel, specificDay);
 	}
 
@@ -89,20 +110,21 @@ public class DayLayoutList extends DayLayout {
 		if (dayContent != null) {
 			JPanel dayPanel = new JPanel(new BorderLayout());
 			dayContent.getLabel().setForeground(Color.BLACK);
-			dayContent.getLabel().setFont(new Font(dayContent.getLabel().getText(), Font.BOLD, 25));
+			dayContent.getLabel().setFont(new Font(dayContent.getLabel().getText(), Font.BOLD, HEADER_FONT_SIZE));
 			dayContent.getTextArea().setForeground(Color.BLACK);
-			dayContent.getTextArea().setFont(new Font(dayContent.getTextArea().getText(), Font.PLAIN, 20));
+			dayContent.getTextArea().setFont(new Font(dayContent.getTextArea().getText(), Font.PLAIN, FONT_SIZE));
 			dayContent.getLabel().setHorizontalAlignment(JLabel.CENTER);
 			dayContent.getTextArea().setHorizontalAlignment(JLabel.CENTER);
 			dayPanel.add(dayContent.getLabel(), BorderLayout.NORTH);
 			dayPanel.add(dayContent.getTextArea(), BorderLayout.CENTER);
-			dayPanel.setBackground(Color.white);
+			dayPanel.setBackground(Color.WHITE);
 			dayContent.getLabel().setForeground(Color.BLACK);
 			dayContent.getTextArea().setForeground(Color.BLACK);
 
+			// Clears mainPanel from previous content, sets the layout, repaints updated Panel
 			mainPanel.removeAll();
-			mainPanel.setBorder(BorderFactory.createEmptyBorder(40, 220, 40, 220));
-			mainPanel.setBackground(Color.white);
+			mainPanel.setBorder(BorderFactory.createEmptyBorder(VERTICAL_GAP, HORIZONTAL_GAP, VERTICAL_GAP, HORIZONTAL_GAP));
+			mainPanel.setBackground(Color.WHITE);
 			mainPanel.add(dayPanel);
 			mainPanel.revalidate();
 			mainPanel.repaint();
@@ -112,5 +134,6 @@ public class DayLayoutList extends DayLayout {
 	@Override
 	protected HashMap<Integer, DayContent> getDayContentHashMap() {
 		return dayContentHashMap;
+
 	}// getDayContentHashMap
 }// DayLayoutList

@@ -8,27 +8,30 @@ import javax.swing.JButton;
  * Class: AddPressedImages
  * 
  * @author Richelle Elkes <br>
- *         Purpose: Abstract class that will set the Image when pressed on a
+ *         Purpose: Abstract class that will set the Image when pressed to a
  *         specified Button <br>
  *         Restrictions: None
  */
 public abstract class AddPressedImages {
 
 	public AddPressedImages() {
+		// Does nothing
 	}
 
 	public static void addPressed(JButton currentButton, String filePath, int x, int y) {
-
-		String imagePath = filePath; // Accesses images from folder
+		
+		// Accesses images from folder
+		String imagePath = filePath;
 
 		ImageIcon buttonImage = new ImageIcon(imagePath);
 		Image originalImage = buttonImage.getImage();
 
-		Image scaledButtonImage = originalImage.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH); // Scales
-																										// image
+		// Scales Image to specified X and Y value
+		Image scaledButtonImage = originalImage.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon scaledButtonIcon = new ImageIcon(scaledButtonImage);
 
-		currentButton.setPressedIcon(scaledButtonIcon); // Sets Button to new Icon
+		// Sets Button to new Icon
+		currentButton.setPressedIcon(scaledButtonIcon); 
 
 	}// addImage
 }// AddButtonImages

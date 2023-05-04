@@ -2,9 +2,17 @@ package Main;
 
 import javax.swing.JLabel;
 
+/**
+ * Class: DayContent
+ * 
+ * @author Richelle Elkes <br>
+ *         Purpose: Class that uses JLabels to store the relevant information
+ *         associated with a Day <br>
+ *         Restrictions: None
+ */
 public class DayContent {
 
-	// Instantiated Variables & Components
+	// Instantiated Components
 	private JLabel daylabel;
 	private JLabel lessonText;
 
