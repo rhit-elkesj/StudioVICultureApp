@@ -18,9 +18,8 @@ import javax.swing.SwingConstants;
  * Class: DayLayoutList
  * 
  * @author Richelle Elkes <br>
- * 		   Purpose: Class that creates and stores each Day's
- *         specific content and layout in a HashMap and displays the
- *         clickedDay's content <br>
+ *         Purpose: Class that creates and stores each Day's specific content
+ *         and layout in a HashMap and displays the clickedDay's content <br>
  *         Restrictions: None
  * @ReferencedClasses DayLayout, DayContent
  */
@@ -37,6 +36,7 @@ public class DayLayoutList extends DayLayout {
 	private int startDay = 1;
 	private static int specificDay;
 	public static int lastDayGlobal;
+	private String selectedLanguage = Main.selectedLanguage;
 	protected static HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
 	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
 	private DayContent[] dayContentArray = new DayContent[50];
@@ -48,30 +48,62 @@ public class DayLayoutList extends DayLayout {
 		this.frame = mainFrame;
 		DayLayoutList.specificDay = clickedDay;
 		DayLayoutList.lastDayGlobal = clickedDay;
-		
+
 		mainPanel.setLayout(new GridLayout(0, GRID_COLUMN));
 
+		// Reads individual lines from Day file to get the Lesson, Activity, and
+		// Blessing Strings
+
 		try {
-			for (int i = startLoop; i <= LAST_DAY; i++) {
-				File file = new File("Main/DayFiles/Day" + i);
-				Scanner scanner = new Scanner(file);
 
-				// Reads individual lines from Day file to get the Lesson, Activity, and Blessing Strings
-				String lessonString = scanner.nextLine();
-				String activityString = scanner.nextLine();
-				String blessingStringEnglish = scanner.nextLine();
-				String blessingStringHebrew = scanner.nextLine();
+			// Creates individual JLabels for each Day's contents
+			if (selectedLanguage.equals("Hebrew")) {
 
-				// Creates individual JLabels for each Day's contents
-				lessonLabels[i] = new JLabel("<html><b>Lesson</b>" + "<br>" + lessonString + "<br>" + "<br>" + "<br>"
-						+ "<br>" + "<b>Activity</b>" + "<br>" + activityString + "<br>" + "<br>" + "<br>" + "<br>"
-						+ "<b>Blessing</b>" + "<br>"
-						+ "Barukh ata Adonai Eloheinu Melekh ha’Olam asher kid’shanu b’mitzvotav v’tizivanu al sefirat ha’omer."
-						+ "<br>" + blessingStringHebrew + "<br>"
-						+ "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer."
-						+ "<br>" + blessingStringEnglish + "</html>");
+				for (int i = startLoop; i <= LAST_DAY; i++) {
+					File file = new File("Main/DayFiles/Day" + i);
+					Scanner scanner = new Scanner(file);
 
-				scanner.close();
+					scanner.nextLine();
+					scanner.nextLine();
+					scanner.nextLine();
+					String blessingStringHebrew = scanner.nextLine();
+					scanner.nextLine();
+					String lessonStringHeb = scanner.nextLine();
+					String activityStringHeb = scanner.nextLine();
+					String blessingStringEnglishHeb = scanner.nextLine();
+
+					lessonLabels[i] = new JLabel("<html><div style='text-align: right;'><b>שִׁיעוּר</b>" + "<br>" + lessonStringHeb + "<br>" + "<br>"
+							+ "<br>" + "<br>" + "<b>פעילות</b>" + "<br>" + activityStringHeb + "<br>" + "<br>" + "<br>"
+							+ "<br>" + "<b>ברכה</b>" + "<br>"
+							+ "Barukh ata Adonai Eloheinu Melekh ha’Olam asher kid’shanu b’mitzvotav v’tizivanu al sefirat ha’omer."
+							+ "<br>" + blessingStringEnglishHeb + "<br>"
+							+ "בָּרוּךְ אַתָּה יְהוָה אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל סְפִירַת הָעֹמֶר."
+							+ "<br>" + blessingStringHebrew + "</div></html>");
+					scanner.close();
+
+				}
+			}
+
+			else {
+				for (int i = startLoop; i <= LAST_DAY; i++) {
+					File file = new File("Main/DayFiles/Day" + i);
+					Scanner scanner = new Scanner(file);
+
+					String lessonString = scanner.nextLine();
+					String activityString = scanner.nextLine();
+					String blessingStringEnglish = scanner.nextLine();
+					String blessingStringHebrew = scanner.nextLine();
+
+					lessonLabels[i] = new JLabel("<html><b>Lesson</b>" + "<br>" + lessonString + "<br>" + "<br>"
+							+ "<br>" + "<br>" + "<b>Activity</b>" + "<br>" + activityString + "<br>" + "<br>" + "<br>"
+							+ "<br>" + "<b>Blessing</b>" + "<br>"
+							+ "Barukh ata Adonai Eloheinu Melekh ha’Olam asher kid’shanu b’mitzvotav v’tizivanu al sefirat ha’omer."
+							+ "<br>" + blessingStringHebrew + "<br>"
+							+ "Blessed are you, lord our God, Ruler of the universe, who sanctifies us with holy laws, and commands us to be aware of the Counting of the Omer."
+							+ "<br>" + blessingStringEnglish + "</html>");
+					scanner.close();
+
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -86,14 +118,14 @@ public class DayLayoutList extends DayLayout {
 				dayLabels[startLoop].setHorizontalAlignment(SwingConstants.CENTER);
 				DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
 				dayContentArray[startLoop] = dayContent;
-				
+
 				// HashMap for mapping the dayContent to the associated Day
 				dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
 				startLoop++;
 				startDay++;
 			}
 		}
-		
+
 		// Calls specificDayLayout to implement the specific Day's content
 		specificDayLayout(mainPanel, specificDay);
 	}
@@ -121,9 +153,11 @@ public class DayLayoutList extends DayLayout {
 			dayContent.getLabel().setForeground(Color.BLACK);
 			dayContent.getTextArea().setForeground(Color.BLACK);
 
-			// Clears mainPanel from previous content, sets the layout, repaints updated Panel
+			// Clears mainPanel from previous content, sets the layout, repaints updated
+			// Panel
 			mainPanel.removeAll();
-			mainPanel.setBorder(BorderFactory.createEmptyBorder(VERTICAL_GAP, HORIZONTAL_GAP, VERTICAL_GAP, HORIZONTAL_GAP));
+			mainPanel.setBorder(
+					BorderFactory.createEmptyBorder(VERTICAL_GAP, HORIZONTAL_GAP, VERTICAL_GAP, HORIZONTAL_GAP));
 			mainPanel.setBackground(Color.WHITE);
 			mainPanel.add(dayPanel);
 			mainPanel.revalidate();

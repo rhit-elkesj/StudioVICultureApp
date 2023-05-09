@@ -10,7 +10,8 @@ import javax.swing.*;
  *         Purpose: Creates and displays all elements needed for the initial
  *         screen when program is ran <br>
  *         Restrictions: None
- * @ReferencedClasses AddButtonImages, AddPressedImages, ButtonListenerImplemented
+ * @ReferencedClasses AddButtonImages, AddPressedImages,
+ *                    ButtonListenerImplemented
  */
 public class HomeScreen {
 
@@ -23,6 +24,10 @@ public class HomeScreen {
 	private static final int INLET_GAP = 10;
 	private static final int GRID_GAP_Y = 1;
 	private static final Color BACKGROUND_COLOUR = new Color(232, 244, 253);
+	private String selectedLanguage;
+	private String buttonImagePath1;
+	private String buttonImagePath2;
+	private String buttonImagePath3;
 	private JFrame frame;
 	private JPanel homePanel;
 	private JPanel buttonPanel;
@@ -30,7 +35,9 @@ public class HomeScreen {
 	private JButton calendar;
 	private JButton help;
 
-	public HomeScreen(JFrame mainFrame) {
+	public HomeScreen(JFrame mainFrame, String selectedLanguage) {
+
+		this.selectedLanguage = selectedLanguage;
 
 		// Frame
 		this.frame = mainFrame;
@@ -38,8 +45,8 @@ public class HomeScreen {
 
 		// Creating the design constraints of GridBagLayout
 		GridBagConstraints c = new GridBagConstraints();
-		
-		 // Main image that displays on screen
+
+		// Main image that displays on screen
 		ImageIcon icon = new ImageIcon("Main/ButtonImages/HomeImage.PNG");
 		JLabel imageLabel = new JLabel(icon);
 
@@ -54,7 +61,13 @@ public class HomeScreen {
 		calendar.setName("Start Counting");
 		calendar.addActionListener(new ButtonListenerImplemented(calendar, frame));
 		calendar.setPreferredSize(new Dimension(SCALE_X, SCALE_Y));
-		String buttonImagePath1 = "Main/ButtonImages/StartCounting.PNG";
+
+		if (selectedLanguage.equals("Hebrew")) {
+			buttonImagePath1 = "Main/ButtonImages/StartCountingHeb.PNG";
+		} else {
+			buttonImagePath1 = "Main/ButtonImages/StartCounting.PNG";
+		}
+
 		AddButtonImages.addImage(calendar, buttonImagePath1, SCALE_X, SCALE_Y);
 		String pressedImagePath = "Main/ButtonImages/Week7.PNG";
 		AddPressedImages.addPressed(calendar, pressedImagePath, SCALE_X, SCALE_Y);
@@ -65,7 +78,13 @@ public class HomeScreen {
 		about.setName("About"); // Set ButtonID
 		about.addActionListener(new ButtonListenerImplemented(about, frame));
 		about.setPreferredSize(new Dimension(SCALE_X, SCALE_Y));
-		String buttonImagePath2 = "Main/ButtonImages/About.PNG";
+
+		if (selectedLanguage.equals("Hebrew")) {
+			buttonImagePath2 = "Main/ButtonImages/AboutHeb.PNG";
+		} else {
+			buttonImagePath2 = "Main/ButtonImages/About.PNG";
+		}
+
 		AddButtonImages.addImage(about, buttonImagePath2, SCALE_X, SCALE_Y);
 		AddPressedImages.addPressed(about, pressedImagePath, SCALE_X, SCALE_Y);
 		about.setBorder(BorderFactory.createEmptyBorder());
@@ -75,7 +94,13 @@ public class HomeScreen {
 		help.setName("Help"); // Set ButtonID
 		help.addActionListener(new ButtonListenerImplemented(help, frame));
 		help.setPreferredSize(new Dimension(SCALE_X, SCALE_Y));
-		String buttonImagePath3 = "Main/ButtonImages/Help.PNG";
+
+		if (selectedLanguage.equals("Hebrew")) {
+			buttonImagePath3 = "Main/ButtonImages/HelpHeb.PNG";
+		} else {
+			buttonImagePath3 = "Main/ButtonImages/Help.PNG";
+		}
+
 		AddButtonImages.addImage(help, buttonImagePath3, SCALE_X, SCALE_Y);
 		AddPressedImages.addPressed(help, pressedImagePath, SCALE_X, SCALE_Y);
 		help.setBorder(BorderFactory.createEmptyBorder());

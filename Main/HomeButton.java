@@ -18,9 +18,11 @@ public class HomeButton extends JButton {
 	// Instantiated Variables
 	private Color color;
 	private static final int SCALE_FACTOR = 10;
-	private static final int FONT_SIZE = 10;
+	private static final double FONT_SIZE = 10.5;
+	private static final int FONT_SIZE_HEB = 16;
 	private static final int BANNER_HEIGHT = 75;
 	private static final double STROKE_THICKNESS = 2.75;
+	private String selectedLanguage = Main.selectedLanguage;
 
 	public HomeButton(JFrame frame, int SCREEN_WIDTH, Color color) {
 		super("HOME");
@@ -29,7 +31,14 @@ public class HomeButton extends JButton {
 
 		// Formats Text, adds ButtonListenerImplemented, formats Button
 		setForeground(color);
-		setFont(new Font(getText(), Font.BOLD, FONT_SIZE));
+
+		if (selectedLanguage.equals("Hebrew")) {
+			this.setText("בית");
+			this.setFont(new Font(getText(), Font.BOLD, FONT_SIZE_HEB));
+		} else {
+			setFont(new Font(getText(), Font.BOLD, (int) FONT_SIZE));
+		}
+
 		setVerticalTextPosition(SwingConstants.CENTER);
 		setHorizontalTextPosition(SwingConstants.CENTER);
 		addActionListener(new ButtonListenerImplemented(this, frame));

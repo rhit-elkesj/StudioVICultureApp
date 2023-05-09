@@ -51,6 +51,7 @@ public class HelpLayout {
 	private static final int LAST_DAY = 50;
 	private HashMap<Integer, DayContent> dayContentHashMap = DayLayoutList.dayContentHashMap;
 	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
+	private String selectedLanguage = Main.selectedLanguage;
 	private String userReply;
 	private String botReply;
 	private JFrame frame;
@@ -96,6 +97,7 @@ public class HelpLayout {
 				+ "\n");
 		helpConsole.setEditable(true);
 		helpConsole.setBackground(Color.WHITE);
+		helpConsole.setHighlighter(null);
 		helpConsole.setBorder(BorderFactory.createLineBorder(Color.BLACK, CONSOLE_THICKNESS, true));
 		// Makes it viewable
 		consolePane.setViewportView(helpConsole);
@@ -109,19 +111,40 @@ public class HelpLayout {
 		rightPanel.setBackground(Color.WHITE);
 		mainPanel.add(rightPanel, BorderLayout.CENTER);
 
-		commandLabel = new JLabel("<html> <b> Bot Commands: </b>" + "<br>" + "<br>" + "<br>" + "<b> NAVIGATE </b>"
-				+ "<br>" + "Will return instructions on how to use this application" + "<br>" + "<br>" + "<br>"
-				+ "<b> FORGOT </b>" + "<br>" + "Will return the user's previous day according to the system" + "<br>"
-				+ "<br>" + "<br>" + " <b> SEARCH (Insert Space) WORD </b>" + "<br>"
-				+ "Will return lessons that include the user's search term (ie. 'Search Prayer')"
-				+ "<br>" + "<br>" + "<br>" + "<b> DAY (Insert Space) NUMBER </b>" + "<br>"
-				+ "Will return the associated Lesson, Activity, and Blessing for the Day specified (ie. 'Day 36')"
-				+ "<br>" + "<br>" + "<br>" + "<b> OMER (Insert Space) CHARACTERISTIC </b>" + "<br>"
-				+ "Will return the days that exhibit the characteristic the user input (ie. 'Omer Chesed')" + "<br>"
-				+ "<br>" + "<br>"
-				+ "<b> <i> **NOTE: </b> <i> To allow for full functionality of the HelpBot, specifically search features, please ensure you </i>"
-				+ "<br>"
-				+ " <i> have clicked into a 'Day' from the 'Start Counting' screen on the homepage. Thank you! </i> </html>");
+		if (selectedLanguage.equals("Hebrew")) {
+			commandLabel = new JLabel("<html><div style='text-align: right;'><b> פקודות בוט: </b>" + "<br>" + "<br>"
+					+ "<br>" + "<b> נווט </b>" + "<br>" + "ישוב עם הוראות לשימוש באפליקציה זו" + "<br>" + "<br>"
+					+ "<br>" + "<b> שכחתי </b>" + "<br>" + "ישוב את היום הקודם של המשתמש לפי המערכת" + "<br>" + "<br>"
+					+ "<br>" + " <b> חפש [מילה] </b>" + "<br>"
+					+ "יחזיר שיעורים הכוללים את מונח החיפוש של המשתמש (כמו 'חיפוש תפילה')" + "<br>" + "<br>" + "<br>"
+					+ "<b> יום [מספר] </b>" + "<br>"
+					+ "יחזיר את השיעור, הפעילות והברכה המשויכים ליום שצוין (כלומר 'יום ל\"ו')" + "<br>" + "<br>"
+					+ "<br>" + "<br>" + "<b> עומר (הכנס רווח) מאפיין </b>" + "<br>"
+					+ "יחזיר את הימים שמציגים את המאפיין שהמשתמש קלט (כלומר 'עומר חסד')" + "<br>" + "<br>" + "<br>"
+					+ "<b> <i> **הערה: </b> <i> כדי לאפשר את הפונקציונליות המלאה של ה-HelpBot, במיוחד תכונות החיפוש, אנא הקפד"
+					+ "<br>" + "<i> לחצו על 'יום' ממסך 'התחל לספור' בדף הבית. תודה! </i></div></html>");
+
+			helpConsole.setText("ברוכים הבאים למסוף העזרה! אנא הזינו את ההודעה שלכם למטה\n"
+					+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+					+ "\n");
+		}
+
+		else {
+			commandLabel = new JLabel("<html> <b> Bot Commands: </b>" + "<br>" + "<br>" + "<br>" + "<b> NAVIGATE </b>"
+					+ "<br>" + "Will return instructions on how to use this application" + "<br>" + "<br>" + "<br>"
+					+ "<b> FORGOT </b>" + "<br>" + "Will return the user's previous day according to the system"
+					+ "<br>" + "<br>" + "<br>" + " <b> SEARCH (Insert Space) WORD </b>" + "<br>"
+					+ "Will return lessons that include the user's search term (ie. 'Search Prayer')" + "<br>" + "<br>"
+					+ "<br>" + "<b> DAY (Insert Space) NUMBER </b>" + "<br>"
+					+ "Will return the associated Lesson, Activity, and Blessing for the Day specified (ie. 'Day 36')"
+					+ "<br>" + "<br>" + "<br>" + "<b> OMER (Insert Space) CHARACTERISTIC </b>" + "<br>"
+					+ "Will return the days that exhibit the characteristic the user input (ie. 'Omer Chesed')" + "<br>"
+					+ "<br>" + "<br>"
+					+ "<b> <i> **NOTE: </b> <i> To allow for full functionality of the HelpBot, specifically search features, please ensure you </i>"
+					+ "<br>"
+					+ " <i> have clicked into a 'Day' from the 'Start Counting' screen on the homepage. Thank you! </i> </html>");
+		}
+
 		commandLabel.setFont(new Font(commandLabel.getText(), Font.PLAIN, FONT_SIZE));
 		rightPanel.add(commandLabel);
 
@@ -158,11 +181,6 @@ public class HelpLayout {
 				} else if (Character.isLetterOrDigit(e.getKeyChar())) {
 					userReply += e.getKeyChar();
 					// Check if Backspace key is pressed, do nothing
-				} else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					e.consume();
-					// Check if Delete key is pressed. do nothing
-				} else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-					e.consume();
 				}
 			}
 		});

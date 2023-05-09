@@ -20,6 +20,7 @@ public class ButtonListenerImplemented extends ButtonListener {
 	private static final int FIRST_DAY = 1;
 	private static final int LAST_DAY = 49;
 	private static final int EDGE_DAY = 50;
+	private String selectedLanguage = Main.selectedLanguage;
 
 	public ButtonListenerImplemented(JButton button, JFrame mainFrame) {
 		super(button, mainFrame);
@@ -52,7 +53,7 @@ public class ButtonListenerImplemented extends ButtonListener {
 
 		// Creates new HomeScreen
 		if (buttonID.equals("Home")) {
-			new HomeScreen(frame);
+			new HomeScreen(frame, this.selectedLanguage);
 		}
 
 		// Creates new DayLayoutList with given CurrentDay value
