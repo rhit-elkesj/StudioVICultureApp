@@ -97,7 +97,6 @@ public class HelpLayout {
 				+ "\n");
 		helpConsole.setEditable(true);
 		helpConsole.setBackground(Color.WHITE);
-		helpConsole.setHighlighter(null);
 		helpConsole.setBorder(BorderFactory.createLineBorder(Color.BLACK, CONSOLE_THICKNESS, true));
 		// Makes it viewable
 		consolePane.setViewportView(helpConsole);
@@ -113,14 +112,14 @@ public class HelpLayout {
 
 		if (selectedLanguage.equals("Hebrew")) {
 			commandLabel = new JLabel("<html><div style='text-align: right;'><b> פקודות בוט: </b>" + "<br>" + "<br>"
-					+ "<br>" + "<b> נווט </b>" + "<br>" + "ישוב עם הוראות לשימוש באפליקציה זו" + "<br>" + "<br>"
-					+ "<br>" + "<b> שכחתי </b>" + "<br>" + "ישוב את היום הקודם של המשתמש לפי המערכת" + "<br>" + "<br>"
-					+ "<br>" + " <b> חפש [מילה] </b>" + "<br>"
-					+ "יחזיר שיעורים הכוללים את מונח החיפוש של המשתמש (כמו 'חיפוש תפילה')" + "<br>" + "<br>" + "<br>"
+					+ "<b> נווט </b>" + "<br>" + "ישוב עם הוראות לשימוש באפליקציה זו" + "<br>" + "<br>"
+					+ "<b> שכחתי </b>" + "<br>" + "ישוב את היום הקודם של המשתמש לפי המערכת" + "<br>" + "<br>"
+					+ "<b> ברור </b>" + "<br>" + "מנקה את הטקסט הנוכחי במסוף" + "<br>" + "<br>" + " <b> חפש [מילה] </b>"
+					+ "<br>" + "יחזיר שיעורים הכוללים את מונח החיפוש של המשתמש (כמו 'חיפוש תפילה')" + "<br>" + "<br>"
 					+ "<b> יום [מספר] </b>" + "<br>"
 					+ "יחזיר את השיעור, הפעילות והברכה המשויכים ליום שצוין (כלומר 'יום ל\"ו')" + "<br>" + "<br>"
-					+ "<br>" + "<br>" + "<b> עומר (הכנס רווח) מאפיין </b>" + "<br>"
-					+ "יחזיר את הימים שמציגים את המאפיין שהמשתמש קלט (כלומר 'עומר חסד')" + "<br>" + "<br>" + "<br>"
+					+ "<b> עומר (הכנס רווח) מאפיין </b>" + "<br>"
+					+ "יחזיר את הימים שמציגים את המאפיין שהמשתמש קלט (כלומר 'עומר חסד')" + "<br>" + "<br>"
 					+ "<b> <i> **הערה: </b> <i> כדי לאפשר את הפונקציונליות המלאה של ה-HelpBot, במיוחד תכונות החיפוש, אנא הקפד"
 					+ "<br>" + "<i> לחצו על 'יום' ממסך 'התחל לספור' בדף הבית. תודה! </i></div></html>");
 
@@ -133,7 +132,9 @@ public class HelpLayout {
 			commandLabel = new JLabel("<html> <b> Bot Commands: </b>" + "<br>" + "<br>" + "<br>" + "<b> NAVIGATE </b>"
 					+ "<br>" + "Will return instructions on how to use this application" + "<br>" + "<br>" + "<br>"
 					+ "<b> FORGOT </b>" + "<br>" + "Will return the user's previous day according to the system"
-					+ "<br>" + "<br>" + "<br>" + " <b> SEARCH (Insert Space) WORD </b>" + "<br>"
+					+ "<br>" + "<br>" + "<br>" + "<b> CLEAR </b>" + "<br>"
+					+ "Will clear the current text in the console" + "<br>" + "<br>" + "<br>"
+					+ " <b> SEARCH (Insert Space) WORD </b>" + "<br>"
 					+ "Will return lessons that include the user's search term (ie. 'Search Prayer')" + "<br>" + "<br>"
 					+ "<br>" + "<b> DAY (Insert Space) NUMBER </b>" + "<br>"
 					+ "Will return the associated Lesson, Activity, and Blessing for the Day specified (ie. 'Day 36')"
@@ -210,6 +211,12 @@ public class HelpLayout {
 			break;
 		case "HELP":
 			botReply = "I would be happy to assist you! Please enter a valid command.";
+			break;
+		case "CLEAR":
+			botReply = "The console has been successfully cleared.";
+			helpConsole.setText("Welcome to the Help Console! Please enter your message below!\n"
+					+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+					+ "\n");
 			break;
 		case "THANKS":
 			botReply = "No problem! Let me know if I can help more!.";
