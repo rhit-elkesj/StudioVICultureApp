@@ -52,7 +52,7 @@ public class HelpLayout {
 	private HashMap<Integer, DayContent> dayContentHashMap = DayLayoutList.dayContentHashMap;
 	private int lastDayGlobal = DayLayoutList.lastDayGlobal;
 	private String selectedLanguage = Main.selectedLanguage;
-	private String userReply;
+	private String userReply = "";
 	private String botReply;
 	private JFrame frame;
 	private JPanel mainPanel;
@@ -213,7 +213,7 @@ public class HelpLayout {
 			botReply = "I would be happy to assist you! Please enter a valid command.";
 			break;
 		case "CLEAR":
-			botReply = "The console has been successfully cleared.";
+			botReply = "The console has been sucessfully cleared.";
 			helpConsole.setText("Welcome to the Help Console! Please enter your message below!\n"
 					+ "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 					+ "\n");
