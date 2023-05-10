@@ -39,6 +39,7 @@ public class DayLayoutList extends DayLayout {
 	private String selectedLanguage = Main.selectedLanguage;
 	protected static HashMap<Integer, DayContent> dayContentHashMap = new HashMap<Integer, DayContent>();
 	private String[] characteristics = { "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malchut" };
+	private String[] characteristicsHebrew = { "חסד", "גבורה", "תפארת", "נצח", "הוד", "יסוד", "מלכות" };
 	private DayContent[] dayContentArray = new DayContent[50];
 	private JLabel[] dayLabels = new JLabel[50];
 	private JLabel[] lessonLabels = new JLabel[50];
@@ -72,9 +73,9 @@ public class DayLayoutList extends DayLayout {
 					String activityStringHeb = scanner.nextLine();
 					String blessingStringEnglishHeb = scanner.nextLine();
 
-					lessonLabels[i] = new JLabel("<html><div style='text-align: right;'><b>שִׁיעוּר</b>" + "<br>" + lessonStringHeb + "<br>" + "<br>"
-							+ "<br>" + "<br>" + "<b>פעילות</b>" + "<br>" + activityStringHeb + "<br>" + "<br>" + "<br>"
-							+ "<br>" + "<b>ברכה</b>" + "<br>"
+					lessonLabels[i] = new JLabel("<html><div style='text-align: right;'><b>שִׁיעוּר</b>" + "<br>"
+							+ lessonStringHeb + "<br>" + "<br>" + "<br>" + "<br>" + "<b>פעילות</b>" + "<br>"
+							+ activityStringHeb + "<br>" + "<br>" + "<br>" + "<br>" + "<b>ברכה</b>" + "<br>"
 							+ "Barukh ata Adonai Eloheinu Melekh ha’Olam asher kid’shanu b’mitzvotav v’tizivanu al sefirat ha’omer."
 							+ "<br>" + blessingStringEnglishHeb + "<br>"
 							+ "בָּרוּךְ אַתָּה יְהוָה אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל סְפִירַת הָעֹמֶר."
@@ -110,19 +111,43 @@ public class DayLayoutList extends DayLayout {
 		}
 
 		// All dayLabels, lessonLabels, and dayContents
-		for (int i = 0; i < characteristics.length; i++) {
-			for (int j = 0; j < characteristics.length; j++) {
-				String labelText = "<html><div style='text-align: center;'>Day " + startDay + "<br>"
-						+ characteristics[j] + " within " + characteristics[i] + "</div></html>";
-				dayLabels[startLoop] = new JLabel(labelText);
-				dayLabels[startLoop].setHorizontalAlignment(SwingConstants.CENTER);
-				DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
-				dayContentArray[startLoop] = dayContent;
+		if (selectedLanguage.equals("Hebrew")) {
+			for (int i = 0; i < characteristicsHebrew.length; i++) {
+				for (int j = 0; j < characteristicsHebrew.length; j++) {
+					// Convert i (Day number) to Hebrew
+					 String hebrewDay = toHebrewNumber(startDay); 
+					 String labelText = "<html><div style='text-align: right;'>יום " + hebrewDay
+                             + "<br>" + characteristicsHebrew[j] + " בתוך " + characteristicsHebrew[i] 
+                             + "</div></html>";
 
-				// HashMap for mapping the dayContent to the associated Day
-				dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
-				startLoop++;
-				startDay++;
+				        dayLabels[startLoop] = new JLabel(labelText);
+				        dayLabels[startLoop].setHorizontalAlignment(SwingConstants.RIGHT);
+				        DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
+				        dayContentArray[startLoop] = dayContent;
+
+				        // HashMap for mapping the dayContent to the associated Day
+				        dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
+				        startLoop++;
+				        startDay++;
+				    }
+				}
+		}
+
+		else {
+			for (int i = 0; i < characteristics.length; i++) {
+				for (int j = 0; j < characteristics.length; j++) {
+					String labelText = "<html><div style='text-align: center;'>Day " + startDay + "<br>"
+							+ characteristics[j] + " within " + characteristics[i] + "</div></html>";
+					dayLabels[startLoop] = new JLabel(labelText);
+					dayLabels[startLoop].setHorizontalAlignment(SwingConstants.CENTER);
+					DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
+					dayContentArray[startLoop] = dayContent;
+
+					// HashMap for mapping the dayContent to the associated Day
+					dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
+					startLoop++;
+					startDay++;
+				}
 			}
 		}
 
@@ -168,6 +193,30 @@ public class DayLayoutList extends DayLayout {
 	@Override
 	protected HashMap<Integer, DayContent> getDayContentHashMap() {
 		return dayContentHashMap;
+	}
 
-	}// getDayContentHashMap
+	// Converts English numbers to Hebrew nunbers
+	public static String toHebrewNumber(int number) {
+		String[] hebrewOnes = { "", "א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט" };
+		String[] hebrewTens = { "", "י", "כ", "ל", "מ", "נ", "ס", "ע", "פ", "צ" };
+		String[] hebrewTensAbove20 = { "", "עשר", "עשרים", "שלושים", "ארבעים", "חמישים" };
+		StringBuilder sb = new StringBuilder();
+		if (number == 50) {
+			return "נ";
+		}
+		int ones = number % 10;
+		int tens = number / 10;
+		if (tens == 5) {
+			sb.append(hebrewTensAbove20[5]);
+		} else {
+			if (tens > 0) {
+				sb.append(hebrewTens[tens]);
+			}
+		}
+		if (ones > 0 || number == 0) {
+			sb.append(hebrewOnes[ones]);
+		}
+		return sb.toString();
+		
+	}// toHebrewNumber
 }// DayLayoutList
