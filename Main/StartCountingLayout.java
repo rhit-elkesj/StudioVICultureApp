@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 /**
  * Class: StartCountingLayout
- * 
+ *
  * @author Richelle Elkes <br>
  *         Purpose: Adds the necessary components to create the GridButtons <br>
  *         Restrictions: None
@@ -37,7 +37,7 @@ public class StartCountingLayout {
 		mainButtonPanel.setBorder(BorderFactory.createEmptyBorder(BORDER_GAP_WIDTH_T, BORDER_GAP_WIDTH_L,
 				BORDER_GAP_WIDTH_B, BORDER_GAP_WIDTH_R));
 		mainButtonPanel.setBackground(BACKGROUND_COLOUR);
-		
+
 		frame.setBackground(BACKGROUND_COLOUR);
 			frame.add(mainButtonPanel);
 
