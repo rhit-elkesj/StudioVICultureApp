@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -115,22 +116,21 @@ public class DayLayoutList extends DayLayout {
 			for (int i = 0; i < characteristicsHebrew.length; i++) {
 				for (int j = 0; j < characteristicsHebrew.length; j++) {
 					// Convert i (Day number) to Hebrew
-					 String hebrewDay = toHebrewNumber(startDay); 
-					 String labelText = "<html><div style='text-align: right;'>יום " + hebrewDay
-                             + "<br>" + characteristicsHebrew[j] + " בתוך " + characteristicsHebrew[i] 
-                             + "</div></html>";
+					String hebrewDay = toHebrewNumber(startDay);
+					String labelText = "<html><div style='text-align: right;'>יום " + hebrewDay + "<br>"
+							+ characteristicsHebrew[j] + " בתוך " + characteristicsHebrew[i] + "</div></html>";
 
-				        dayLabels[startLoop] = new JLabel(labelText);
-				        dayLabels[startLoop].setHorizontalAlignment(SwingConstants.RIGHT);
-				        DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
-				        dayContentArray[startLoop] = dayContent;
+					dayLabels[startLoop] = new JLabel(labelText);
+					dayLabels[startLoop].setHorizontalAlignment(SwingConstants.RIGHT);
+					DayContent dayContent = new DayContent(dayLabels[startLoop], lessonLabels[startLoop]);
+					dayContentArray[startLoop] = dayContent;
 
-				        // HashMap for mapping the dayContent to the associated Day
-				        dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
-				        startLoop++;
-				        startDay++;
-				    }
+					// HashMap for mapping the dayContent to the associated Day
+					dayContentHashMap.put(startLoop, dayContentArray[startLoop]);
+					startLoop++;
+					startDay++;
 				}
+			}
 		}
 
 		else {
@@ -217,6 +217,6 @@ public class DayLayoutList extends DayLayout {
 			sb.append(hebrewOnes[ones]);
 		}
 		return sb.toString();
-		
+
 	}// toHebrewNumber
 }// DayLayoutList
